@@ -7,4 +7,4 @@ Co-Head of the Bioinformatics Division at the Walter and Eliza Hall Institute of
 * [My Google Scholar page](https://scholar.google.com.au/citations?user=k1z6axEAAAAJ&hl=en)
 * [My ORCID ID page](https://orcid.org/0000-0001-9221-2892)
 
-<a href="https://doi.org/10.1007/978-1-4419-0118-7"><img href="DunnSmythGLMs.jpg"></a>
+<a href="https://doi.org/10.1007/978-1-4419-0118-7"><img src="DunnSmythGLMs.jpg" alt="GLMs with Examples in R"></a>
