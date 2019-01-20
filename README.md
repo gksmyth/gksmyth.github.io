@@ -9,5 +9,5 @@ Joint Head of the Bioinformatics Division at the Walter and Eliza Hall Institute
 * [LinkedIn page](https://au.linkedin.com/in/gordonsmyth)
 * [Bioconductor Support page](https://support.bioconductor.org/u/179)
 
-<hr size=2>
-<a href="https://doi.org/10.1007/978-1-4419-0118-7"><img src="DunnSmythGLMs.jpg" alt="GLMs with Examples in R"></a>
+<hr size="2">
+<a href="https://doi.org/10.1007/978-1-4419-0118-7"><img src="DunnSmythGLMs.jpg" alt="Generalized Linear Models with Examples in R"></a>
