@@ -1,0 +1,7 @@
+BODY { background: white; color: black; font-size: 90% }
+a:link       { color: #3333FF }
+a:visited    { color: #660066 }
+H1 { font-size: x-large; font-family: arial, helvetica, sans-serif; color: #808080 }
+H2 { font-size: large; font-family: arial, helvetica, sans-serif; color: #009933 }
+H3 { font-family: arial, helvetica, sans-serif; color: #009933 }
+.parent { font-family: arial, helvetica, sans-serif}
