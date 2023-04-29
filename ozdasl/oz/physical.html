@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Mass and Physical Measurements for Male Subjects</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Mass and Physical Measurements for Male Subjects</h1>
+
+<p>Keywords: multiple regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>For his MS305 data project, Michael Larner measured the weight and various physical measurements for 22 male subjects aged 16 - 30.
+Subjects were randomly chosen volunteers, all in reasonable good health.
+Subjects were requested to slightly tense each muscle being measured to ensure measurement consistency.
+Apart from Mass, all measurements are in cm. </p>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Variable <td width="20"><td>Description</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Mass<td width="20"><td>Weight in kg</tr>
+<tr><td width="20"><td align="right">Fore<td width="20"><td>Maximum circumference of forearm</tr>
+<tr><td width="20"><td align="right">Bicep<td width="20"><td>Maximum circumference of bicep</tr>
+<tr><td width="20"><td align="right">Chest<td width="20"><td>Distance around chest directly under the armpits</tr>
+<tr><td width="20"><td align="right">Neck<td width="20"><td>Distance around neck, approximately halfway up</tr>
+<tr><td width="20"><td align="right">Waist<td width="20"><td>Distance around waist, approximately trouser line</tr>
+<tr><td width="20"><td align="right">Thigh<td width="20"><td>Circumference of thigh, measured halfway between the knee and the top of the leg</tr>
+<tr><td width="20"><td align="right">Calf<td width="20"><td>Maximum circumference of calf</tr>
+<tr><td width="20"><td align="right">Height<td width="20"><td>Height from top to toe</tr>
+<tr><td width="20"><td align="right">Shoulders<td width="20"><td>Distance around shoulders, measured around the peak of the shoulder blades</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="physical.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Larner, M. (1996). <em>Mass and its Relationship to Physical Measurements</em>. MS305 Data Project, Department of Mathematics, University of Queensland.</p>
+
+<h2>Analysis</h2>
+
+<p>This is very well behaved data. One can log-transform all the variables, but the original scales are very nearly as good.
+There is no evidence of non-linearity or interaction.</p>
+
+<pre>&gt; leaps.mass &lt;- leaps(physical[,2:11],Mass,nbest=3)
+&gt; df.mass &lt;- data.frame(p=leaps.mass$size,Cp=leaps.mass$Cp)
+&gt; round(df.mass,2)
+                                                             p     Cp
+                                                      Waist  2  60.50
+                                                       Fore  2  74.80
+                                                   Shoulder  2 110.36
+                                                 Fore,Waist  3  14.70
+                                                 Waist,Calf  3  25.25
+                                             Shoulder,Waist  3  29.54
+                                          Fore,Waist,Height  4   7.45
+                                            Fore,Waist,Calf  4  11.18
+                                           Fore,Waist,Thigh  4  12.21
+                                    Fore,Waist,Height,Thigh  5   4.44
+                                     Fore,Waist,Height,Calf  5   6.10
+                                     Fore,Waist,Height,Head  5   6.83
+                               Fore,Waist,Height,Thigh,Head  6   4.14
+                               Fore,Waist,Height,Calf,Thigh  6   4.82
+                                Fore,Waist,Height,Calf,Head  6   5.35
+                          Fore,Waist,Height,Calf,Thigh,Head  7   4.38
+                          Fore,Chest,Waist,Height,Calf,Head  7   4.81
+                         Fore,Chest,Waist,Height,Thigh,Head  7   5.50
+                    Fore,Chest,Waist,Height,Calf,Thigh,Head  8   5.47
+                    Fore,Bicep,Waist,Height,Calf,Thigh,Head  8   6.07
+                 Fore,Shoulder,Waist,Height,Calf,Thigh,Head  8   6.12
+               Fore,Chest,Neck,Waist,Height,Calf,Thigh,Head  9   7.13
+           Fore,Chest,Shoulder,Waist,Height,Calf,Thigh,Head  9   7.45
+              Fore,Bicep,Chest,Waist,Height,Calf,Thigh,Head  9   7.47
+         Fore,Bicep,Chest,Neck,Waist,Height,Calf,Thigh,Head 10   9.01
+      Fore,Chest,Neck,Shoulder,Waist,Height,Calf,Thigh,Head 10   9.10
+     Fore,Bicep,Chest,Shoulder,Waist,Height,Calf,Thigh,Head 10   9.45
+Fore,Bicep,Chest,Neck,Shoulder,Waist,Height,Calf,Thigh,Head 11  11.00
+
+&gt; lm.mass &lt;-lm(Mass~Fore+Waist+Height+Thigh)
+&gt; summary(lm.mass,cor=F)
+
+Call: lm(formula = Mass ~ Fore + Waist + Height + Thigh)
+Residuals:
+    Min      1Q  Median     3Q   Max
+ -3.882 -0.6756 -0.1017 0.9641 4.992
+
+Coefficients:
+                Value Std. Error   t value  Pr(&gt;|t|)
+(Intercept) -113.3120   14.6391    -7.7404    0.0000
+       Fore    2.0356    0.4624     4.4020    0.0004
+      Waist    0.6469    0.1043     6.2015    0.0000
+     Height    0.2717    0.0855     3.1789    0.0055
+      Thigh    0.5401    0.2374     2.2750    0.0361
+
+Residual standard error: 2.249 on 17 degrees of freedom
+Multiple R-Squared: 0.9659
+F-statistic: 120.5 on 4 and 17 degrees of freedom, the p-value is 3.079e-012 </pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

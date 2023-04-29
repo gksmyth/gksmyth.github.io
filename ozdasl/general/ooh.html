@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="local.usage" content="None.">
+<title>OzDASL: Voice Data from Singing the Vowel 'ooh'</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Voice Data from Singing the Vowel 'ooh'</h1>
+
+<p>Keywords: time series, sum of sinusoids, discrete spectra</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data give the normalized magnitudes of the voice data when the vowel 'ooh' was sung
+at a pitch of 290 Hz. A Kurzweil K2500 Sampler/Synthesizer was used to capture and to
+store the data.</p>
+
+<p>The frequencies found in the signal can be used to identify the phonetical
+vowel, and are of interest in voice synthesis, therapy and training. Further details are
+given in Oliver (1997).</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Magnitude</td>
+    <td width="20"></td>
+    <td>Normalized Magnitudes at equi-spaced time intervals</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="ooh.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Oliver, W. D. (1997). <em>The Singing Tree: A
+    Novel Interactive Musical Interface</em>. Master of Science Thesis, Massachusetts
+    Institute of Technology. The data given here was digitized from Figure C-4. </td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>Smyth, G. K. (2000). Employing symmetry constraints for improved frequency estimation by
+    eigenanalysis methods. <em>Technometrics </em><b>42</b>, 277-289. (<a href="../../smyth/pubs/constrai.html">Abstract</a> - <a href="../../smyth/pubs/constrai.pdf">Zipped Postscript</a>) </td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>The signal contains three strong sinusoids. The following graph gives the results of
+fitting one, two and three sinusoids respectively to the data. The S-Plus codes uses the
+function <a href="../../s/pronyfre.html">pronyfreq</a>. </p>
+
+<pre>&gt; out3 &lt;- pronyfreq(Magnitude,nfreq=3)
+&gt; out2 &lt;- pronyfreq(Magnitude,nfreq=2)
+&gt; out1 &lt;- pronyfreq(Magnitude,nfreq=1)
+&gt; plot(Time,Magnitude)
+&gt; lines(Time,out1$fitted,col=2)
+&gt; lines(Time,out2$fitted,col=3)
+&gt; lines(Time,out3$fitted,col=4)
+&gt; legend(locator(1),legend=c(&quot;1 Freq&quot;,&quot;2 Freq&quot;,&quot;3 Freq&quot;),col=c(2,3,4),lty=1) </pre>
+
+<p><img src="ooh.gif" alt="ooh.gif (11473 bytes)" width="723" height="305"></p>
+
+<p>The frequences are estimated to be 0.11, 0.23 and 0.34. A constant term of -0.978 is
+also estimated, which might be put to zero.</p>
+
+<pre>&gt; out3$freq
+[1] 0.1134373 0.2299815 0.3401675
+&gt; out3$coef
+[1]  -0.9780157   8.1729553  -1.3621919  -5.6189912  66.2204549  22.5080047
+[7]  24.6546725</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

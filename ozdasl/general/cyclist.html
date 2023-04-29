@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Distances of Cars from Cyclists</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Distance of Cars from Cyclists</h1>
+
+<p>Keywords: regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>For each of ten streets with bike lanes, investigators measured the distance
+between the centre line and a cylist in the bike lane.  They used photography to
+determine the distance between the cyclist and a passing car on those same ten
+streets, recording all distances in feet. </p>
+
+<h2>Download</h2>
+
+<p><a href="cyclist.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+<tr><td>Effects of bike lanes on driver and bicyclist behavior, <em>ASCE Transportation Eng. J.</em>, 1977, pages 243-256.</td></tr>
+<tr><td><img src="../../images/dotclear.gif" width="1" height="10"></td></tr>
+<tr><td>Devore, J. L. (1982). <em>Probability and Statistics for Engineering and the Sciences</em>. Brooks/Cole, Pacific Grove, California, pages 432-433.
+<tr><td><img src="../../images/dotclear.gif" width="1" height="10"></td></tr>
+<tr><td>Rasmussen, S. (1992). <em>An Introduction to Statistics with Data Analysis</em>. Brooks/Cole, Pacific Grove, California, Example 15.3.
+</table>
+
+<h2>Analysis</h2>
+
+<ul>
+<li>There is a very clear linear regression, and surprisingly little evidence of nonlinearity.
+<li>The intercept is not significantly different from zero, which makes intuitive sense.
+</ul>
+
+<p align="center"><img src="cyclist.gif" alt="wpe1.gif (3609 bytes)" width="506" height="507"></p>
+
+<pre>Call: lm(formula = Car ~ Center)
+Residuals:
+     Min      1Q  Median     3Q    Max
+ -0.7699 -0.4485 0.03493 0.3561 0.8415
+
+Coefficients:
+              Value Std. Error t value Pr(&gt;|t|)
+(Intercept) -2.1825  1.0567    -2.0654  0.0727
+     Center  0.6603  0.0675     9.7858  0.0000
+
+Residual standard error: 0.5821 on 8 degrees of freedom
+Multiple R-Squared: 0.9229
+F-statistic: 95.76 on 1 and 8 degrees of freedom, the p-value is 9.975e-006</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

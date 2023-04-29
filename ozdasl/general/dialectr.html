@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="SMP30 Assignment 5.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Dialectric Breakdown Strength</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Dialectric Breakdown Strength</h1>
+
+<p>Keywords: two-way analysis of variance, nonlinear regression, gamma regression,
+dispersion modelling</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>These data are the result of a study involving the analysis of performance degradation
+data from accelerated tests. The response variable is dialectric breakdown strength in
+kilo-volts, and the predictor variables are time in weeks and temperature in degrees
+Celcius. The study can be viewed as an 8 by 4 factorial experiment.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Strength</td>
+    <td width="20"></td>
+    <td>Dialectric breakdown strength in kilovolts</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Time</td>
+    <td width="20"></td>
+    <td>Duration of testing in weeks (8 levels)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Temperature</td>
+    <td width="20"></td>
+    <td>Temperature in degrees Celsius (4 levels)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="dialectr.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Nelson, W. (1981). Analysis of performance-degradation data. <em>IEEE Transactions on
+    Reliability</em>, <strong>2</strong>, R-30, 149-155.</td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td><a href="http://www.itl.nist.gov/div898/strd/nls/data/enso.shtml">NIST Standard
+    Reference Data Sets</a>. </td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p><img src="dialect1.gif" alt="Co-plot (10507 bytes)" width="635" height="627"></p>
+
+<p>&nbsp;</p>
+
+<p>The reference analysis according to NIST gives</p>
+
+<pre>log[Stength] = b1 - b2*Time * exp[-b3*Temperature]  +  e
+
+            Certified Values
+        Parameter     Standard Deviation
+b1   2.5906836021E+00  1.9149996413E-02
+b2   5.6177717026E-09  6.1124096540E-09
+b3  -5.7701013174E-02  3.9572366543E-03</pre>
+
+<p>The data is actually slightly better modelled as gamma or Poisson-gamma rather than
+log-normal:</p>
+
+<pre>&gt; dglm(log(Strength)~ordered(Time)*ordered(Temperature),family=tweedie(var.power=0,link.power=1),method=&quot;ml&quot;)$m2loglik+2*sum(log(Strength))
+[1] 309.5124
+&gt; dglm(Strength~ordered(Time)*ordered(Temperature),family=tweedie(var.power=2,link.power=0),method=&quot;ml&quot;)$m2loglik
+[1] 309.2368
+&gt; dglm(Strength~ordered(Time)*ordered(Temperature),family=tweedie(var.power=1.8,link.power=0),method=&quot;ml&quot;)$m2loglik
+[1] 303.5884</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

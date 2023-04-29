@@ -1,0 +1,172 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Data from a student project on pizza delivery. Of interest for teaching statistics.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Pizza Delivery Experiment</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Pizza Delivery Experiment</h1>
+
+<p>Keywords: Three-Way Analysis of Variance, Designed Experiment.</p>
+
+<hr>
+
+<h2><description</h2>Description</h2>
+
+<p>Experiment conducted by Bill Afantenou, second year statistics student at QUT. Here is
+his description of the experiment:</p>
+
+<blockquote>
+  <p>``As I am a big pizza lover, I had much pleasure in involving pizza in my experiment. I
+  became curious to find out the time it took for a pizza to be delivered to the front door
+  of my house. I was interested to see how, by varying whether I ordered thick or thin
+  crust, whether Coke was ordered with the pizza and whether garlic bread was ordered with
+  the pizza, the response would be affected. </p>
+  <p>``Because of my current financial status and limitation of time, I decided to have only
+  two replicates, just to get a reasonable estimate of the variance. To decrease my
+  financial burden I managed a deal with the manager of the pizza shop. I managed to get the
+  pickup special, delivered to my house, which was the cheapest and smallest pizza made. I
+  tried to repeat the experiment in as nearly as possible identical conditions to reduce
+  `noise'. </p>
+  <p>``I ordered the pizza from the same shop, being Domino's Pizza. To be consistent I
+  ordered a Supreme pizza each time at approximately the same time of day. The response was
+  measured from the time I closed the telephone to the time the pizza was delivered to the
+  front door of my house. </p>
+  <p>``I wrote each of the eight treatments on a piece of paper twice, put them all into a
+  hat, mixed them up, and took them out one at a time to allocate the order in which each
+  treatment was done. </p>
+  <p>``As well as the response and treatment for each pizza delivery the actual hour of
+  delivery was recorded, also the order in which the treatments were done and whether the
+  driver was male or female.'' </p>
+</blockquote>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Crust</td>
+    <td width="20"></td>
+    <td>Thin=0, Thick=1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Coke</td>
+    <td width="20"></td>
+    <td>No=0, Yes=1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bread</td>
+    <td width="20"></td>
+    <td>Garlic bread. No=0, Yes=1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Driver</td>
+    <td width="20"></td>
+    <td>Male=M, Female=F</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Hour</td>
+    <td width="20"></td>
+    <td>Time of order in hours since midnight</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Delivery</td>
+    <td width="20"></td>
+    <td>Delivery time in minutes</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="pizza.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p><a href="http://www.amstat.org/publications/jse/v2n1/mackisack.html">Mackisack, M. S.
+(1994). What is the use of experiments conducted by statistics students? <em>Journal of
+Statistics Education</em>, <strong>2</strong>, no 1.</a></p>
+
+<h2>Analysis</h2>
+
+<p>This experiment shows interesting interactions between factors and some interesting
+features in the residual plots, including the possible use of covariate information to
+investigate unplanned influences on the response. </p>
+
+<p>Delivery is quicker when a drink or garlic bread is included, because the drivers were
+paid more for more items.</p>
+
+<p><b><font FACE="System" SIZE="2"><img SRC="pizza1.gif" WIDTH="358" HEIGHT="286"></font></b></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

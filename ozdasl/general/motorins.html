@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Third Party Motor Insurance in Sweden</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Third Party Motor Insurance in Sweden</h1>
+
+<p>Keywords: Poisson regression, gamma regression, compound Poisson, generalized linear
+models, offset, dispersion modelling, exact zeros.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data give details of third party motor insurance claims in Sweden for the year
+1977.</p>
+
+<p>&quot;In Sweden all motor insurance companies apply identical risk arguments to
+classify customers, and thus their portfolios and their claims statistics can be combined.
+The data were compiled by a Swedish Committee on the Analysis of Risk Premium in Motor
+Insurance. The Committee was asked to look into the problem of analyzing the real
+influence on claims of the risk arguments and to compare this structure with the actual
+tariff.&quot;</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Kilometres </td>
+    <td width="20"></td>
+    <td>Kilometres travelled per year<br>
+    1: &lt; 1000<br>
+    2: 1000-15000<br>
+    3: 15000-20000<br>
+    4: 20000-25000<br>
+    5: &gt; 25000</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Zone </td>
+    <td width="20"></td>
+    <td>Geographical zone<br>
+    1: Stockholm, G&ouml;teborg, Malm&ouml; with surroundings<br>
+    2: Other large cities with surroundings<br>
+    3: Smaller cities with surroundings in southern Sweden<br>
+    4: Rural areas in southern Sweden<br>
+    5: Smaller cities with surroundings in northern Sweden<br>
+    6: Rural areas in northern Sweden<br>
+    7: Gotland </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Bonus</td>
+    <td width="20"></td>
+    <td>No claims bonus. Equal to the number of years, plus one, since last claim</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Make</td>
+    <td width="20"></td>
+    <td>1-8 represent eight different common car models. All other models are combined in
+    class 9</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Insured</td>
+    <td width="20"></td>
+    <td>Number of insured in policy-years</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Claims</td>
+    <td width="20"></td>
+    <td>Number of claims</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Payment</td>
+    <td width="20"></td>
+    <td>Total value of payments in Skr</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<p>Make 4 is the Volkswagen 1200, which was discontinued shortly after 1977. The other
+makes could not be identified because of the potential for the data to impact on sales of
+those cars.</p>
+
+<h2>Download</h2>
+
+<p><a href="motorins.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Hallin, M., and Ingenbleek, J.-F. (1983). The Swedish automobile portfolio in 1977. A
+    statistical study. <em>Scandinavian Actuarial Journal</em>, 49-64. The actual data are not
+    listed in this paper. </td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>Andrews, D. F., and Herzberg, A. M. (1985). <em>Data. A collection of problems from
+    many fields for the student and reseach worker.</em> Springer, New York, pages 413-421.
+    Only the data from Zone 1 are listed. </td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>The data was obtained electronically from the <a href="http://lib.stat.cmu.edu">Statlib
+    database</a>.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>The number of claims in each category can be treated as Poisson to a good
+approximation. The amount of each claim can be treated as gamma. The total payout is
+therefore compound Poisson. </p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

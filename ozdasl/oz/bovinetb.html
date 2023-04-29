@@ -1,0 +1,218 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="local.usage" content="MS475 1994 and 2000 Exams.">
+<title>OzDASL: Bovine Tuberculosis</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Bovine Tuberculosis</h1>
+
+<p>Keywords: Poisson distribution, overdispersion, outlier</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data was collected as part of the Australian bovine tuberculosis
+eradication campaign. Suitably treated bovine tissue was placed on culture
+plates and examined for the growth of colonies of <i>Mycobacterium bovis</i>.
+Material for culture was decontaminated prior to inoculation onto culture media.
+The data describe number of <i>M. bovis </i>colonies found on culture plates at
+stationarity (about 12 weeks after inoculation) when 1-hexadecylpyridium
+chloride (HPC) decontaminant was applied in varying
+concentrations. It is of interest to find the highest possible HPC concentration
+which does not kill too many <i>M. bovis</i> colonies.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HPC</td>
+    <td width="20"></td>
+    <td>HPC concentrations in % weight / volume</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Colonies</td>
+    <td width="20"></td>
+    <td>Number of M. Bovis colonies on the plate at stationarity</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<p>Trajstman (1989) described the background to the problem as follows:</p>
+
+<blockquote>
+  <p>At the Commonwealth Scientific and Industrial Research Organisation (CSIRO)
+  Division of Animal Health diagnostic procedures are being developed that will
+  eventually lead to the formulation of a standard approach for the conduct of
+  the Australian bovine tuberculosis eradication campaign. In particular,
+  interest lies in recommending laboratory procedures for the primary isolation
+  of <i>Mycobacterium bovis</i> (<i>M. bovis</i>) from bovine lesions ....
+  Typically the procedure involves placing suitably treated bovine tissues on
+  culture plates and waiting to see whether <i>M. bovis</i> colonies appear. <i>M.
+  bovis</i> is a slow growing bacterium and because of this slow growth it is
+  possible for contaminating bacteria to overgrow the cultures. To prevent this,
+  material for culture is decontaminated before inoculation on to culture media.
+  Decontaminants work by killing the contaminating organisms. Unfortunately
+  decontaminants can also kill the organism of interest, <i>M. bovis</i>. If the
+  decontaminant is too concentrated there will be no contamination but also
+  there will be so surviving <i>M. bovis</i>. However, if the decontaminant is
+  not sufficiently concentrated then <i>M. bovis</i> will grow well and so will
+  the contaminating organisms. The problem is to select a decontaminant at an
+  appropriate concentration that leaves a many as possible culture tubes
+  uncontaminated while at the same time kills as few as possible <i>M. bovis</i>
+  organisms.&nbsp;</p>
+
+</blockquote>
+<p>There are two subtleties to the data which are described by Trasjstman
+(1989). The first is that the maximum number of colonies at stationarity is
+essentially determined by the initial number of <i>M. bovis</i> colony forming
+units placed on a plate. The exact number of units placed on each plate is
+unknown, but technicians attempt to place about 50 units on each plate used in
+the experiment. The second is that HPC has a detergent action. At larger
+concentrations it may lead to a slight over-counting of the number of colonies
+by dispersing larger colonies into smaller clumps.&nbsp;</p>
+
+<h2>Download</h2>
+
+<p><a href="bovinetb.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Morgan, B. J. T. (1992). Analysis of Quantal Response Data. Chapman and
+      Hall, London. Example 1.9. </td>
+  </tr>
+  <tr>
+    <td height="15"></td>
+  </tr>
+  <tr>
+    <td>Trajstman, A. C. (1989). Indices for comparing decontaminants when data
+      come from dose-response survival and contamination experiments. <i>Applied
+      Statistics</i> <b>38</b>, 481-494.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>Both Trajstram (1989) and Morgan (1992) treated observation 61 as an outlier.
+Trasjstram (1989) treated the counts as binomial with unknown n, while Morgan
+(1992) treated the data as overdispersed Poisson.</p>
+
+<p>This data is interesting because it is highly overdispersed relative to Poisson, but still appears to have a linear mean-variance relationship.
+In particular the data clearly is not negative binomial. </p>
+
+<pre>&gt; out &lt;- glm(Colonies ~ HPC+as.factor(HPC), family=poisson)
+&gt; anova(out)
+Analysis of Deviance Table
+
+Poisson model
+
+Response: Colonies
+
+Terms added sequentially (first to last)
+               Df Deviance Resid. Df Resid. Dev
+          NULL                    69   808.6723
+           HPC  1 551.8116        68   256.8606
+as.factor(HPC)  5  32.8789        63   223.9817
+
+&gt; sum(out$weights*out$residuals^2)
+[1] 189.2474
+
+&gt; plot(fitted(out),residuals(out))</pre>
+
+<table border="0">
+  <tr>
+    <td>
+<img border="0" src="bovinet1.gif" width="503" height="503"></td>
+    <td>Note that there is no tendency for the residuals to become more variable
+      as the fitted value increases.
+      <p>It is not appropriate to fit a negative binomial model in which the
+      variance is assumed to increase quadratically with the mean.</td>
+  </tr>
+</table>
+
+<pre></pre>
+
+<pre>&gt; qqnorm(residuals(out))
+&gt; qqline(residuals(out))</pre>
+
+<table border="0">
+  <tr>
+    <td><img border="0" src="bovinet2.gif" width="503" height="503"></td>
+    <td>One clear outlier and possibly several. Or else the count distribution
+      is skew to the left relative to the Poisson distribution.</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

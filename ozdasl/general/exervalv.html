@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="local.usage" content="SMP30 Day 8.">
+<title>OzDASL: Heart Valves in Dogs on Different Exercise Regimens</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Heart Valves in Dogs on Different Exercise Regimens</h1>
+
+<p>Keywords: ordinal regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>A new type of heart valve has been developed and is implanted in 63 dogs that have been
+raised on various levels of exercise. The numbers of valve transplants that succeed are
+recorded. Is the proportion of successful implants the same for dogs on all exercise
+regimens? Is there a trend with amount of exercise in the proportion of successful
+implants?</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Exercise</td>
+    <td width="20"></td>
+    <td>Amount of exercise: 1=None, 2=Slight, 3=Moderate, 4=Vigorous</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Implant</td>
+    <td width="20"></td>
+    <td>1=Successful, 2=Unsuccessful</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Frequency</td>
+    <td width="20"></td>
+    <td>Number of dogs</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<p>The data could be presented in a contingency table:</p>
+
+<table BORDER="1" CELLSPACING="1" CELLPADDING="7" WIDTH="541">
+  <tr>
+    <td WIDTH="20%" VALIGN="TOP">&nbsp;</td>
+    <td WIDTH="64%" VALIGN="TOP" COLSPAN="5"><p ALIGN="CENTER">Amount of Exercise</td>
+    <td WIDTH="16%" VALIGN="TOP">&nbsp;</td>
+  </tr>
+  <tr>
+    <td WIDTH="20%" VALIGN="TOP"><p ALIGN="RIGHT">Implant</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">None</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">Slight</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">Moderate</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">Vigorous</td>
+    <td WIDTH="16%" VALIGN="TOP" COLSPAN="2"><p ALIGN="CENTER">Total</td>
+  </tr>
+  <tr>
+    <td WIDTH="20%" VALIGN="TOP" HEIGHT="20"><p ALIGN="RIGHT">Successful</td>
+    <td WIDTH="16%" VALIGN="TOP" HEIGHT="20"><p ALIGN="CENTER">8</td>
+    <td WIDTH="16%" VALIGN="TOP" HEIGHT="20"><p ALIGN="CENTER">9</td>
+    <td WIDTH="16%" VALIGN="TOP" HEIGHT="20"><p ALIGN="CENTER">17</td>
+    <td WIDTH="16%" VALIGN="TOP" HEIGHT="20"><p ALIGN="CENTER">14</td>
+    <td WIDTH="16%" VALIGN="TOP" COLSPAN="2" HEIGHT="20"><p ALIGN="CENTER">48</td>
+  </tr>
+  <tr>
+    <td WIDTH="20%" VALIGN="TOP"><p ALIGN="RIGHT">Unsuccessful</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">7</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">3</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">3</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">2</td>
+    <td WIDTH="16%" VALIGN="TOP" COLSPAN="2"><p ALIGN="CENTER">15</td>
+  </tr>
+  <tr>
+    <td WIDTH="20%" VALIGN="TOP"><p ALIGN="RIGHT">Total</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">15</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">12</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">20</td>
+    <td WIDTH="16%" VALIGN="TOP"><p ALIGN="CENTER">16</td>
+    <td WIDTH="16%" VALIGN="TOP" COLSPAN="2"><p ALIGN="CENTER">63</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2>Download</h2>
+
+<p><a href="exervalv.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Zar, J. H. (1999). <em>Biostatistical Analysis, Fourth Edition</em>. Prentice-Hall
+International, Upper Saddle River, New Jersey. Exercise 24.20.</p>
+
+<h2>Analysis</h2>
+
+<p>This can be used as an example of ordinal logistic regression, with Exercise as the
+response and Implant as the explanatory variable.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

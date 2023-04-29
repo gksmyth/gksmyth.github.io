@@ -1,0 +1,220 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Childhood Respiratory Disease</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan --><p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Childhood Respiratory Disease</h1>
+
+<p>Keywords: polynomial regression, multiple regression. </p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>FEV (forced expiratory volume) is an index of pulmonary function that measures the
+volume of air expelled after one second of constant effort. The data contains
+determinations of FEV on 654 children ages 6-22 who were seen in the Childhood Respiratory
+Desease Study in 1980 in East Boston, Massachusetts. The data are part of a larger study
+to follow the change in pulmonary function over time in children.</p>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right">ID</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>ID number</td>
+  </tr>
+  <tr>
+    <td align="right">Age</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>years</td>
+  </tr>
+  <tr>
+    <td align="right">FEV</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>litres</td>
+  </tr>
+  <tr>
+    <td align="right">Height</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>inches</td>
+  </tr>
+  <tr>
+    <td align="right">Sex</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>Male or Female</td>
+  </tr>
+  <tr>
+    <td align="right">Smoker</td>
+    <td>&nbsp;-&nbsp;</td>
+    <td>Non = nonsmoker, Current = current smoker</td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="fev.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table>
+  <tr>
+    <td>Tager, I. B., Weiss, S. T., Rosner, B., and Speizer, F. E. (1979). Effect of parental
+    cigarette smoking on pulmonary function in children. <em>American Journal of Epidemiology</em>,
+    <b>110</b>, 15-26. </td>
+  </tr>
+  <tr>
+    <td>Rosner, B. (1990). <em>Fundamentals of Biostatistics, 3rd Edition</em>. PWS-Kent,
+    Boston, Massachusetts. </td>
+  </tr>
+  </table>
+
+<p>The data has also been described by:</p>
+
+<table id="table1">
+  <tr>
+    <td>Kahn, M. (2003). Data Sleuth. <i>STATS</i>, 37, 24.</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.amstat.org/publications/jse/v13n2/datasets.kahn.html">Kahn, M. (2005). An exhalent problem for teaching 
+	statistics. <i>Journal of Statistical Education</i>, 13(2)</a>.</td>
+  </tr>
+  <tr>
+    <td>Smyth, G. K. (1998). Polynomial approximation. In: <em><a href="http://www.wiley.co.uk/eob/">Encyclopedia of Biostatistics</a></em>, P. Armitage and
+    T. Colton (eds.), Wiley, London, pp.&nbsp;3425-3429. (<a href="../../smyth/pubs/EoB/poly.ps">Postscript</a>)</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>Consider height as a function of age for the 318 girls in the study. Height might be
+described roughly by a straight line over a short range of ages, say ages 5 to 10, but
+over wider age ranges a more general function is needed. We fit sixth order orthogonal
+polynomials, and find that only the quadratic is significant. We might prefer to use the
+quartic approximation in practice though, because it is almost significant, and because
+the quadratic is not monotonic over the range of the data.</p>
+
+<p align="center">Table 1. Coefficients and standard errors for orthogonal polynomial<br>
+regression of Height on Age for the respiratory disease study.</p>
+<div align="center"><center>
+
+<table cellspacing="4">
+  <tr>
+    <td colspan="5"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">Coefficient </td>
+    <td align="center">Value</td>
+    <td align="center">Std. Error</td>
+    <td align="center">t-value </td>
+    <td align="center">P-value </td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>0</sub></td>
+    <td align="right">60.2119 </td>
+    <td align="right">0.1426 </td>
+    <td align="right">422.1543 </td>
+    <td align="right">0.0000 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>1</sub></td>
+    <td align="right">65.0285 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">25.5669 </td>
+    <td align="right">0.0000 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>2</sub></td>
+    <td align="right">-31.3549 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">-12.3276 </td>
+    <td align="right">0.0000 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>3</sub></td>
+    <td align="right">4.4838 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">1.7629 </td>
+    <td align="right">0.0789 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>4</sub></td>
+    <td align="right">4.9562 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">1.9486 </td>
+    <td align="right">0.0522 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>5</sub></td>
+    <td align="right">-2.1465 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">-0.8439 </td>
+    <td align="right">0.3994 </td>
+  </tr>
+  <tr>
+    <td align="center"><font face="symbol">a</font><sub>6</sub></td>
+    <td align="right">2.4170 </td>
+    <td align="right">2.5435 </td>
+    <td align="right">0.9503 </td>
+    <td align="right">0.3427 </td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr>
+    </td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

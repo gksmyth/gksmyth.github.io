@@ -1,0 +1,17 @@
+Order	Ball	Temp	Age	Distance
+7	Yellow	Room	New	540
+13	Yellow	Room	New	567
+11	Yellow	Room	Old	553
+8	Yellow	Room	Old	465
+14	Yellow	Playing	Old	637
+12	Yellow	Playing	Old	562
+4	Yellow	Playing	New	613
+2	Yellow	Playing	New	685
+16	Double	Room	Old	467
+6	Double	Room	Old	412
+1	Double	Room	New	497
+5	Double	Room	New	525
+3	Double	Playing	Old	647
+10	Double	Playing	Old	619
+15	Double	Playing	New	719
+9	Double	Playing	New	673

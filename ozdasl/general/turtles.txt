@@ -1,0 +1,10 @@
+Subject	Sex	Fed	Fasted10	Fasted20
+1	Male	42.8	42.4	38.9
+2	Male	43.1	42.2	40.3
+3	Male	40.4	40.8	37.5
+4	Male	46.6	45.9	42.9
+5	Female	42.2	42.4	39.7
+6	Female	38.7	38.1	35.8
+7	Female	35.3	34.3	32.3
+8	Female	40.5	40.1	37.3
+		 		

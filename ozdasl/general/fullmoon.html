@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Mental Hospital Admissions During Full Moons</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Mental Hospital Admissions During Full Moons</h1>
+
+<p>Keywords: two-way analysis of variance</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>Larsen and Marx (1986) write</p>
+
+<blockquote>
+  <p>In folklore, the full moon is often portrayed as something sinister, a kind
+  of evil force possessing the power to control our behaviour. Over the
+  centuries, many prominent writers and philosophers have shared this belief.
+  Milton, in <i>Paradise Lost</i>, refers to</p>
+
+  <blockquote>
+    <p><font size="2">Demoniac frenzy, moping melancholy<br>
+    And moon-struck madness.</font></p>
+
+  </blockquote>
+  <p>And Othello, after the murder of Desdemona, laments</p>
+
+  <blockquote>
+    <p><font size="2">It is the very error of the moon<br>
+    She comes more near the earth than she was want<br>
+    And makes men mad.</font></p>
+
+  </blockquote>
+  <p>On a more scholarly level, Sir William Blackstone, the renowned eighteenth
+  centure English barrister, defined a &quot;lunatic&quot; as</p>
+
+  <blockquote>
+    <p><font size="2">one who hath ... lost the use of his reason and who hath
+    lucid intervals, sometimes enjoying his senses and sometimes not, and that
+    frequently depending upon changes of the moon.</font></p>
+
+  </blockquote>
+</blockquote>
+<p>The data give the admission rates to the emergency room of a Virginia mental
+health clinic before, during and after the 12 full moons from August 1971 to
+July 1972.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Month</td>
+    <td width="20"></td>
+    <td>Month of year: Aug, Sep, ... Jul</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Moon</td>
+    <td width="20"></td>
+    <td>Before, During or After the full moon</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Admission</td>
+    <td width="20"></td>
+    <td>Admission rate (patients/day)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="fullmoon.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="100%">Blackman, S., and Catalina, D. (1973). The moon and the
+      emergency room. <i>Perceptual and Motor Skills</i> <b>37</b>, 624-626.</td>
+  </tr>
+  <tr>
+    <td height="10"></td>
+  </tr>
+  <tr>
+    <td width="100%">Ovlin, J. F. (1943). Moonlight and nervous disorders. <i>American
+      Journal of Psychiatry</i> <b>99</b>, 578-584.</td>
+  </tr>
+  <tr>
+    <td height="10"></td>
+  </tr>
+  <tr>
+    <td width="100%"> Larsen, R.J., and Marx, M.L., (1986). <i>An Introduction to
+Mathematical Statistics and Its Applications</i> 2nd Edition. Prentice-Hall,
+      Englewood Cliffs, New Jersey. Case Study 1.2.3.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<pre>&gt; tapply(Admission,Moon,mean)
+    After   Before   During
+ 11.45833 10.91667 13.41667
+<img border="0" src="fullmoon.gif" width="503" height="503"></pre>
+
+<pre>Call:
+   aov(formula = Admission ~ Month + Moon, data = fullmoon, na.action =
+	na.exclude)
+
+Terms:
+                   Month     Moon Residuals
+ Sum of Squares 455.5831  41.5139  127.8194
+Deg. of Freedom       11        2        22
+
+Residual standard error: 2.410389
+Estimated effects are balanced
+
+          Df Sum of Sq  Mean Sq  F Value      Pr(F)
+    Month 11  455.5831 41.41664 7.128541 0.00005076
+     Moon  2   41.5139 20.75694 3.572639 0.04533140
+Residuals 22  127.8194  5.80997</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Bar of Soap</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Bar of Soap</h1>
+
+<p>Keywords: linear regression, residuals</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p ALIGN="JUSTIFY">Do you use up the same amount of the soap in the shower each morning,
+or does it depend on the size of the bar of soap? This data was collected by Rex Boggs of
+Glenmore State High School in Rockhampton, Queensland. Rex writes:</p>
+
+<blockquote>
+  <p>I had a hypothesis that the daily weight of my bar of soap in my shower wasn't a linear
+  function, the reason being that the tiny little bar of soap at the end of its life seemed
+  to hang around for just about ever. I wanted to throw it out, but I felt I shouldn't do so
+  until it became unusable. And that seemed to take weeks.</p>
+  <p>Also I had recently bought some digital kitchen scales and felt I needed to use them to
+  justify the cost. I hypothesised that the daily weight of a bar of soap might be dependent
+  upon surface area, and hence would be a quadratic function.</p>
+  <p>I kept records for three weeks (the life of the bar), and was amazed to find that the
+  data was linear with a very high R<sup>2</sup> value, until the last few days of its life.</p>
+</blockquote>
+
+<p>The data ends at day 22. On day 23 the soap broke into two pieces and one piece went
+down the plughole ...</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Date </td>
+    <td width="20"></td>
+    <td>Date of observation</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Day </td>
+    <td width="20"></td>
+    <td>Number of days since beginning of experiment</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Weight </td>
+    <td width="20"></td>
+    <td>Weight of soap bar (grams)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="soap.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>The data was collected and contributed by Rex Boggs, Glenmore State High School,
+    Rockhampton, Queensland, Australia.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<pre>&gt; plot(Day,Weight)</pre>
+
+<p align="center"><img src="soap1.gif" alt="soap1.gif (3807 bytes)" width="503" height="503"></p>
+
+<pre>&gt; plot(Day[1:14],-diff(Weight)/diff(Day))
+</pre>
+
+<p align="center"><img src="soap2.gif" alt="soap2.gif (3558 bytes)" width="503" height="503"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

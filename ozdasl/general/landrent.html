@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Rent for Land Planted to Alfalfa</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Rent for Land Planted to Alfalfa</h1>
+
+<p>Keywords: multiple regression, variance modelling.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data were collected to study the variation in rent paid in 1977 for agricultural
+land planted to alfalfa in Minnesota. The data include:</p>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td colspan="3"><hr></td>
+</tr>
+<tr>
+<td align="right">Variable</td><td width="20"></td><td>Description</td>
+</tr>
+<tr>
+<td colspan="3"><hr></td>
+</tr>
+  <tr>
+    <td align="right">Rent</td>
+    <td>&nbsp;&nbsp;</td>
+    <td>average rent per acre planted to alfalfa</td>
+  </tr>
+  <tr>
+    <td align="right">AllRent</td>
+    <td>&nbsp;&nbsp;</td>
+    <td>average rent paid for all tillable land</td>
+  </tr>
+  <tr>
+    <td align="right">Cows</td>
+    <td>&nbsp;&nbsp;</td>
+    <td>density of diary cows (number per square mile)</td>
+  </tr>
+  <tr>
+    <td align="right">Pasture</td>
+    <td>&nbsp;&nbsp;</td>
+    <td>proportion of farmland used as pasture</td>
+  </tr>
+  <tr>
+    <td align="right">Liming</td>
+    <td>&nbsp;&nbsp;</td>
+    <td>Yes if liming is required to grow alfalfa; No otherwise</td>
+  </tr>
+<tr>
+<td colspan="3"><hr></td>
+</tr>
+</table>
+
+<p>Sanford Weisberg writes:</p>
+
+<blockquote>
+  <p>The unit of analysis is a county in Minnesota; the 67 counties with appreciable rented
+  farmland are included.</p>
+  <p>Alfalfa is a high protein crop that is suitable feed for dairy cows. It is thought that
+  rent for land planted to alfalfa relative to rent for other agricultural purposes would be
+  higher in areas with a high density of dairy cows and rents would be lower in counties
+  where liming is required, since that would mean additional expense.</p>
+</blockquote>
+
+<h2>Download</h2>
+
+<p><a href="landrent.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Weisberg, S. (1985). <em>Applied Linear Regression</em>. Wiley, New York. Problem 6.5.
+Douglas Tiffany is cited as the original source.</p>
+
+<h2>Analysis</h2>
+
+<p align="center"><img src="landren1.gif" alt="wpe35.gif (4210 bytes)" width="480" height="480"></p>
+
+<ul>
+  <li>A log-scale is needed for Rent and AllRent.</li>
+  <li>A square-root or similar scale is needed for Cows.</li>
+  <li>The ratio of Rent to AllRent increases with the density of cows, but flattens off for
+    more than about 20 per square mile.</li>
+  <li>The counties where liming is required are predominatedly those with more than 20 cows
+    per square mile.</li>
+  <li>The variance of log(Rent/AllRent) is appears to be greater when liming is required and
+    there are more than 20 per square mile.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

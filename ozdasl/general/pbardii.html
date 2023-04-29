@@ -1,0 +1,168 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Circadian Rhythms in the Prairie Deer Mouse</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Circadian Rhythms in the Prairie Deer Mouse</h1>
+
+<p>Keywords: time series, periodicities, outliers</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data are temperature recordings made at 5 minute intervals over 3 months on a
+nocturnal mammal, <em>Peromyscus bardii</em> (prairie deer mouse). The animal was given 20
+days of 12 hours light and 12 hours dark as an adjustment period, followed by 10 days of
+constant dark, 12 hours light and 26 days constant dark.</p>
+
+<p>The data was collected at Princeton University in the late 1960's under the direction
+of Dr C. S. Pittendrich. The interest of the researchers was to observe periodicities in
+the behaviour of the animals. Four experiments were completed over a period of several
+years. The experiments used equipment to isolate each animal from its external environment
+as completely as possible, a telemetry system to transmit animal body temperate and an
+activity sensor in the floor of each cage. The telemetry system consisted of a small
+temperature transmitter implanted in each animal and a receiver and data logging system.
+Each experiment used 17 animals of the same species isolated in 17 separate cages, with an
+18th cage containing only a temperature transmitter in order to monitor the environment.
+Each cage contained a light source so that the photoperiod for each animal could be
+varied.</p>
+
+<p>The data given here are the telemeter frequency temperature recordings for one animal
+from the first experiment, with higher counts indicating higher temperature. Since the
+interest was in periodicity, no effort was made to relate the telemeter frequency to
+actual temperature.</p>
+
+<p>The data file contains 33983 observations. Since recordings were made at 5 minute
+intervals, this is one observation short of 118 days, rather more than the 56.5 days that
+there should nominally be. Presumably the extra days were also in darkness.</p>
+
+<p>Various problems arose during the experiments, including transient or permanent
+equipment failure or death of the animals. About half of the cages continued to produce
+data through to the end of the experiment. The data logging equipment was also imperfect,
+as it was based on a conversion to mechanical keypunch operation. Readings were punched in
+fields on standard 80 column cards. Some card punch problems, such as jams and misfeeds,
+were corrected during the experiment. Other malfunctions became evident during data
+analysis, namely mispunched data (non-numeric or out-of-range) or column shift (all data
+shifted left by some number of columns). In the data presented here, obvious errors have
+been corrected, but a proportion of outliers and other errors remain. There are some
+sequences of zeros, which correspond presumably to temporary failures of the recording
+equipment. </p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Light</td>
+    <td width="20"></td>
+    <td>1 = cage is lit, 0 = cage is dark</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Temperature</td>
+    <td width="20"></td>
+    <td>Body temperature, with higher counts indicating greater temperature</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="pbardii.zip">Data File</a> (zipped tab-delimited text file)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Andrews, D. F., and Herzberg, A. M. (1985). <em>Data. A collection of problems from
+    many fields for the student and research worker.</em> Springer, New York. Data Set 48.2.
+    Data and description contributed by Michael D. Godfrey, ICL.</td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>The data was obtained electronically from the <a href="http://lib.stat.cmu.edu">Statlib
+    database</a>, and is presented here is a re-formatted form.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>The data show daily periodicities. There are also apparent outliers, including extended
+sequences of zeros, and a substantial change in magnitude after 30 days. The plot shows
+the data from days 31 to 40, including some possible outliers.</p>
+
+<p>
+<img src="pbardii.gif" alt="Time series plot of data from days 30 to 40 (7604 bytes)" width="727" height="283"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

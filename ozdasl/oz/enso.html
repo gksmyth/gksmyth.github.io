@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Pressure Difference between Easter Island and Darwin</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Pressure Difference between Easter Island and Darwin</h1>
+
+<p>Keywords: time series, nonlinear regression, frequencies</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data are monthly averaged atmospheric pressure differences between Easter Island
+and Darwin, Australia. This difference drives the trade winds in the southern hemisphere.
+An annual cycle may be expected, and also longer cycles corresponding to the El Nino and
+to the Southern Oscillations.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Pressure</td>
+    <td width="20"></td>
+    <td>Monthly average atmospheric pressure differences</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="enso.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Kahaner, D., C. Moler, and S. Nash, (1989). <em>Numerical Methods and Software</em>.
+    Englewood Cliffs, NJ: Prentice Hall, pp. 441-445. </td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td><a href="http://www.itl.nist.gov/div898/strd/nls/data/enso.shtml">NIST Standard
+    Reference Data Sets</a>. </td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>Harmonic analysis of the data reveals at least 5 significant cycles. The annual cycle
+is the strongest, but cycles with periods of approximately 43 and 27 months are also
+present. These cycles correspond to the El Nino and the Southern Oscillation. There are
+also a six month harmonic for the annual cycle and a fast cycle with a period of about 4.6
+months.</p>
+
+<p>In the plot below, the black line is the data and the blue line is a sum of 5 sinusoids
+and a constant term.</p>
+
+<pre>&gt; out5 &lt;- pronyfreq(Pressure,nfreq=5)
+&gt; 2*pi/out5$freq
+[1] 43.402539 27.086301 11.940698  6.028685  4.561043
+&gt; plot(Pressure,type=&quot;l&quot;)
+&gt; lines(1:168,out5$fitted,col=4)</pre>
+
+<p align="center">
+<img src="enso.gif" alt="Time series plot with superimposed sinusuids (2725 bytes)" width="907" height="301"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

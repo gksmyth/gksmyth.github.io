@@ -1,0 +1,264 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="OA3104 1996.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Accidental Oil Spills</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Accidental Oil Spills</h1>
+
+<p>Keywords: regression, weighted regression, regression through the origin. </p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The following data from the Statistical Abstract of the United States give
+the number of accidental oil spills at sea and the amount of oil lost in these
+spills for the years 1973 - 1985.
+</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Year</td>
+    <td width="20"></td>
+    <td>Year</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Spills</td>
+    <td width="20"></td>
+    <td>Number of spills</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Oil</td>
+    <td width="20"></td>
+    <td>Amount of oil lost (thousands of metric tonnes)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="spills.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+   <td><i>Statistical Abstract of the United States</i> 1987. </td>
+</tr>
+<tr>
+  <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+</tr>
+<tr>
+   <td>Hamilton, L. C. (1992). <em>Regression with Graphics</em>. Duxbury Press, Belmont,
+    California, page 49. </td>
+</tr>
+<tr><td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+</tr>
+<tr>
+   <td>Hamilton (1992) gives the units for Oil as millions of metric tons. 
+   Berwin Turlach, University of Western Australia, points out using historical 
+   data that the units are more likely to be thousands of metric tonnes. </td>
+</tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>Clearly the number of spills is clearly decreasing over time. It is
+reasonable to look then at the amount of oil per spill.</p>
+
+<p>An unweighted regression of Oil on Spill is inappropriate:</p>
+
+<h4>Regression Analysis</h4>
+
+<pre>The regression equation is
+Oil = - 44 + 6.96 Spills</pre>
+
+<pre>Predictor        Coef       StDev          T        P
+Constant        -44.5       102.7      -0.43    0.673
+Spills          6.957       2.832       2.46    0.032</pre>
+<pre>S = 166.5       R-Sq = 35.4%     R-Sq(adj) = 29.6%</pre>
+
+<pre>Analysis of Variance</pre>
+
+<pre>Source            DF          SS          MS         F        P
+Regression         1      167218      167218      6.03    0.032
+Residual Error    11      304844       27713
+Total             12      472062</pre>
+
+<pre>Unusual Observations
+Obs     Spills        Oil         Fit   StDev Fit    Residual    St Resid
+  7       65.0      723.5       407.7       103.3       315.8        2.42R
+ 11       17.0      387.8        73.8        63.5       314.0        2.04R </pre>
+
+<pre>R denotes an observation with a large standardized residual</pre>
+
+<p>The variance is proportional to the number of spills included. This changes the
+regression coefficient somewhat and reduces the standard errors:</p>
+
+<h4>Regression Analysis</h4>
+
+<pre>Weighted analysis using weights in 1/Spills</pre>
+
+<pre>The regression equation is
+Oil = - 13.6 + 6.00 Spills</pre>
+
+<pre>Predictor        Coef       StDev          T        P
+Constant       -13.56       68.32      -0.20    0.846
+Spills          6.002       2.564       2.34    0.039</pre>
+
+<pre>S = 29.89       R-Sq = 33.3%     R-Sq(adj) = 27.2%</pre>
+
+<pre>Analysis of Variance</pre>
+
+<pre>Source            DF          SS          MS         F        P
+Regression         1      4896.2      4896.2      5.48    0.039
+Residual Error    11      9826.5       893.3
+Total             12     14722.7</pre>
+
+<pre>Unusual Observations
+Obs     Spills        Oil         Fit   StDev Fit    Residual    St Resid
+ 11       17.0     387.80       88.47       40.82      299.33        2.57R </pre>
+
+<pre>R denotes an observation with a large standardized residual</pre>
+
+<p>The intercept should in principle not be required. The average size of a
+spill is about 5.6:</p>
+
+<h4>Regression Analysis</h4>
+
+<pre>Weighted analysis using weights in 1/Spills</pre>
+
+<pre>The regression equation is
+Oil = 5.58 Spills</pre>
+
+<pre>Predictor        Coef       StDev          T        P
+Noconstant
+Spills          5.583       1.397       4.00    0.002</pre>
+
+<pre>S = 28.67
+Analysis of Variance</pre>
+
+<pre>Source            DF          SS          MS         F        P
+Regression         1       13123       13123     15.97    0.002
+Residual Error    12        9862         822
+Total             13       22985</pre>
+
+<pre>Unusual Observations
+Obs     Spills        Oil         Fit   StDev Fit    Residual    St Resid
+ 11       17.0     387.80       94.91       23.75      292.89        2.53R </pre>
+
+<pre>R denotes an observation with a large standardized residual</pre>
+
+<p>Is the average spill size changing with time? Now we must weight proportion
+to the number of spills:</p>
+
+<h4>Regression Analysis</h4>
+
+<pre>Weighted analysis using weights in Spills</pre>
+
+<pre>The regression equation is
+Oil/Spills = - 991 + 0.504 Year</pre>
+
+<pre>Predictor        Coef       StDev          T        P
+
+Constant       -991.2       863.4      -1.15    0.275
+Year           0.5040      0.4366       1.15    0.273</pre>
+
+<pre>S = 28.28       R-Sq = 10.8%     R-Sq(adj) = 2.7%</pre>
+
+<pre>Analysis of Variance</pre>
+
+<pre>Source            DF          SS          MS         F        P
+Regression         1      1065.8      1065.8      1.33    0.273
+Residual Error    11      8795.9       799.6
+Total             12      9861.7</pre>
+
+<pre>Unusual Observations
+Obs       Year   Oil/Spil         Fit   StDev Fit    Residual    St Resid
+ 11       1983      22.81        8.25        2.69       14.57        2.31R </pre>
+
+<pre>R denotes an observation with a large standardized residual</pre>
+
+<p>The year 1983 appears to be an outlier.&nbsp;</p>
+
+<div align="center">
+  <center>
+  <pre><img border="0" src="spills1.gif" alt="Oil/Spills vs Year" width="530" height="354"></pre>
+  </center>
+</div>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+
+</body>
+</html>

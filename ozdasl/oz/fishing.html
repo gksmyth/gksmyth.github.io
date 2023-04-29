@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="local.usage" content="MS213 Assignment 10, 1997-8. SMP30 Assignment 3.">
+<meta name="keywords" content="teaching statistics">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Fishing Rod Experiment</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Fishing Rod Experiment</h1>
+
+<p>Keywords: Three-Way Analysis of Variance, Interaction, Experimental Design, Learning
+Effect.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data was collected by Peter Drew and Matt Seidemann, statistics students at the
+Queensland University of Technology, in a subject taught by Dr Margaret Mackisack. Here is
+their description of the data and its collection:</p>
+
+<blockquote>
+  <p>&quot;As keen fishermen out and about on a fairly regular basis, the common arguments
+  arise between anglers on the best rigging set up for various conditions. We decided that
+  upon our next group outing that we would back up our opinions with hard statistical facts.
+  Our interest led us to test the most obvious variables in the fishing rig. </p>
+  <p>&quot;Of interest were firstly the rod length, as between fisherman there always tends
+  to be a variety of rods of different sizes; secondly the type of line, in that the larger
+  the line it would be logical that the weight would increase; thirdly the sinker weight and
+  how it affected the casting distance. </p>
+  <p>&quot;In deciding on the three variables a 2^3 factorial design seemed obvious and for
+  our purposes seemed to be quite adequate. So the question was placed as to whether or not
+  the above variables in any combination made any difference to the overall distance the
+  line was cast. The rods used were 6ft and 7ft two piece boat rods, fitted with the same
+  type of spinning reel. The variable sinkers were 8oz and 12oz round ball sinkers and the
+  line used was either the 1kg or 2kg line of the same make. </p>
+  <p>&quot;The experiment was carried out on a day that was close to windless thus lowering
+  the relative influence of the wind. The series of casts was conducted by the same person
+  as were the measurements thus giving uniformity to the total experiment. A break of five
+  minutes was timed between casts so as to allow the caster to allocate the same amount of
+  energy to each cast. The rods were not rigged by the caster; a rigger would set the rod up
+  with a combination of sinker, line and rod, and an effort was made to keep the caster
+  oblivious to the changes in the rig. </p>
+  <p>&quot;The experiment was conducted on the rugby ovals on Oleria St, Brookside (a western surburb of Brisbane) adjacent
+  to the RSL (Returned Serviceman League club), which for all intents and purposes would be classified as a level surface. A
+  line was placed at one end of the field and from it the caster would cast the rod as he
+  would given normal fishing conditions. A spotter who was also the measurer would mark the
+  point of impact of the sinker and from it measure back to the line from which it was cast.
+  The distance observed was subsequently rounded up to the nearest 0.5 of a metre. Two runs
+  were made of each combination. </p>
+  <p>&quot;Possible improvements: Because of the time the rigging took, both casts with each
+  rig were done at the same time. If we did it again it would be better to use random
+  numbers to decide the order of all sixteen casts.&quot; </p>
+</blockquote>
+
+<pre><strong>Data Codes:</strong>
+Rod           6ft   1
+              7ft   2
+Line          1kg   1
+              2kg   2
+Sinker        8oz   1
+             12oz   2
+Distance     Distance line cast in metres
+Order        Order in which observations were recorded</pre>
+
+<h2>Download</h2>
+
+<p><a href="fishing.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p><a href="http://www.amstat.org/publications/jse/v2n1/mackisack.html">Mackisack, M. S.
+(1994). What is the use of experiments conducted by statistics students? <em>Journal of
+Statistics Education</em>, <strong>2</strong>, no 1.</a></p>
+
+<h2>Analysis </h2>
+
+<ul>
+  <li>Two-way interaction between sinker and line.</li>
+  <li>Discernible learning effect of observations versus order.</li>
+</ul>
+
+<pre> Factor   Levels Values
+ rod           2     1     2
+ line          2     1     2
+ sinker        2     1     2
+
+ Analysis of Variance for distance
+
+ Source            DF     Seq SS     Adj SS     Adj MS       F      P
+ rod                1     95.063     95.063     95.063   78.00  0.000
+ line               1      3.063      3.063      3.063    2.51  0.152
+ sinker             1     90.250     90.250     90.250   74.05  0.000
+ rod*line           1      1.563      1.563      1.563    1.28  0.290
+ rod*sinker         1      4.000      4.000      4.000    3.28  0.108
+ line*sinker        1     36.000     36.000     36.000   29.54  0.000
+ rod*line*sinker    1      0.250      0.250      0.250    0.21  0.663
+ Error              8      9.750      9.750      1.219
+ Total             15    239.937</pre>
+
+<p>There is a big difference between the two rods (37.625m vs 32.75m average cast for 7ft
+and 6ft rods), and a similar difference between sinkers, casting further with heavier
+sinker. There is also a considerable interaction between the sinker weight and line
+weight, the best casts being made with heavy sinker and lighter line, and the worst casts
+with the light sinker on the light line, as summarized in the following table. </p>
+
+<pre>Sinker    12oz     8oz    Both
+Line
+2kg     35.625  33.875  34.750
+1kg     39.500  31.750  35.625
+Both    37.563  32,813  35.187</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

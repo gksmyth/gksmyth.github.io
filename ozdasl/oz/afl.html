@@ -1,0 +1,287 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="DESCRIPTION" content="Crowd attendance at the Melbourne Cricket Ground for Australian rules football league matches.
+Data for teachers of statistics.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="local.usage" content="Workshop on Statistical Packages, Statistical Society of Australia, Queensland Branch, 1995. MS213 1996-8. SMP30.">
+<title>OzDASL: AFL Crowd Attendance at the MCC</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>AFL Crowd Attendance at the MCG</h1>
+
+<p>Keywords: regression with two groups, multiple regression, outliers.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>This data set was assembled by Rowan Todd and Mark McNaughton, two students studying
+Statistics at QUT in a class taught by Dr Margaret Mackisack. For a class project they
+decided to investigate the effect on football game attendance of various covariates. They
+collected data involving Saturday Australian Football League (AFL) matches at the
+Melbourne Cricket Ground (MCG). They looked only at matches during the normal home and
+away season (i.e. not including finals). They used statistics from all such games in 1993
+and 1994 (nineteen relevant matches in 1993 and twenty-two in 1994). The response variable
+measured was attendance at the MCG, and after consideration, they came up with the
+following covariates:
+
+<dl>
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="20"></td>
+      <td colspan="3"><hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right">Variable </td>
+      <td width="20"></td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td colspan="3"><hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">MCG </td>
+      <td width="20"></td>
+      <td>Attendance at the MCG in 1000's.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Temp </td>
+      <td width="20"></td>
+      <td>Temperature. The forecast maximum temperature on the day of the match, in whole
+      degrees C, found in The Weekend Australian.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Other</td>
+      <td width="20"></td>
+      <td>Attendance at other matches in 1000's. The sum of the attendances at other AFL matches
+      in Melbourne and Geelong on the same day as the match in question.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Members</td>
+      <td width="20"></td>
+      <td>Membership. The sum of the memberships of the two clubs whose teams were playing the
+      match in question in 1000's.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Top50</td>
+      <td width="20"></td>
+      <td>Number of players from the top fifty. The number of players in the top 50 in the AFL
+      who happened to be playing in the match in question.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Date</td>
+      <td width="20"></td>
+      <td>Date of the match in the format dd/mm/yy.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Home</td>
+      <td width="20"></td>
+      <td>Abbreviation for home team.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td align="right" valign="top">Away</td>
+      <td width="20"></td>
+      <td>Abbreviation for away team.</td>
+    </tr>
+    <tr>
+      <td width="20"></td>
+      <td colspan="3"><hr>
+      </td>
+    </tr>
+  </table>
+</dl>
+
+<p>The abbreviations for team names are given below, together with the membership of each
+club in 1993 and 1994. </p>
+
+<table border="0" width="600">
+  <tr>
+    <td></td>
+    <td bgcolor="#000080" align="center"><font color="#FFFF00"><strong>Abbrev.</strong></font></td>
+    <td bgcolor="#000080" align="center"><font color="#FFFF00"><strong>Club Name</strong></font></td>
+    <td bgcolor="#000080" align="center"><font color="#FFFF00"><strong>Members 93</strong></font></td>
+    <td bgcolor="#000080" align="center"><font color="#FFFF00"><strong>Members 94</strong></font></td>
+  </tr>
+  <tr>
+    <td>Victoria:</td>
+    <td bgcolor="#C0C0C0">NM</td>
+    <td bgcolor="#C0C0C0">North Melbourne</td>
+    <td bgcolor="#C0C0C0" align="right">6851 </td>
+    <td bgcolor="#C0C0C0" align="right">10228 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Ess</td>
+    <td bgcolor="#C0C0C0">Essendon</td>
+    <td bgcolor="#C0C0C0" align="right">11546 </td>
+    <td bgcolor="#C0C0C0" align="right">18995 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Carl</td>
+    <td bgcolor="#C0C0C0">Carlton</td>
+    <td bgcolor="#C0C0C0" align="right">14445 </td>
+    <td bgcolor="#C0C0C0" align="right">17914 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Melb</td>
+    <td bgcolor="#C0C0C0">Melbourne</td>
+    <td bgcolor="#C0C0C0" align="right">10097 </td>
+    <td bgcolor="#C0C0C0" align="right">10351 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Gee</td>
+    <td bgcolor="#C0C0C0">Geelong</td>
+    <td bgcolor="#C0C0C0" align="right">15500 </td>
+    <td bgcolor="#C0C0C0" align="right">14107 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Rich</td>
+    <td bgcolor="#C0C0C0">Richmond</td>
+    <td bgcolor="#C0C0C0" align="right">9918 </td>
+    <td bgcolor="#C0C0C0" align="right">8102 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">StK</td>
+    <td bgcolor="#C0C0C0">St Kilda</td>
+    <td bgcolor="#C0C0C0" align="right">12956 </td>
+    <td bgcolor="#C0C0C0" align="right">11773 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Haw</td>
+    <td bgcolor="#C0C0C0">Hawthorn</td>
+    <td bgcolor="#C0C0C0" align="right">11388 </td>
+    <td bgcolor="#C0C0C0" align="right">10969 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Foot</td>
+    <td bgcolor="#C0C0C0">Footscray</td>
+    <td bgcolor="#C0C0C0" align="right">11478 </td>
+    <td bgcolor="#C0C0C0" align="right">9258 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Coll</td>
+    <td bgcolor="#C0C0C0">Collingwood</td>
+    <td bgcolor="#C0C0C0" align="right">21882 </td>
+    <td bgcolor="#C0C0C0" align="right">20169 </td>
+  </tr>
+  <tr>
+    <td>Other States:</td>
+    <td bgcolor="#C0C0C0">Bris</td>
+    <td bgcolor="#C0C0C0">Brisbane</td>
+    <td bgcolor="#C0C0C0" align="right">5750 </td>
+    <td bgcolor="#C0C0C0" align="right">6154 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Adel</td>
+    <td bgcolor="#C0C0C0">Adelaide</td>
+    <td bgcolor="#C0C0C0" align="right">40100 </td>
+    <td bgcolor="#C0C0C0" align="right">40546 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">Syd</td>
+    <td bgcolor="#C0C0C0">Sydney</td>
+    <td bgcolor="#C0C0C0" align="right">3097 </td>
+    <td bgcolor="#C0C0C0" align="right">3322 </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td bgcolor="#C0C0C0">WC</td>
+    <td bgcolor="#C0C0C0">West Coast</td>
+    <td bgcolor="#C0C0C0" align="right">25779 </td>
+    <td bgcolor="#C0C0C0" align="right">24258 </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="afl.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Various copies of <em>The Weekend Australian</em>, <em>The Football Bible '94</em> by
+Rex Hunt, and various copies of <em>Inside Football</em> and <em>Football Record</em>.)</p>
+
+<p>Data and description supplied by Dr Margaret S. Mackisack, Department of Mathematics,
+University of Queensland.</p>
+
+<h2>Analysis</h2>
+
+<p>Attendance increases with club membership, but at only about half the rate when one of
+the terms is from interstate. Perhaps the membership of the home and away teams should be
+included as separate covariates.</p>
+
+<p>To use as an example of <strong>simple linear regression</strong>, regress MCG on
+Membership just for the Victorian clubs. To use an an example of simple linear regression <strong>with
+two groups</strong>, compare the regression of MCG on Membership when the away side is
+Victorian, and when it is from interstate.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Length of NZ Rivers</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a> -
+<a href="../advanced.html">Advanced</a></p>
+
+<h1>Root Length Density of Apple Trees</h1>
+
+<p>Keywords: exact zeros</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data concerns the underground root system of eight 
+separate apple trees. Three different root stocks are considered (Mark, MM106 
+and M26) and two plant spacing (4x2 meters and  5x3 meters). For each plant, soil core sampling units taken have been classified as belonging to 
+an inner or outer zone. The response variable is the density of fine roots, also 
+called the root length density, which can have zeros as 
+well as continuous positive values. There are 511 observations, of which 193 or 
+38% have a zero response.</p>
+
+<p>The design is not a full factorial design: plants 1 and 2 are tested only 
+with the Mark root stock and at a spacing of  5x3; plants 3 and 4 are tested only with Mark root stock at a spacing of  4x2; plants 5 and 6 are 
+ 
+tested only with root stock MM106 at a spacing of 5x3; and plants 7 
+and 8 are tested only with M26 root stock at a spacing of 4x2. The Mark 
+root stock is tested at both plant spacings but the MM106 only at  5x3 
+and M26 only at  4x2. So there are four unique treatment combinations: Mark 
+stock at 5x3 and 4x2, MM106 at 5x3, and M26 at 4x2. </p>
+
+<p>It is of interest to (1) compare effects of spacing within Mark rootstock, 
+(2) compare root stocks within same 
+spacing and (3) to look for any difference in RLD between inner and out zones.</p>
+
+<table cellspacing="1" cellpadding="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td widht="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Plant </td>
+    <td width="20"></td>
+    <td>1 to 8</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Stock</td>
+    <td width="20"></td>
+    <td>Root stock: Mark, MM106 or M26</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Spacing</td>
+    <td width="20"></td>
+    <td>Plant spacing: 5x3 or 4x2 meters</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Zone</td>
+    <td width="20"></td>
+    <td>Zone relative to the plant the soil core is taken from: Inner or Outer</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">RLD</td>
+    <td width="20"></td>
+    <td>Root length density in cm/cm<sup>3</sup></td>
+  </tr>
+  <tr>
+    <td widht="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="fineroot.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>de Silva, H. N., Hall, A. J., Tustin, D. S., and Gandar, P. W. 
+    (1999). Analysis of distribution of root length density of apple trees on 
+    different dwarfing rootstocks. <i>Annals of Botany</i> <b>83</b>, 335-345.</td>
+  </tr>
+  <tr>
+  <td><img src="../../images/dotclear.gif" height="12" width="1"></td>
+  </tr>
+  <tr>
+    <td>Dunn, P. K., and Smyth, G. K. (2004). Series evaluation of Tweedie 
+    exponential dispersion model densities. (<a href="../../smyth/pubs/tweedieseries.pdf">PDF</a>)</td>
+  </tr>
+</table>
+
+<p>The data were provided by Nihal de Silva, HortResearch, New Zealand.</p>
+
+<h2>Analysis</h2>
+
+<p>The data requires special methods to deal with data which is continuous and 
+positive except for exact zeros. No transformation to normality is likely to be 
+successful for this data because of the large number of exact zeros,</p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

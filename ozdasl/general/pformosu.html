@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="Smyth and Hawkins (1999).">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Circadian Rhythms in the Long-Tail Pocket Mouse</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Circadian Rhythms in the Long-Tail Pocket Mouse</h1>
+
+<p>Keywords: time series, periodicities, outliers.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data are temperature recordings made at 2 minute intervals over 3 months on a
+nocturnal mammal, <em>Perognathus formosus</em> (long-tail pocket mouse - common in the
+Nevada desert). The animal was given 8 days of 12 hours light and 12 hours dark as an
+adjustment period, followed by 68 days of constant darkness.</p>
+
+<p>The data was collected at Princeton University in the late 1960's under the direction
+of Dr C. S. Pittendrich. The interest of the researchers was to observe periodicities in
+the behaviour of the animals. Four experiments were completed over a period of several
+years. The experiments used equipment to isolate each animal from its external environment
+as completely as possible, a telemetry system to transmit animal body temperate and an
+activity sensor in the floor of each cage. The telemetry system consisted of a small
+temperature transmitter implanted in each animal and a receiver and data logging system.
+Each experiment used 17 animals of the same species isolated in 17 separate cages, with an
+18th cage containing only a temperature transmitter in order to monitor the environment.
+Each cage contained a light source so that the photoperiod for each animal could be
+varied.</p>
+
+<p>The data given here are the telemeter frequency temperature recordings for one animal
+from the first experiment, with higher counts indicating higher temperature. Since the
+interest was in periodicity, no effort was made to relate the telemeter frequency to
+actual temperature.</p>
+
+<p>The data file contains 59616 observations of temperature, arranged in 3726 rows of 16.
+The data should be read by rows, that is from left to right and then from top to bottom.
+(I have left blank lines in the data file to indicate where the blocks ended on the
+original data tape.) Since recordings were made at 2 minute intervals, this corresponds to
+nearly 83 days of data, rather more than the 76 days that there should nominally be.</p>
+
+<p>Various problems arose during the experiments, including transient or permanent
+equipment failure or death of the animals. About half of the cages continued to produce
+data through to the end of the experiment. The data logging equipment was also imperfect,
+as it was based on a conversion to mechanical keypunch operation. Readings were punched in
+fields on standard 80 column cards. Some card punch problems, such as jams and misfeeds,
+were corrected during the experiment. Other malfunctions became evident during data
+analysis, namely mispunched data (non-numeric or out-of-range) or column shift (all data
+shifted left by some number of columns). In the data presented here, obvious errors have
+been corrected, but a proportion of outliers and other errors remain. There are some
+sequences of zeros, which correspond presumably to temporary failures of the recording
+equipment. </p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Temperature</td>
+    <td width="20"></td>
+    <td>Body temperature, with higher counts indicating greater temperature</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="pformosu.zip">Data File</a> (zipped text file)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Smyth, G. K., and Hawkins, D. M. (2000). <a href="../../smyth/pubs/element.html">Robust frequency estimation using elemental
+    sets</a>. <em>Journal of Computational and Graphical Statistics</em> <b>9</b>, 196-214.</td>
+    </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>Andrews, D. F., and Herzberg, A. M. (1985). <em>Data. A collection of problems from
+    many fields for the student and research worker.</em> Springer, New York. Data Set 48.1.
+    Data and description contributed by Michael D. Godfrey, ICL.</td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td>The raw data was obtained electronically from the <a href="http://lib.stat.cmu.edu">Statlib
+    database</a>. In the OzDASL data-file, the data is re-formatted to make it easier to read into statistical programs.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>The plot shows segment of 5000 consecutive observations (nearly 7 days) during total
+darkness. There are no apparent outliers in this segment.</p>
+
+<p><img src="pformosu.jpg" alt="Time series plot of 5000 observations" width="768" height="384"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

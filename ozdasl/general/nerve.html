@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="MS202 1990 lecture. MS113 lecture on CLT. MS252 2000 lecture.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Time between Nerve Pulses</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Time between Nerve Pulses</h1>
+
+<p>Keywords: exponential distribution, right skew data</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data gives the time between 800 successive pulses along a nerve fibre. There are 799
+observations rounded to the nearest half in units of 1/50 second. </p>
+
+<h2>Download</h2>
+
+<p><a href="nerve.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+   <td>Fatt, P., and Katz, B. (1952). Spontaneous subthreshold activity at motor
+    nerve endings. <em>Journal of Physiology </em><b>117</b>, 109-128. </td>
+</tr>
+<tr>
+  <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+</tr>
+<tr>
+   <td>Cox, D. R., and Lewis, P. A. W. (1966). <em>The Statistical Analysis of
+    Series of Events</em>. Methuen, London. </td>
+</tr>
+<tr><td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+</tr>
+<tr>
+   <td>Jørgensen, B. (1982). <em>The Generalized Inverse-Gaussian Distribution</em>. Springer-Verlag. </td>
+</tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>The distribution of times is approximately exponential. Jørgensen (1982) and
+Cox and Lewis (1996) found some discrepancy from the exponential distribution.
+This can be seen in the lower tail of a plot of quantile residuals. There is no trend in the mean or the dispersion. </p>
+
+<pre>&gt; summary(nerve)
+ Min. 1st Qu. Median  Mean 3rd Qu. Max.
+  0.5     3.5    7.5 10.95      15   69
+&gt; hist(y)</pre>
+
+<p><img border="0" src="nerve1.gif" width="720" height="503"></p>
+
+<pre>&gt; out &lt;- glm(nerve~1,family=Gamma)
+&gt; res &lt;- qres.gamma(out,dispersion=1)
+&gt; qqnorm(res,ylab=&quot;Quantile Residuals&quot;)
+&gt; abline(0,sqrt(798/799))</pre>
+
+<p><img border="0" src="nerve2.gif" width="503" height="503"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Aboriginal Deaths in Custody</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Aboriginal Deaths in Custody</h1>
+
+<p>Keywords: binomial regression.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data give the number of deaths in prison custody in Australia in each of the six years 1990 to 1995, given separately for Aboriginal and Torres Strait Islanders (indigenous) and others (non-indigenous).</p>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td widht="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Variable <td width="20"><td>Description</tr>
+<tr><td widht="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Year<td width="20"><td>1990 through 1995</tr>
+<tr><td width="20"><td align="right">Indigenous<td width="20"><td>Yes = Aboriginal or Torres Strait Islander, No = Non-indigenous</tr>
+<tr><td width="20"><td align="right">Prisoners<td width="20"><td>Total number in prison custody</tr>
+<tr><td width="20"><td align="right">Deaths<td width="20"><td>Number of deaths in prison custody</tr>
+<tr><td width="20"><td align="right">Population<td width="20"><td>Adult population (15+ years)</tr>
+<tr><td widht="20"><td colspan="3"><hr></td></tr>
+</table>
+
+<p>The data were collected in response to the Royal Commission into Aboriginal Deaths in Custody, the final report of which was tabled in the Federal Parliament on the 9 May 1991. </p>
+
+<p>The report of the Royal Commission has two streams. One is concerned with the ninety-nine Aboriginal and Torres Strait Islander deaths in custody which occurred throughout Australia during the period 1 January 1980 to 31 May 1989. Issues around the causes of death, culpability of custodians and their employers, and the prevention of future deaths were addressed in depth. The second stream concerned what the Royal Commission called the &#145;underlying issues&#146;: the social, cultural, and legal factors which, in the view of the Commissioners, had some bearing on the deaths. These underlying issues, as revealed from the chapter headings of the Royal Commission&#146;s National Report, included the Legacy of History, Aboriginal Society Today, Relations With the Non-Aboriginal Community, The Harmful Use of Alcohol and Other Drugs, Schooling, Employment, Unemployment and Poverty, Housing and Infrastructure, Land Needs, and Self-determination.</p>
+
+<p>The link between the Royal Commission&#146;s discussion of the individual deaths investigated, the prevention of future deaths and the underlying issues, is its position on the over-representation of Indigenous people in custody in Australia. A central conclusion of the Royal Commission, illustrating this point, was as follows:</p>
+
+<blockquote><p>The work of the commission has established that Aboriginal people in custody do not die at a greater rate than non-Aboriginal people in custody.</p>
+
+<p>However, what is overwhelming different is the rate at which Aboriginal people come into custody, compared with the rate of the general community ... The ninety-nine who died in custody illustrate that over-representation and, in a sense, are the victims of it.</p>
+
+<p>The conclusions are clear. Aboriginal people die in custody at a rate relevant to their proportion of the whole population which is totally unacceptable and which would not be tolerated if it occurred in the non-Aboriginal community. But this occurs not because Aboriginal people in custody are more likely to die than others in custody, but because the Aboriginal population is grossly over-represented in custody. Too many Aboriginal people are in custody too often (Johnston, 1991, Vol 1, p6).</p></blockquote>
+
+<h2>Download</h2>
+
+<p><a href="custody.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+   <td><em>Indigenous deaths in custody 1989 - 1996 / a report prepared by the Office of the Aboriginal and Torres Strait Islander Social Justice Commissioner for the Aboriginal and Torres Strait Islander Commission</em>. Aboriginal and Torres Strait Islander Commission, Canberra, 1996.</td>
+</tr>
+</table>
+
+<h2>Analysis</h2>
+
+<pre>&gt; p &lt;- Deaths/Prisoners
+&gt; glm.deaths &lt;- glm(p~Indigenous*Year,family=&quot;binomial&quot;,weights=Prisoners)
+&gt; anova(glm.deaths,test=&quot;Chi&quot; )
+Analysis of Deviance Table
+
+Binomial model
+Response: p
+
+Terms added sequentially (first to last)
+Df        Deviance   Resid. Df Resid.      Dev   Pr(Chi)
+NULL            11 16.45645
+Indigenous       1 2.740514        10 13.71594 0.0978333
+Year             1 4.700794         9  9.01515 0.0301487
+Indigenous:Year  1 1.259585         8  7.75556 0.2617297</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

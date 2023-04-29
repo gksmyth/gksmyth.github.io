@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Measurements on babies, an example of spurious correlation. Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="MS304 1998 Exam, MS475 1998 Exam.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Measurements on Babies</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Measurements on Babies</h1>
+
+<p>Keywords: analysis of covariance, spurious correlation.</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data consist of measurements (x1, x2, Age in months) on 23 babies, collected in the Faculty
+of Medicine at the University of Hong Kong. It would be of great medical interest to find a
+relationship between x1 and x2. However, any correlation between them is likely spurious
+because both x1 and x2 tend to increase with age. See Chris Lloyd's <a href="lloyd.txt">original
+mailing</a> to the ANZStat mailing list discussion.</p>
+
+<h2>Download</h2>
+
+<p><a href="babies.txt">Data File</a> (tab delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Professor Chris Lloyd, University of Hong Kong.
+See his <a href="lloyd.txt">original
+mailing</a> to the ANZStat mailing list discussion.</p>
+
+<h2>Analysis</h2>
+
+<ul>
+<li>x2 is independent of x1 after adjustment for Age.
+<li>Dependence of x2 on Age is approximately linear.
+<li>There is some evidence of increasing variance, which can be handled by using gamma rather than normal regression.
+</ul>
+
+<table border="0">
+  <tr>
+    <td><img src="babies1.gif" alt="wpe1.gif (4226 bytes)" width="480" height="480"></td>
+    <td>x2 is independent of x1 given Age. In fact, as the ANOVA belows shows, the dependence
+    on Age is nearly linear.</td>
+  </tr>
+</table>
+
+<pre>Analysis of Variance Table
+
+Response: x2
+
+Terms added sequentially (first to last)
+                  Df Sum of Sq  Mean Sq  F Value     Pr(F)
+Age                1  25928.03 25928.03 15.68836 0.0010093
+as.factor(Age)     1   6420.35  6420.35  3.88479 0.0652303
+x1                 1   2098.36  2098.36  1.26966 0.2754847
+as.factor(Age):x1  2    515.02   257.51  0.15581 0.8569284
+Residuals         17  28095.76  1652.69</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

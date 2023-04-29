@@ -1,0 +1,201 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="MS212, MS252 2000 Lab 2.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Pulse Rates before and after Exercise</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Pulse Rates before and after Exercise</h1>
+
+<p>Keywords: Paired comparisons, ANOVA, multiple regression, binomial
+proportions</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>Students in an introductory statistics class (MS212 taught by Professor John
+Eccleston and Dr Richard
+Wilson at The University of Queensland) participated in a simple experiment. The
+students took their own pulse rate. They were then asked to flip a coin. If the
+coin came up heads, they were to run in place for one minute. Otherwise they sat
+for one minute. Then everyone took their pulse again. The pulse rates and other
+physiological and lifestyle data are given in the data.</p>
+
+<p> Five class groups between
+1993 and 1998 participated in the experiment. The lecturer, Richard Wilson, was
+concerned that some students would choose the less strenuous option of sitting
+rather than running even if their coin came up heads, so in the years 1995-1998 a
+different method of random assignment was used. In these years, data forms were handed out to the class before the experiment. The
+forms were pre-assigned to either running or non-running and there were an equal number of
+each. In 1995 and 1998 not all of the forms were returned so the numbers running
+and sitting was still not entirely controlled.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Height </td>
+    <td width="20"></td>
+    <td>Height (cm)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Weight </td>
+    <td width="20"></td>
+    <td>Weight (kg)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Age </td>
+    <td width="20"></td>
+    <td>Age (years)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Gender </td>
+    <td width="20"></td>
+    <td>Sex (1 = male, 2 = female)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Smokes </td>
+    <td width="20"></td>
+    <td>Regular smoker? (1 = yes, 2 = no)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Alcohol </td>
+    <td width="20"></td>
+    <td>Regular drinker? (1 = yes, 2 = no)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Exercise </td>
+    <td width="20"></td>
+    <td>Frequency of exercise (1 = high, 2 = moderate, 3 = low)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Ran </td>
+    <td width="20"></td>
+    <td>Whether the student ran or sat between the first and second pulse
+      measurements (1 = ran, 2 = sat)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Pulse1 </td>
+    <td width="20"></td>
+    <td>First pulse measurement (rate per minute)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Pulse2 </td>
+    <td width="20"></td>
+    <td>Second pulse measurement (rate per minute)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Year </td>
+    <td width="20"></td>
+    <td>Year of class (93 - 98)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="ms212.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>The data was supplied by Dr Richard J. Wilson, Department of
+      Mathematics, University of Queensland.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<ul>
+  <li>The paired comparison between Pulse1 and Pulse2 should depend heavy on
+    Ran.</li>
+  <li>Is there evidence that some students didn't run even though their coin
+    toss came up heads?</li>
+  <li>How does Pulse1 depend on the lifestyle and physiological measurements?
+    Are frequent exercisers fitter?</li>
+  <li>How does the Pulse2-Pulse1 difference depend on lifestyle and
+    physiological measurements? Do frequent exercisers run more energetically?</li>
+  <li>Is there discernable differences between the years?</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

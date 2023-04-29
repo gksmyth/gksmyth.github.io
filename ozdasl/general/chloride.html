@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="local.usage" content="None.">
+<title>OzDASL: Transport of Sulfite Ions from Blood Cells</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Transport of Sulfite Ions from Blood Cells</h1>
+
+<p>Keywords: nonlinear regression, exponential function, heterscedasticity, autocorrelated
+residuals</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data related to the transport of sulfite ions from blood cells suspended in a salt
+solution. The chloride concentration (%) was measured over a period of about 8 minutes as
+a continuous curve generated from electrical potentials. The data given here were
+digitized from the curve at 10 second intervals.</p>
+
+<p>The theory of ion transport suggested that the concentration asymptote exponentially,
+i.e.,</p>
+
+<p align="center">Chloride = <font face="Symbol">q</font><sub>1</sub>{<font face="Symbol">1
+- q</font><sub>2</sub>exp(<font face="Symbol">- q</font><sub>3</sub>Time)}</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Time</td>
+    <td width="20"></td>
+    <td>Elapsed time in minutes</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Chloride</td>
+    <td width="20"></td>
+    <td>Chloride concentration (%)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="chloride.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Sredni, J. (1970). <em>Problems of Design, Estimation and Lack of Fit in Model
+    Building</em>. PhD Thesis, University of Wisconsin-Madison. </td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td><p align="left">Bates, D. M., and Watts, D. G. (1988). <em>Nonlinear Regression
+    Analysis and Its Applications</em>. Wiley, New York.</td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="10" , width="1"></td>
+  </tr>
+  <tr>
+    <td><p align="left">The data were originally collected by W. H. Dennis and P. Wood at the
+    University of Wisconsin. The data were obtained electronically from the web site <a href="http://www.stat.wisc.edu/p/stat/course/st824-bates/public/html/datasets.html">Data
+    sets from &quot;Nonlinear Regression Analysis&quot;</a> maintained by Douglas Bates.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<pre>&gt; chloride &lt;- read.table(&quot;chloride.txt&quot;,header=T)
+&gt; attach(chloride)
+&gt; plot(Time,Chloride)
+&gt; out &lt;- nls(Chloride~cbind(1,exp(-b*Time)),start=list(b=0.1),algorithm=&quot;plinear&quot;)
+&gt; summary(out)
+
+Formula: Chloride ~ cbind(1, exp( - b * Time))
+
+Parameters:
+       Value Std. Error  t value
+b   0.158523   0.010444  15.1784
+   39.094900   0.974427  40.1209
+  -32.387600   0.561816 -57.6481
+
+Residual standard error: 0.191962 on 51 degrees of freedom
+
+Correlation of Parameter Estimates:
+      b
+ -0.994
+  0.911 -0.950
+&gt; lines(Time,fitted(out),col=2)</pre>
+
+<p align="center"><img src="chloride1.gif" alt="chloride1.gif (6412 bytes)" width="623" height="453"></p>
+<div align="left">
+
+<pre>&gt; plot(fitted(out),residuals(out))</pre>
+</div>
+
+<p align="center"><img src="chloride2.gif" alt="chloride2.gif (6140 bytes)" width="623" height="453"></p>
+
+<p align="left">&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

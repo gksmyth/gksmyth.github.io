@@ -1,0 +1,408 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="MS213 2000 Exam.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Recovery of Patients from Stroke</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Recovery of Patients from Stroke</h1>
+
+<p>Keywords: repeated measures, one-way anova</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>This study compared three occupational therapy programs designed to help
+patients recover from the effects of a stroke. Eight stroke patients were assigned to each of the three treatment groups.
+The first group (E) was given an experimental program developed by the
+investigator from a model of intervention for stroke rehabilitation. The second
+group (F) was given a pre-existing program. The third group (G) was a
+non-treatment program. Each program lasted for 8 weeks. All subjects were
+evaluated at the start of the program and at weekly intervals until the next of
+the program.</p>
+
+<p>Group E and F patients were treated in the Occupational Therapy Department of
+a large Brisbane repatriation hospital. Group G patients were located in the
+wards of a large State Hospital in Brisbane.</p>
+
+<p>The recovery status of each subject at each time was evaluated using the
+Goteburg Evaluation of Hemiplegia and the Barthel Index. The Goteburg evalation
+form gave separate scores for three motor function variables (upper limbs, hand
+and wrist, lower limbs) and for balance while the Barthel Index gave a single
+overall score. Higher scores indicate better functional ability.</p>
+
+<table cellspacing="1" cellpadding="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td widht="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Subject </td>
+    <td width="20"></td>
+    <td>Subject ID</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Group</td>
+    <td width="20"></td>
+    <td>Experimental (E), pre-existing (F) or non-treatment (G)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Sex</td>
+    <td width="20"></td>
+    <td>Male (M) or female (F)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Side</td>
+    <td width="20"></td>
+    <td>Side of brain affected, left (L) or right (R)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Age</td>
+    <td width="20"></td>
+    <td>Age of subject in years</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Lapse</td>
+    <td width="20"></td>
+    <td>Time lapse from stroke to start of program in weeks</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE1</td>
+    <td width="20"></td>
+    <td>Upper extremities score (out of 36) at week 1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE2</td>
+    <td width="20"></td>
+    <td>... week 2</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE3</td>
+    <td width="20"></td>
+    <td>... week 3</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE4</td>
+    <td width="20"></td>
+    <td>... week 4</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE5</td>
+    <td width="20"></td>
+    <td>... week 5</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE6</td>
+    <td width="20"></td>
+    <td>... week 6</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE7</td>
+    <td width="20"></td>
+    <td>... week 7</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">UE8</td>
+    <td width="20"></td>
+    <td>... week 8</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW1</td>
+    <td width="20"></td>
+    <td>Hand-wrist score (out of 24) at week 1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW2</td>
+    <td width="20"></td>
+    <td>... week 2</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW3</td>
+    <td width="20"></td>
+    <td>... week 3</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW4</td>
+    <td width="20"></td>
+    <td>... week 4</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW5</td>
+    <td width="20"></td>
+    <td>... week 5</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW6</td>
+    <td width="20"></td>
+    <td>... week 6</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW7</td>
+    <td width="20"></td>
+    <td>... week 7</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">HW8</td>
+    <td width="20"></td>
+    <td>... week 8</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE1</td>
+    <td width="20"></td>
+    <td>Lower extremities score (out of 30) at week 1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE2</td>
+    <td width="20"></td>
+    <td>... week 2</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE3</td>
+    <td width="20"></td>
+    <td>... week 3</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE4</td>
+    <td width="20"></td>
+    <td>... week 4</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE5</td>
+    <td width="20"></td>
+    <td>... week 5</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE6</td>
+    <td width="20"></td>
+    <td>... week 6</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE7</td>
+    <td width="20"></td>
+    <td>... week 7</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">LE8</td>
+    <td width="20"></td>
+    <td>... week 8</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal1</td>
+    <td width="20"></td>
+    <td>Balance score (out of 14) at week 1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal2</td>
+    <td width="20"></td>
+    <td>... week 2</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal3</td>
+    <td width="20"></td>
+    <td>... week 3</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal4</td>
+    <td width="20"></td>
+    <td>... week 4</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal5</td>
+    <td width="20"></td>
+    <td>... week 5</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal6</td>
+    <td width="20"></td>
+    <td>... week 6</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal7</td>
+    <td width="20"></td>
+    <td>... week 7</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bal8</td>
+    <td width="20"></td>
+    <td>... week 8</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart1</td>
+    <td width="20"></td>
+    <td>Barthel Index score (out of 100) at week 1</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart2</td>
+    <td width="20"></td>
+    <td>... week 2</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart3</td>
+    <td width="20"></td>
+    <td>... week 3</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart4</td>
+    <td width="20"></td>
+    <td>... week 4</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart5</td>
+    <td width="20"></td>
+    <td>... week 5</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart6</td>
+    <td width="20"></td>
+    <td>... week 6</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart7</td>
+    <td width="20"></td>
+    <td>... week 7</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Bart8</td>
+    <td width="20"></td>
+    <td>... week 8</td>
+  </tr>
+  <tr>
+    <td widht="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="stroke.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Cropper, C. (1977). <em>Occupational Therapy and the Treatment of Stroke</em>. Honours
+Thesis T18, Department of Occupational Therapy, University of Queensland,
+January 1977.</p>
+
+<h2>Analysis</h2>
+
+<p><img SRC="stroke1.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p><img SRC="stroke2.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p><img SRC="stroke3.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p><img SRC="stroke4.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p><img SRC="stroke5.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p><img SRC="stroke6.gif" WIDTH="358" HEIGHT="286"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

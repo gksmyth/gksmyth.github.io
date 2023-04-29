@@ -1,0 +1,271 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Canadian Car Insurance Claims for 1957 and 1958</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Canadian Automobile Insurance Claims for 1957-1958</h1>
+
+<p>Keywords: Poisson regression, gamma regression, offset, Tweedie generalized linear
+model</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The data give the Canadian automobile insurance experience for policy years 1956 and
+1957 as of June 30, 1959. The data includes virtually every insurance company operating in
+Canada and was collated by the Statistical Agency (Canadian Underwriters' Association -
+Statistical Department) acting under instructions from the Superintendent of Insurance.
+The data given here is for private passenger automobile liability for non-farmers for all
+of Canada excluding Saskatchewan.</p>
+
+<p>The variable Merit measures the number of years since the last claim on the policy. The
+variable Class is a collation of age, sex, use and marital status. The variables Insured
+and Premium are two measures of the risk exposure of the insurance companies. </p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Merit</td>
+    <td width="20"></td>
+    <td>Merit Rating:<br>
+    3 - licensed and accident free 3 or more years<br>
+    2 - licensed and accident free 2 years<br>
+    1 - licensed and accident free 1 year<br>
+    0 - all others</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Class</td>
+    <td width="20"></td>
+    <td>1 - pleasure, no male operator under 25<br>
+    2 - pleasure, non-principal male operator under 25<br>
+    3 - business use<br>
+    4 - unmarried owner or principal operator under 25<br>
+    5 - married owner or principal operator under 25</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Insured</td>
+    <td width="20"></td>
+    <td>Earned car years</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Premium</td>
+    <td width="20"></td>
+    <td>Earned premium in 1000's<br>
+    (adjusted to what the premium would have been had all cars been written at 01 rates)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Claims</td>
+    <td width="20"></td>
+    <td>Number of claims</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right" valign="top">Cost</td>
+    <td width="20"></td>
+    <td>Total cost of the claim in 1000's of dollars</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="carinsca.txt">Data File</a> (tab-delimited text file)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Bailey, R. A., and Simon, LeRoy J. (1960). Two studies in automobile insurance
+    ratemaking. <em>ASTIN Bulletin</em>, 192-217. </td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>One could apply Poisson regression to the number of claims and gamma regression to the
+cost per claim.</p>
+
+<p>Alternatively the total cost could be modelled using a Tweedie generalized linear
+model.</p>
+
+<p><b><i>Number of claims</i></b></p>
+
+<pre>&gt; carinsca &lt;- read.table(&quot;carinsca.txt&quot;,header=T)
+&gt; carinsca$Merit &lt;- ordered(carinsca$Merit)
+&gt; carinsca$Class &lt;- factor(carinsca$Class)
+&gt; options(contrasts=c(&quot;contr.treatment&quot;,&quot;contr.treatment&quot;))
+&gt; attach(carinsca)
+&gt; out &lt;- glm(Claims/Insured~Merit+Class,family=&quot;poisson&quot;)
+&gt; summary(out,cor=F)
+
+Call: glm(formula = Claims/Insured ~ Merit + Class, family = &quot;poisson&quot;, weights = Insured)
+Deviance Residuals:
+       Min        1Q    Median       3Q      Max
+ -10.79274 -3.007873 -1.575749 2.426679 11.62523
+
+Coefficients:
+                 Value  Std. Error    t value
+(Intercept) -2.0357359 0.004311305 -472.18556
+     Merit1 -0.1377590 0.007172219  -19.20730
+     Merit2 -0.2206796 0.007997189  -27.59465
+     Merit3 -0.4929506 0.004502371 -109.48689
+     Class2  0.2998302 0.007258049   41.31003
+     Class3  0.4690550 0.005039141   93.08233
+     Class4  0.5258551 0.005364533   98.02439
+     Class5  0.2155504 0.010734511   20.08013
+
+(Dispersion Parameter for Poisson family taken to be 1 )
+
+    Null Deviance: 33854.16 on 19 degrees of freedom
+
+Residual Deviance: 579.5163 on 12 degrees of freedom
+
+Number of Fisher Scoring Iterations: 3
+
+&gt; tapply(residuals(out),list(Merit,Class),mean)
+           1          2          3          4         5
+0  10.255784 -6.0933143 -3.3741689 -10.792736 -2.775917
+1   5.375534 -1.6555839 -2.6246195  -7.064295 -2.885774
+2   0.885985 -0.6689448  0.7485641  -1.495913 -1.667528
+3  -5.981040  3.8071118  2.3437884  11.625227  2.675351</pre>
+
+<p>There is a strong monotonic effect for Merit&nbsp; and a strong effect for
+Class. Although the main effects are dominant, there is also very strong
+evidence for an interaction. Specifically it appears that the effect of Merit
+(the no-claim bonus) is greater for Class 1 than for the other classes.</p>
+
+<pre>&gt; out &lt;- glm(Claims~offset(log(Insured))+Merit+Class+Merit:(Class==1),family=&quot;poisson&quot;)
+&gt; anova(out,test=&quot;F&quot;)
+Analysis of Deviance Table
+
+Poisson model
+
+Response: Claims
+
+Terms added sequentially (first to last)
+                   Df Deviance Resid. Df Resid. Dev  F Value        Pr(F)
+              NULL                    19   33854.16
+             Merit  3 17754.11        16   16100.05 646.8548 0.0000000001
+             Class  4 15520.53        12     579.52 424.1074 0.0000000003
+        Class == 1  0     0.00        12     579.52
+Merit:(Class == 1)  3   497.44         9      82.07  18.1239 0.0003728092</pre>
+
+<p><b><i>Size of claims</i></b></p>
+
+<pre>&gt; out &lt;- glm(Cost/Claims~Merit+Class,family=Gamma(link=&quot;log&quot;),weights=Claims)
+&gt; summary(out,cor=F)
+
+Call: glm(formula = Cost/Claims ~ Merit + Class, family = Gamma(link = &quot;log&quot;),
+	weights = Claims)
+Deviance Residuals:
+       Min        1Q     Median       3Q     Max
+ -5.991365 -1.888093 -0.3277561 2.265134 6.32554
+
+Coefficients:
+                  Value Std. Error     t value
+(Intercept) -1.17455633 0.01553958 -75.5848067
+     Merit1 -0.06867160 0.02611050  -2.6300374
+     Merit2 -0.07024798 0.02910711  -2.4134299
+     Merit3 -0.05672978 0.01630784  -3.4786823
+     Class2  0.08273552 0.02641340   3.1323310
+     Class3  0.01583281 0.01833657   0.8634554
+     Class4  0.15981475 0.01942488   8.2273208
+     Class5 -0.08142413 0.03908080  -2.0834817
+
+(Dispersion Parameter for Gamma family taken to be 13.25813 )
+
+    Null Deviance: 1556.011 on 19 degrees of freedom
+
+Residual Deviance: 156.9042 on 12 degrees of freedom
+
+Number of Fisher Scoring Iterations: 3
+&gt; anova(out,test=&quot;F&quot;)
+Analysis of Deviance Table
+
+Gamma model
+
+Response: Cost/Claims
+
+Terms added sequentially (first to last)
+      Df Deviance Resid. Df Resid. Dev  F Value       Pr(F)
+ NULL                    19   1556.011
+Merit  3  293.305        16   1262.706  7.37423 0.004634306
+Class  4 1105.802        12    156.904 20.85139 0.000024729</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

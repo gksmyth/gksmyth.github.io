@@ -1,0 +1,213 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="local.usage" content="SMP30 1999.">
+<title>OzDASL: Mortality of Cancer Cells</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Mortality of Cancer Cells</h1>
+
+<p>Keywords: logistic regression, random effects, overdispersion</p>
+
+<hr>
+
+<h2>Description</h2>
+<b>
+
+<p></b>The data comes from an experiment to measure the mortality of cancer cells under
+radiation under taken in the Department of Radiology, University of Cape Town. Four
+hundred cells were placed on a dish, and three dishes were irradiated at a time, or
+occasion. After the cells were irradiated, the surviving cells were counted. Since cells
+would also die naturally, dishes with cells were put into the radiation chamber without
+being irradiated, to establish the natural mortality. This data gives only these zero-dose
+data.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Occasion</td>
+    <td width="20"></td>
+    <td>Irradiation occasion (1-27)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Survived</td>
+    <td width="20"></td>
+    <td>Number of cells surviving out of 400 placed on dish</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="radiatio.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Schall, R. (1991). Estimation in generalized linear models with random effects. <em>Biometrika</em>
+    <strong>78</strong>, 719-727.</td>
+  </tr>
+  <tr>
+    <td height="15"></td>
+  </tr>
+  <tr>
+    <td>Data originally provided by Dr G. Blekkenhorst, Department of Radiology, University of
+    Cape Town.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<pre>&gt; radiatio &lt;- read.table(&quot;radatio.txt&quot;,header=T)
+&gt; attach(radiatio)
+&gt; glm.null &lt;- glm(Survived/400~1,family=binomial,weights=rep(400,27))
+&gt; summary(glm.null,cor=F)
+
+Call: glm(formula = Survived/400 ~ 1, family = binomial,
+          weights = rep(400,27))
+Deviance Residuals:
+        Min         1Q      Median       3Q       Max
+ -0.3680785 -0.1112356 -0.03785896 0.140906 0.4413129
+
+Coefficients:
+                 Value Std. Error   t value
+(Intercept) -0.7186734 0.08926807 -8.050733
+
+(Dispersion Parameter for Gaussian family taken to be 18.96031 )
+
+    Null Deviance: 495.6308 on 26 degrees of freedom
+
+Residual Deviance: 495.6308 on 26 degrees of freedom
+
+Number of Fisher Scoring Iterations: 0
+
+# Pearson chi-squared statistic
+&gt; sum( glm.null$weights*glm.null$residuals^2 )
+[1] 492.9681</pre>
+
+<p>Note that this value is larger than the 470.34 quoted by Schall (1991). Perhaps there
+was a printing error in the published data.</p>
+
+<pre>&gt; glm.fix &lt;- glm(Survived/400~factor(Occasion),family=binomial,weights=rep(400,27))
+&gt; summary(glm.fix,cor=F)
+
+Call: glm(formula = Survived/400 ~ factor(Occasion), family = binomial, weig
+hts
+	 = rep(400, 27))
+Deviance Residuals:
+       Min         1Q Median       3Q      Max
+ -2.453395 -0.7923871      0 0.698892 2.432414
+
+Coefficients:
+                         Value  Std. Error     t value
+      (Intercept) -0.752886507 0.021229483 -35.4641936
+factor(Occasion)1 -0.452228137 0.043209561 -10.4659275
+factor(Occasion)2 -0.332045156 0.028699949 -11.5695384
+factor(Occasion)3  0.013786385 0.018195352   0.7576872
+factor(Occasion)4  0.052071660 0.013632398   3.8196992
+factor(Occasion)5 -0.003070936 0.011402175  -0.2693290
+factor(Occasion)6  0.090665012 0.009060228  10.0069239
+factor(Occasion)7 -0.080510224 0.009319560  -8.6388438
+factor(Occasion)8 -0.001549775 0.007333325  -0.2113332
+
+(Dispersion Parameter for Binomial family taken to be 1 )
+
+    Null Deviance: 495.6308 on 26 degrees of freedom
+
+Residual Deviance: 32.79446 on 18 degrees of freedom
+
+Number of Fisher Scoring Iterations: 4
+&gt; anova(glm.fix,test=&quot;Chi&quot;)
+Analysis of Deviance Table
+
+Binomial model
+
+Response: Survived/400
+
+Terms added sequentially (first to last)
+                 Df Deviance Resid. Df Resid. Dev Pr(Chi)
+            NULL                    26   495.6308
+factor(Occasion)  8 462.8364        18    32.7945       0
+&gt; 1-pchisq(32.79,18)
+[1] 0.01769375&gt; </pre>
+
+<p>There is strong evidence for differences between the occasions (Chisquare = 462.8 on 8
+df, P = 0), and some evidence for overdispersion even once differences between occasions
+have been accounted for (Chisquare = 32.8 on 18 df, P = 0.018). That is, variation between
+the 3 dishes on each occasion also seems greater than binomial variation. This is somewhat
+to be expected, as the survival of each cell could be expected to be positively associated
+with the survival of the surrounding cells.</p>
+
+<p>Schall (1991) introduced random effects for occasion and at the dish level. See the <a href="../../s/reglm.html">reglm</a> function example for further analysis.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

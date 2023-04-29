@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="OA3104 Homework 6, Lecture 16. MS213 1998 Exam. SMP30 Day 7.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Rotary Pursuit Tracking</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Rotary Pursuit Tracking</h1>
+
+<p>Keywords: repeated measures, three-way analysis of variance, non-parametric regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>&quot;Discovery Day&quot; is a day set aside by the United States Naval Postgraduate
+School in Monterey, California, to invite the general public into its laboratories. On
+Discovery Day, 21 October 1995, data on reaction time and hand-eye coordination were
+collected on 118 members of the public who visited the Human Systems Integration Laboratory. The age and sex of each subject were also recorded. Visitors were mostly in family groups.</p>
+
+<p>One experiment which demonstrates motor learning and hand-eye coordination, is rotary
+pursuit tracking. The equipment used has a rotating disk with a 3/4&quot; target spot. The
+subject&#146;s task is to maintain contact with the target spot with a metal wand. Trials
+were conducted for 15 seconds at a time, and the total contact time during the 15 seconds
+was recorded. Four trials were recorded for each of 108 subjects. </p>
+
+<p>The target spot on the Circle tracker keeps constant speed in a circular path. The
+target spot on the Box tracker has varying speeds as it traverses the box, making the task
+potentially more difficult. </p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable </td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Sex</td>
+    <td width="20"></td>
+    <td>Male (M) or female (F)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Age</td>
+    <td width="20"></td>
+    <td>Age of subject in years</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Shape</td>
+    <td width="20"></td>
+    <td>Box or Circle</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Trial1</td>
+    <td width="20"></td>
+    <td>Contact time for 1st trial</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Trial2</td>
+    <td width="20"></td>
+    <td>Contact time for 2nd trial</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Trial3</td>
+    <td width="20"></td>
+    <td>Contact time for 3rd trial</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Trial4</td>
+    <td width="20"></td>
+    <td>Contact time for 4th trial</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="tracking.txt">Data File</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p>Data courtesy of Captain Frank Petho, Department of Operations Research, Naval
+Postgraduate School.</p>
+
+<h2>Analysis</h2>
+
+<p>There was a marked learning pattern across the four trials. In general, the older the
+subject the better they did, but the oldest subjects had difficulty with the box tracker.</p>
+
+<p>One can use this as an example of two-way or three-way analysis of variance and interaction by
+grouping age into categories and predicting the mean time for the four trials.</p>
+
+<pre>&gt; A &lt;- factor(cut(Age,breaks=c(0,7,11,20,30,40,60)))
+&gt; m &lt;- tapply(sqrt(Tracking),list(A,Shape),mean)
+&gt; round(m,2)
+             Box Circle
+ 0+ thru  7 0.83   0.88
+ 7+ thru 11 1.53   1.60
+11+ thru 20 1.73   2.12
+20+ thru 30 2.51   2.58
+30+ thru 40 2.12   2.71
+40+ thru 60 1.60   2.77
+
+&gt; lm.int &lt;- lm(sqrt(Tracking)~A*Shape)
+&gt; anova(lm.int)
+Analysis of Variance Table
+
+Response: sqrt(Tracking)
+
+Terms added sequentially (first to last)
+          Df Sum of Sq  Mean Sq  F Value       Pr(F)
+A          5  29.16828 5.833656 42.80114 0.000000000
+Shape      1   2.47569 2.475694 18.16400 0.000047372
+A:Shape    5   2.87454 0.574909  4.21807 0.001649232
+Residuals 96  13.08449 0.136297</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

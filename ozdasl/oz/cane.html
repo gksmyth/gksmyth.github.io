@@ -1,0 +1,163 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Sugar Cane Yields in the Mulgrave Area</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Sugar Cane Yields in the Mulgrave Area</h1>
+
+<p>Keywords: multiple regression, factors</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>This data gives sugar cane yields for each paddock in the Mulgrave area of North Queensland for the 1997 sugar cane season.
+It was obtained by David Gregory and Nick Denman for their MS305 data project at The University of Queensland in 1998. </p>
+
+<p>Mulgrave is a region in North Queensland around the Mulgrave river and the city of Cairns.
+Sugar cane is the primary industry in Mulgrave, and all sugar cane from the area is processed through the Mulgrave Central Mill.
+The data was provided by the Bureau of Sugar Experimental Stations (BSES) on behalf of the Mulgrave Central Mill. </p>
+
+<h3>Response Variables</h3>
+
+<p>The response variables are the tonnes per hectare of cane produced by each paddock, the fibre per rake and the commercial sugar content per rake produced.
+There is a payoff between quantity (tonnage) and sugar contenct (quality).
+Some varieties of sugar cane have been developed to have higher sugar content under some soil conditions, and other varieties to give a better tonnage.</p>
+
+<h3>District</h3>
+
+<p>The Mulgrave area has been divided by the BSES into fifteen districts.
+The BSES has also divided the districts into five larger regions based on physical position and average rainfall.
+Another simpler grouping of the fifteen districts into compass directions was used by Denman and Gregory (1998).</p>
+
+<h3>Soil Type</h3>
+
+<p>Soil is an important factor that will determine crop's performance.
+There are numerous types of soils, each having separate characteristics such as nutrient content, acidity and drainage.
+The name of the soil type of each paddock is provided.
+There is also a more detailed soil ID available.
+Farmers also use fertilisers to complement or offset a soil's nutrient content, but no information on fertilising regime is available.</p>
+
+<h3>Area</h3>
+
+Larger paddocks will have longer rows, which means that more cane can be grown per hectare.</p>
+
+<h3>Variety</h3>
+
+Some varieties of cane are designed to be able to survive in drier soils without much rain and some are designed to take advantage of nutrient full volcanic soils.</p>
+
+<h3>Age</h3>
+
+<p>As sugar cane is a grass, it will grow again if cut.
+A farmer may choose to &quot;plough out&quot; a paddock of cane once it has been harvested.
+This requires the farmer to plant new cane.
+Cane planted the year before may be regarded as having age zero.
+Cane let to grow for one year after being cut (this is, the cane is first ratoon) can be considered to have an age of one.
+The greatest age in this data is eigth ratoon, and it can be expected that the sugar content and tonnage of this cane is lower than newly planted cane.</p>
+
+<p>The levels of regrowth found in the original data set are 11, 1O, 1R (first ratoon or year of regrowth), 2R, 3R, 4R, 5R, 6R, 7R, 8R, F1, F2, F6, OR, PL (previously ploughed out, new growth) and RP.
+To create the variable Age we have coded OR, PL and RP to 0; 11, 10, 1R and F1 to 1; 2R and F2 to 2; and so on.
+Age therefore represents the number of years of regrowth before harvesting the cane. </p>
+
+<h3>Month of Harvest</h3>
+
+<p>The sugar cane cutting season usually begins in June and concludes in mid-November, the finishing date depending on how the season has gone with respect to rainfall and mill breakdowns.
+There may be some interaction between month of harvest and variety, as some varieties would be expected to give a higher sugar content at an earlier maturity level than others.</p>
+
+<h3>Rainfall</h3>
+
+<p>Monthy rainfall totals are given for each district from July 1996 through December 1997.
+Denman and Gregory (1998) grouped rainfall into (i) cutting season 1996: July through October 1996; (ii) wet season 1996/1997: November 1996 through February 1997; (iii) off season 1997: March through June 1997; and cutting season 1997: July through October 1997.
+Note that November and December 1997 rainfall was not used because most cane has already been cut by this time.</p>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Variable <td width="20"><td>Description</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right" valign="top">District<td width="20"><td>Name of district</tr>
+<tr><td width="20"><td align="right" valign="top">DistrictGroup<td width="20"><td>District grouping by BSES into 5 geographical and rainfall regions</tr>
+<tr><td width="20"><td align="right" valign="top">DistrictPosition<td width="20"><td>Simple grouping of districts into North, South, East, West and Central (N, S, E, W, C)</tr>
+<tr><td width="20"><td align="right" valign="top">SoilID<td width="20"><td>Soil type: detailed ID number</tr>
+<tr><td width="20"><td align="right" valign="top">SoilName<td width="20"><td>Soil type: general name</tr>
+<tr><td width="20"><td align="right" valign="top">Area<td width="20"><td>Area of paddock (hectares)</tr>
+<tr><td width="20"><td align="right" valign="top">Variety<td width="20"><td>Sugar can variety</tr>
+<tr><td width="20"><td align="right" valign="top">Ratoon<td width="20"><td>Ratoon or regrowth age of cane. </tr>
+<tr><td width="20"><td align="right" valign="top">Age<td width="20"><td>Number of years of regrowth before harvesting of cane. Recoded from Ratoon. </tr>
+<tr><td width="20"><td align="right" valign="top">HarvestMonth<td width="20"><td>Month in which harvest was started</tr>
+<tr><td width="20"><td align="right" valign="top">HarvestDuration<td width="20"><td>Duration of harvest in days</tr>
+<tr><td width="20"><td align="right" valign="top">Tonn/Hect<td width="20"><td>Tonnes per hectare of cane harvested</tr>
+<tr><td width="20"><td align="right" valign="top">Fibre<td width="20"><td>Fibre content per rake</tr>
+<tr><td width="20"><td align="right" valign="top">Sugar<td width="20"><td>Commercial sugar content per rake</tr>
+<tr><td width="20"><td align="right" valign="top">Jul-96<td width="20"><td>Rainfall for the district for July 1996</tr>
+<tr><td width="20"><td align="right" valign="top">Aug-96<td width="20"><td>Rainfall for the district for August 1996</tr>
+<tr><td width="20"><td align="right">:<td width="20"><td>:</tr>
+<tr><td width="20"><td align="right" valign="top">Dec-87<td width="20"><td>Rainfall for the district for December 1997</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="cane.zip">Data file</a> (zipped tab-delimited text file)</p>
+
+<h2>Source</h2>
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+   <td>Denman, N., and Gregory, D. (1998). <em>Analysis of Sugar Cane Yields in the Mulgrave Area, for the 1997 Sugar Cane Season</em>. MS305 Data Analysis Project, Department of Mathematics, University of Queensland. </td>
+</tr>
+</table>
+
+<p>Data originally supplied by Doug Paton and Trevor Crooks from the Bureau of Sugar Experimental Stations, Queensland.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

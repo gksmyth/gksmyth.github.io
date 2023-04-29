@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Bassin Anticipatory Timing</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Bassin Anticipatory Timing</h1>
+
+<p>Keywords: repeated measures, two-way analysis of variance, non-parametric regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>&quot;Discovery Day&quot; is a day set aside by the United States Naval Postgraduate School in Monterey, California, to invite the general public into its laboratories. On Discovery Day, 21 October 1995, data on reaction time and hand-eye coordination were collected on 118 people who visited the Human Systems Integration Laboratory. The age of sex of the subject were also recorded. Visitors were mostly in family groups.</p>
+
+<p>Anticipatory timing was evaluated by a Bassin Timer, a device that measure an individual's ability to estimate the speed of a moving light and anticipate its arrival at a designated point. The Bassin timer is a ten foot long row of lights that is controlled by a variable speed potentiometer. In the experiment, the sequence of lights traveled down the track at a rate of five miles per hour. The subject was instructed to anticipate the arrival of the light at the end of the track and swing a plastic bat across a light beam which was aligned with the end of the track to record his or her time. An automatic timing device measured the difference between the time of arrival of the light and the time the light beam was broken. A negative sign denoted that the bat broke the light beam before the light actually arrived, and a positive sign denoted the bat broke the light beam after the light arrived. Five trials were administered to each of 113 subjects.</p>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Variable <td width="20"><td>Description</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Sex<td width="20"><td>Male (M) or female (F)</tr>
+<tr><td width="20"><td align="right">Age<td width="20"><td>Age of subject in years</tr>
+<tr><td width="20"><td align="right">Trial1<td width="20"><td>Time for 1st trial</tr>
+<tr><td width="20"><td align="right">Trial2<td width="20"><td>Time for 2nd trial</tr>
+<tr><td width="20"><td align="right">Trial3<td width="20"><td>Time for 3rd trial</tr>
+<tr><td width="20"><td align="right">Trial4<td width="20"><td>Time for 4th trial</tr>
+<tr><td width="20"><td align="right">Trial5<td width="20"><td>Time for 5th trial</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="bassin.txt">Data File</a> (tab-delimited text file)</p>
+
+<h2>Source</h2>
+
+<p>Data courtesy of Captain Frank Petho, Department of Operations Research, Naval Postgraduate School.</p>
+
+<h2>Analysis</h2>
+
+<p>One could use this as an example of two-way analysis of variance and interaction by grouping age into categories and predicting the mean time for the five trials. Alternatively it could be treated as a repeated measures experiment, and the learning pattern investigated. </p>
+
+<p>Subjects do not seem to be biased early or late in their anticipations: </p>
+
+<p><b><font FACE="System" SIZE="2"><img SRC="bassin1.gif" WIDTH="358" HEIGHT="286"></font></b> </p>
+
+<p>Of interest here is the accuracy of the anticipation. The deviations are DEV1
+= ABS(TRIAL1)**(1/4) etc which are approximately symmetric. There is little
+discernible reduction in deviation as the trials progress. </p>
+
+<p><b><font FACE="System" SIZE="2"><img SRC="bassin2.gif" WIDTH="358" HEIGHT="286"></font></b> </p>
+
+<p>There is an effect for age in that subjects less than about 12 years old do
+not do so well on average: </p>
+
+<p><b><font FACE="System" SIZE="2"><img SRC="bassin3.gif" WIDTH="358" HEIGHT="286"></font></b> </p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

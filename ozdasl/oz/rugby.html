@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Time of Passages of Play in Rugby</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Time of Passages of Play in Rugby</h1>
+
+<p>Keywords: two samples, analysis of variance, contrast, transformation, gamma regression</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>The following description is from Lee (1994):</p>
+
+<p>Rugby football is a popular quasi-amateur sport widely played in the United Kingdom,
+France, Australia, New Zealand and South Africa. It is rapidly gaining popularity in the
+US, Canada, Japan and parts of Europe. Recently, some of the rules of the game have been
+changed, with the aim of making play more exciting. In a study to examine the effects of
+the rule changes, Hollings and Triggs (1993) collected data on some recent games.</p>
+
+<p>Typically, a game consists of bursts of activity which terminate when points are
+scored, if the ball is moved out of the field of play or if an infringement of the rules
+occurs. In 1992, the investigators gathered data on ten international matches which
+involved the New Zealand national team, the All Blacks. The first five games studied were
+the last international games played under the old rules, and the second set of five were
+the first internationals played under the new rules.</p>
+
+<p>For each of the ten games, the data list the successive times (in seconds) of each
+passage of play in that game. One interest is to see whether the passages were on average
+longer or shorter under the new rules. (The intention when the rules were changed was
+almost certainly to make the play more continuous.)</p>
+
+<h2>Download</h2>
+
+<p><a href="rugby.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td>Hollings and Triggs (1993). <em>Influence of the new rules in international rugby
+    football: Implications for conditioning.</em> Unpublished.</td>
+  </tr>
+  <tr>
+    <td><img src="../../images/dotclear.gif" height="12" width="1"></td>
+  </tr>
+  <tr>
+    <td>Lee, A. (1994). <em>Data Analysis: An introduction based on R.</em> Auckland:
+    Department of Statistics, University of Auckland.</td>
+  </tr>
+</table>
+
+<h2>Analysis</h2>
+
+<p>Can use one-way analysis of variance on this data to compare the ten games. A contrast
+would then be relevant to compare the first five games to the second five.</p>
+
+<p>Alternatively, one can pool the times for the first five games and the last five games
+together and conduct a two-sample test.</p>
+
+<p>The times are highly skew to the right. They need to be transformed to approximate
+symmetry; alternatively they could be treated as exponential or gamma distributed. </p>
+
+<p><em><strong>S-Plus</strong></em></p>
+
+<p>We find that there is a small but highly significant reduction in passage time under
+the new rules. There are other differences between the games as well.</p>
+
+<pre>&gt; rugby &lt;- read.table(&quot;rugby.txt&quot;,header=T)
+&gt; rugby$Game &lt;- factor(rugby$Game)
+&gt; attach(rugby)
+&gt; lm.time &lt;- lm(Time~Game)
+&gt; boxcox(lm.time,lambda=seq(from=-0.5,to=0.5,length=20))</pre>
+
+<p align="center"><img src="rugby1.gif" alt="wpe3D.gif (3407 bytes)" width="384" height="384"></p>
+<div align="left">
+
+<pre>&gt; plot(Game,Time^0.2)</pre>
+</div>
+
+<p align="center"><img src="rugby2.gif" alt="wpe3E.gif (4571 bytes)" width="384" height="384"></p>
+<div align="left">
+
+<pre>&gt; New.Rules &lt;- (as.numeric(Game) &gt; 5)
+&gt; aov.time &lt;- aov(Time^0.2 ~ New.Rules+Game)
+&gt; summary(aov.time)
+           Df Sum of Sq  Mean Sq  F Value      Pr(F)
+New.Rules   1   1.14666 1.146656 14.47384 0.00015102
+Game        8   1.56780 0.195975  2.47373 0.01174040
+Residuals 969  76.76677 0.079223
+&gt; tapply(Time^0.2,New.Rules,mean)
+    FALSE     TRUE
+ 1.731406 1.662936</pre>
+</div>
+
+<p align="left">The transformed times are actually a little too short-tailed to be normal.
+The passage times are a little more regular than one would expect under random variation:</p>
+<div align="left">
+
+<pre>&gt; qqnorm(residuals(aov.time))
+&gt; qqline(residuals(aov.time))</pre>
+</div>
+
+<p align="left"><img src="rugby3.gif" alt="wpe42.gif (3512 bytes)" width="384" height="384"></p>
+
+<p align="left">Are the times actually exponentially distributed? We find the times are
+far more short-tailed than exponential:</p>
+<div align="left">
+
+<pre>&gt; glm.time &lt;- glm(Time~Game,family=Gamma)
+&gt; qres &lt;- qres.gamma(glm.time,dispersion=1)
+&gt; qqnorm(qres)
+&gt; abline(0,1)</pre>
+</div>
+
+<p align="left"><img src="rugby4.gif" alt="wpe40.gif (3342 bytes)" width="384" height="384"></p>
+
+<p align="left">Are the passages times actually gamma distributed? This approximation
+proves to be slightly better than the normal approximation to Time^0.2. Nevertheless, the
+times are still too short-tailed. We have to conclude that the rules of the game
+discourage very short or very long passages of play.</p>
+<div align="left">
+
+<pre>&gt; qres &lt;- qres.gamma(glm.time)
+&gt; qqnorm(qres)
+&gt; abline(0,1)</pre>
+</div>
+
+<p align="left"><img src="rugby5.gif" alt="wpe41.gif (3175 bytes)" width="384" height="384"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

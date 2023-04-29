@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="teaching statistics">
+<meta name="description" content="Data for teachers of statistics in Australia and New Zealand.">
+<meta name="local.usage" content="MS213 1997-8 Lecture 1.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Mark Taylor's Test Cricket Scores</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Mark Taylor's Test Cricket Scores</h1>
+
+<p>Keywords: paired t-test, censoring</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>Mark Taylor was Captain of the Australian test cricket team from May 1994 until February 1999.  By the middle of 1997, the Australian team has won its 7 consecutive international test series, making Taylor the most successful Australian Captain in history.  However his poor batting form from mid 1996 to mid 1997 gave the Australian selectors a dilemma in deciding whether his excellent Captaincy made up for the run of poor scores off his own bat.</p>
+
+<p>The data below gives Mark Taylor's test scores from the middle of 1989 to the middle of 1995, a period over which he was batting well.  Scores were made in Australia's first or second innings of each match.  Sometimes Australia was not required to bat twice, in which case the second innings is marked as missing.  There are also a number of `not outs'.</p>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">Variable <td width="20"><td>Description</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+<tr><td width="20"><td align="right">First<td width="20"><td>First innings score</tr>
+<tr><td width="20"><td align="right">Second<td width="20"><td>Second innings score (* indicates did not bat)</tr>
+<tr><td width="20"><td align="right"><td width="20"><td>Third column indicates `not outs'</tr>
+<tr><td width="20"><td colspan="3"><hr></td></tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="taylor.txt">Data file</a> (tab-delimited text)</p>
+
+<h2>Source</h2>
+
+<p><a href="http://cricinfo.cse.ogi.edu/link_to_database/">CricInfo Database</a>.</p>
+
+<h2>Analysis</h2>
+
+<ul>
+<li>One needs to decide what to do with the `not outs'. The easiest strategy is to simply treat them as ordinary scores.</li>
+<li>It is conventional wisdom that it is easier to score in the first innings of a test than the second. A paired t-test finds no different between first and second innings scores.
+Taylor averaged slightly more in the first innings, but when the tests in which the second innings was not required are excluded, Taylor actually average more in the second innings.</li>
+<li>The test scores are very right skew, very nearly a geometric or exponential distribution. That would suggest that there is no memory, that Taylor is almost equally likely to get out before next scoring regardless of his current score. This is in conflict with conventional wisdom about &quot;getting a start&quot;, &quot;getting one's eye in&quot;, or the like.</li>
+</ul>
+
+<pre>MTB &gt; Describe  'First' 'Second'.
+
+Variable        N       N*     Mean   Median  Tr Mean    StDev  SE Mean
+First          63        0    45.10    32.00    40.61    43.66     5.50
+Second         49       14    41.69    30.00    38.07    41.53     5.93
+
+Variable      Min      Max       Q1       Q3
+First        0.00   219.00    10.00    64.00
+Second       0.00   164.00    10.50    58.50
+
+MTB &gt; let 'Diff' = 'First' - 'Second'
+MTB &gt; Describe  'Diff'.
+
+Variable        N       N*     Mean   Median  Tr Mean    StDev  SE Mean
+Diff           49       14    -4.16    -6.00    -3.02    52.15     7.45
+
+Variable      Min      Max       Q1       Q3
+Diff      -155.00   115.00   -33.00    28.00</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>

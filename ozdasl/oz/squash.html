@@ -1,0 +1,184 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Data from a student project conducting a designed experiment. Of interest for teaching statistics.">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="Local.Usage" content="None.">
+<link rel="stylesheet" type="text/css" href="../../res.css">
+<title>OzDASL: Squash Ball Experiment</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan -->
+
+<p class="parent"><a href="../index.html">OzDASL</a></p>
+
+<h1>Squash Ball Experiment</h1>
+
+<p>Keywords: Three-Way Analysis of Variance, Designed Experiment.</p>
+
+<hr>
+
+<h2><description</h2>Description</h2>
+
+<p>The data was collected by Grant Elliott, a statistics student at the
+Queensland University of Technology in a subject taught by Dr Margaret Mackisack. Here is
+his description of the data and its collection:</p>
+
+<blockquote>
+  <p>Living at a squash court spurred on the idea of this experiment. Frustrated
+  playing squash one night, I thought that the squash ball I was playing with
+  seemed to bounce and react differently to what I was previously used to. So I
+  conducted this experiment on the squash ball, looking at the type of ball,
+  temperature of the ball and the age of the ball.</p>
+  <p>Ball type: In this experiment I used a 'yellow dot' squash ball and a
+  'double x' squash ball. A 'yellow dot' is super slow and a 'double x' is
+  termed extra super slow.</p>
+  <p>Temperature: When playing with a squash ball it tends to heat up. So I took
+  it to extremes where I had 'room temperature' and 'playing temperature'. To
+  duplicate 'playing temperature' the ball was placed in a cup of boiling water
+  for 45 sec.</p>
+  <p>Age: I expected age to be my most significant factor. Squash balls, being a
+  sealed ball, shouldn't vary when they get older, so I used a new ball and
+  compared it to an old ball.</p>
+  <p>Procedure: I first thought of dropping the balls from a set height and
+  seeing how far they bounced against a tape measure. This idea was scrapped as
+  too much error came into it because you couldn't accurately measure when the
+  maximum height of the bounce was. I then thought of a ball machine. I set the
+  ball machine up and measured how far back did the ball come off the front wall
+  when shot out of the ball machine. This eliminated a lot of varying in my
+  figures as the ball machine shoots the balls out at roughly the same speed and
+  trajectory. It doesn't take all the varying out as I wouldn't know whether the
+  ball machine does shoot it out at exactly the same speed, but it keeps
+  variation to a minimum.</p>
+  <p>Criticism: Measuring the distance from the wall was done by my friend and
+  I. We both would watch from different angles and would see where the ball
+  landed. This means our figures are probably out by a couple of centimetres.
+  When the balls were dropped into the water I forgot to take some of them out
+  after 45 sec. Also with some I moved them around in the water to get the heat
+  distributed evenly but others I forgot to move as I was collecting and
+  organising the next ball. Another criticism is the temperature of the water. I
+  put new boiling water into the cup after 4 balls had been in it. Therefore the
+  last ball to go in wouldn't be the same temperature as the first ball.</p>
+</blockquote>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Variable</td>
+    <td width="20"></td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Order</td>
+    <td width="20"></td>
+    <td>Order in which runs were conducted</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Ball</td>
+    <td width="20"></td>
+    <td>Yellow dot (Yellow) or Double x (Double)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Temp</td>
+    <td width="20"></td>
+    <td>Room temp (Room) or Playing temp (Playing)</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Age</td>
+    <td width="20"></td>
+    <td>New or Old</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="right">Distance</td>
+    <td width="20"></td>
+    <td>Distance bounced by the ball in cm</td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td colspan="3"><hr>
+    </td>
+  </tr>
+</table>
+
+<h2>Download</h2>
+
+<p><a href="squash.txt">Data file</a> (tab-delimited text file)</p>
+
+<h2>Source</h2>
+
+<p><a href="http://www.amstat.org/publications/jse/v2n1/mackisack.html">Mackisack, M. S.
+(1994). What is the use of experiments conducted by statistics students? <em>Journal of
+Statistics Education</em>, <strong>2</strong>, no 1.</a></p>
+
+<h2>Analysis</h2>
+
+<p>The following table summarises the most interesting result of this
+experiment. There was a very strong temperature effect, and a noticeable
+interaction with ball type: the double-x balls go from being slower than the
+yellow dot, to being faster than the yellow dot, as temperature increases. There
+was also a significant age effect, new balls being faster. This experiment is a
+good illustration of a two-way interaction present when one of the main effects
+is not at all significant.</p>
+<pre>Temp            Playing (-)  Room (+)    Both
+Ball
+Double-x (-)         664.50    475.25  569.87
+Yellow-dot (+)       624.25    531.25  577.75
+Both                 644.37    503.25  573.81</pre>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="55924" endspan -->
+</body>
+</html>
