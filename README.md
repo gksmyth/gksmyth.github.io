@@ -2,6 +2,7 @@
 
 Head of the Bioinformatics Division at the Walter and Eliza Hall Institute of Medical Research, Australia.
 
+* [Smyth Lab on GitHub](https://github.com/SmythLab)
 * [Official WEHI home page](https://www.wehi.edu.au/people/gordon-smyth)
 * [Personal research page](https://gksmyth.github.io)
 * [Google Scholar](https://scholar.google.com.au/citations?user=k1z6axEAAAAJ&hl=en)
