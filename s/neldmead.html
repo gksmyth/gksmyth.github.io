@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for optimization of non-smooth functions by the Nelder-Mead Simplex Algorithm.">
+<title>S Archive: Nelder-Mead Simplex Algorithm</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="neldmead.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>neldmead</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Nelder-Mead Simplex
+    Algorithm</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Minimizes a, possibly non-smooth, user-supplied function using the Nelder-Mead Simplex
+    Algorithm.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>neldmead(fobj, startvec, print.level=0, tol=1e-6, ...)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>fobj</tt></td>
+        <td width="20"></td>
+        <td>real-valued function.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>startvec</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of length 2 or greater. Initial value for the first argument of <tt>fobj</tt>.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>print.level</tt></td>
+        <td width="20"></td>
+        <td>Desired level of output during the iteration. Print.level = 0 for quiet running, = 1
+        for function value at each iteration, = 2 to prompt for continuation after each iteration.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>tol</tt></td>
+        <td width="20"></td>
+        <td>Desired accuracy.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>...</tt></td>
+        <td width="20"></td>
+        <td>Additional arguments to be passed to <tt>fobj</tt>.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE</strong></font></dt>
+  <dd>List with the following components: </dd>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>x</tt></td>
+        <td width="20"></td>
+        <td>numeric vector. Argument of fobj at the local minima.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>fmin</tt></td>
+        <td width="20"></td>
+        <td>value of fobj at the local minima.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>iter</tt></td>
+        <td width="20"></td>
+        <td>number of iterations used.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt><font color="#000080"><strong>&nbsp;</strong></font></dt>
+  <dt><font color="#000080"><strong>DETAILS</strong></font></dt>
+  <dd>The Nelder-Mead simplex algorithm is an inefficient minimizer but it is not sensitive to
+    starting values and does not rely on derivatives or even on continuity of the objective
+    function. It is therefore useful for obtaining a decent starting point and scale
+    information for one of the efficient methods, or for minimizing a non-smooth objective
+    function which would not be suitable for the built-in S-Plus function nlmin.</dd>
+  <dd>&nbsp;</dd>
+  <dd>The simplex method is applicable only to functions of several variables. If you want to
+    minimize a continuous function of one variable, use the built-in S-Plus optimize instead.</dd>
+  <dt><font color="#000080"><strong>&nbsp;</strong></font></dt>
+  <dt><strong><font color="#000080">AUTHOR</font></strong></dt>
+  <dd>This function is a modified version of the <a href="neldmead.txt">function</a><img src="../images/text.gif" alt="text.gif (93 bytes)" width="9" height="11"> posted by Bill
+    Clark to the S-News news group in March 1997.
+  <a href="mailto:clifford@galton.uchicago.edu">David Clifford</a> of the
+  University of Chicago corrected and improved the implementation of the
+  algorithm.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Press et al, <em>Numerical Methods in C</em>, page 305.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO </strong></font></dt>
+  <dd>nlmin and optimize in the S-Plus documentation.</dd>
+</dl>
+
+<dl>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd><pre># Find a least trimmed SS (LTS) regression estimator
+# neldmead is more accurate but slower than the built-in
+# S-Plus function ltsreg
+
+&gt; x &lt;- 1:20
+&gt; y &lt;- x + rnorm(20)
+&gt; lts &lt;- function(ab, x, y)
+{
+	e &lt;- y - ab[1] - ab[2] * x
+	trim &lt;- floor(length(y)/2) + floor(length(ab)/2)
+	mean(sort(e^2)[1:trim])
+}
+&gt; neldmead(lts,c(0,0),x=x,y=y)
+$x:
+[1] -0.09447435 1.00664786
+
+$fmin:
+[1] 0.04699288
+
+$iter:
+[1] 50
+</pre>
+  </dd>
+  <dt><tt>&nbsp;</tt></dt>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="neldmead.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

@@ -1,0 +1,159 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for estimating sinusoidal signals by separable least squares with Levenberg damping.">
+<title>S archive: Least Squares Frequency Estimation</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="lsfreq.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>lsfreq</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Least Squares
+    Frequency Estimation</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Estimates a sum of sinusoidal signals by separable least squares with Levenberg damping.
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>lsfreq(y,x=NULL,freq,constant=F,trace=F)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>y</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of observations. Missing values not allowed.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>freq</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of starting values for the frequencies.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top">x</td>
+        <td width="20"></td>
+        <td>numeric vector of time points. The default is 0:(length(y)-1).</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>constant</tt></td>
+        <td width="20"></td>
+        <td>logical constant. True if a constant term or intercept is to be included in the model.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>trace</tt></td>
+        <td width="20"></td>
+        <td>logical constant. If true frequencies and residual sum of squares are printed at each
+        iteration. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>freq</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of estimated frequencies.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>coef</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of estimated coefficients.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>fitted</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of same length as y of fitted values.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>residuals</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of same length as y of residuals.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+  <dd>If constant = T then the assumed model is<p align="center">y = a[1] + a[2]*cos(x*f[1]) +
+    ... + a[p+1]*cos(x*f[p]) + a[p+2]*sin(x*f[1]) + ... + a[2*p+1]*sin(x*f[p])</p>
+    <p>where coef = a, freq = f and p = length(f). If constant = F then the model is</p>
+    <p align="left">y = a[1]*cos(x*f[1]) + ... + a[p]*cos(x*f[p]) + a[p+1]*sin(x*f[1]) + ... +
+    a[2*p]*sin(x*f[p])</p>
+    <p>The estimation algorithm is a Gauss-Newton algorithm in which the linear coefficients
+    a[] are set to their known values conditional on the frequencies. Levenberg damping is
+    used to ensure that each iteration reduces the residual sum of squares. </p>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K. (1996). Partitioned algorithms for maximum likelihood and other nonlinear
+    estimation. <em>Statistics and Computing</em>, <b>6</b>, 201-216. (<a href="../smyth/pubs/partitio.pdf">PDF</a>).</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="mmfreq.html">mmfreq</a>, <a href="robfreq.html">robfreq</a></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES</strong></font></dt>
+  <dd>Estimate the signal for the <a href="../data/general/star.html">Variable Star</a> data
+    set. The pronyfreq function is used to obtain starting values. In this case the starting
+    values are good enough!</dd>
+  <dd><pre>&gt; ora &lt;- pronyfreq(star,nfreq=2)
+&gt; ora$freq
+[1] 0.2166596 0.2617983
+&gt; ora$coef
+[1] 17.0857822411  7.6477245734  0.0009274355  6.4906186247  7.0845674915
+&gt; out.ls &lt;- lsfreq(star,freq=ora$freq,constant=T)
+&gt; out.ls$freq
+[1] 0.2166595 0.2617983
+&gt; out.ls$coef
+[1] 17.085781788  7.647776911  0.001107758  6.490566875  7.084562954</pre>
+  </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="lsfreq.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

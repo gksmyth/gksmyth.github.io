@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Documentation and code for an S-Plus routine to compute the density of a distribution with 6 specified cumulants.">
+<title>S Archive: Zero Cumulant Distribution</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="dzeroc.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>dzeroc</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Zero Cumulant
+    Distribution</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Density of the Zero Cumulant Distribution of order 6. The first six cumulants are
+    specified, and the others are assumed zero. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+  <dd><tt>dzeroc(x,kappa)</tt> </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>x</tt></td>
+        <td width="20"></td>
+        <td>vector of quantiles.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>kappa</tt></td>
+        <td width="20"></td>
+        <td>vector of length 6 holding the cumulants of the distribution.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>Vector of same length as <tt>x</tt> giving the density of the distribution with
+    cumulants given by <tt>kappa</tt>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+  <dd>Uses 400-point Gaussian quadrature to invert the moment generating function. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>REFERENCE </strong></font></dt>
+  <dd>Smyth, G. K. (1993). Zero cumulant distribitions. Unpublished manuscript. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>EXAMPLES</strong></font></dt>
+  <dd>The normal distribution is determined exactly by its first two cumulants:</dd>
+  <dd><tt>&gt; dzeroc(x=c(0,1,2,3),kappa=c(0,1,0,0,0,0))<br>
+    [1] 0.398942280 0.241970725 0.053990967 0.004431848<br>
+    &gt; dnorm(x=c(0,1,2,3))<br>
+    [1] 0.398942280 0.241970725 0.053990967 0.004431848</tt></dd>
+  <dd>&nbsp;</dd>
+  <dd>The gamma distribution can be approximated by its first 6 cumulants:</dd>
+  <dd> <tt>&gt; dzeroc(x=5,kappa=rep(5,6))<br>
+    [1] 0.1754872<br>
+    &gt; dgamma(x=5,shape=5)<br>
+    [1] 0.1754674</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="dzeroc.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

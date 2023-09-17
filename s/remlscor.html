@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for REML estimation of heteroscedastic regression.">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>S archive: REML for heteroscedastic regression</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="remlscor.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>remlscore</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>REML
+      scoring for heteroscedastic regression</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Fits a heteroscedastic regression model using residual maximum likelihood
+    (REML). <br>
+ </dd>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>remlscore(y, X, Z, trace=F, tol=1e-5, maxit=40)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>y</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of responses. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>X</tt></td>
+        <td width="20"></td>
+        <td>design matrix for predicting the mean. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>Z</tt></td>
+        <td width="20"></td>
+        <td>design matrix for predicting the variance. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd> <table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>trace</tt></td>
+        <td width="20"></td>
+        <td>Logical variable. If true then output diagnostic information at each
+          iteration.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>tol</tt></td>
+        <td width="20"></td>
+        <td>Convergence tolerance. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>maxit</tt></td>
+        <td width="20"></td>
+        <td>Maximum number of iterations allowed. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd> <table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>beta</tt></td>
+        <td width="20"></td>
+        <td>Vector of regression coefficients for predicting the mean.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>se.beta</tt></td>
+        <td width="20"></td>
+        <td>Standard errors for beta. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>gamma</tt></td>
+        <td width="20"></td>
+        <td>Vector of regression coefficients for predicting the variance.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>se.gam</tt></td>
+        <td width="20"></td>
+        <td>Standard errors for gamma. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top">mu</td>
+        <td width="20"></td>
+        <td>Estimated means. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top">phi</td>
+        <td width="20"></td>
+        <td>Estimated variances. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top">dev</td>
+        <td width="20"></td>
+        <td>Minus twice the REML log-likelihood. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top">h</td>
+        <td width="20"></td>
+        <td>Leverages. </td>
+      </tr>
+    </table>
+ </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+  <dd>Write <i>m<sub>i</sub></i> = E( <i>y<sub>i</sub></i>) for the expectation of the <i>i</i>th
+    response and&nbsp; <i>s<sub>i</sub></i> = <i></i>Var( <i>y<sub>i</sub></i>). We assume the
+    heteroscedastic regression model<p align="center"><i>m<sub>i</sub></i> = <i><b>x</b><sub>i</sub></i><sup>T</sup><b><i>beta</i></b>,&nbsp;&nbsp;&nbsp;
+    log(<i>s<sub>i</sub></i>) = <i><b>z</b><sub>i</sub></i><sup>T</sup><i><b>gam</b></i>,</p>
+    <p>where <i><b>x</b><sub>i</sub></i> and <i><b>z</b><sub>i</sub></i> are vectors of
+    covariates, and <b><i>beta</i></b> and <i><b>gam</b> </i> are vectors of regression
+    coefficients
+    affecting the mean and variance respectively. </p>
+    <p>Parameters are estimated by maximizing the REML likelihood using REML
+    scoring as described in Smyth (2000). </p>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K. (2002).
+    An efficient algorithm for REML in heteroscedastic regression.
+    <em>Journal of Computational and Graphical Statistics</em> 11, 836-847.
+    (<a href="../smyth/pubs/remlalgo.pdf">PDF</a>)
+ </dd>
+</dl>
+
+<dl>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd><tt>> X<br>
+    &nbsp;&nbsp; Intercept B C&nbsp;<br>
+    &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0<br>
+    &nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1<br>
+    &nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1<br>
+    &nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0<br>
+    &nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1<br>
+    &nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0<br>
+    &nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0<br>
+    &nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1<br>
+    &nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1<br>
+    10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0<br>
+    11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0<br>
+    12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1<br>
+    13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0<br>
+    14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1<br>
+    15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1<br>
+    16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0<br>
+    > Z<br>
+    &nbsp;&nbsp; Intercept C H I&nbsp;<br>
+    &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0 0<br>
+    &nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0 1<br>
+    &nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1 0<br>
+    &nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1 1<br>
+    &nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0 1<br>
+    &nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0 0<br>
+    &nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1 1<br>
+    &nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1 0<br>
+    &nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0 1<br>
+    10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0 0<br>
+    11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1 1<br>
+    12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1 0<br>
+    13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 0 0<br>
+    14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 0 1<br>
+    15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 1 1 0<br>
+    16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 0 1 1<br>
+    > y<br>
+ [1] 43.7 40.2 42.4 44.7 42.4 45.9 42.2 40.6 42.4 45.5 43.6 40.6 44.0 40.2<br>
+    [15] 42.5 46.5<br>
+    > library(Matrix)<br>
+    > out &lt;- remlscore(y,X,Z)<br>
+    > cbind(Estimate=out$gamma,SE=out$se.gam)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Estimate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    SE&nbsp;<br>
+    Intercept -3.15886017 0.8313270<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C -2.73542576 0.8224828<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H -0.08588713 0.8351308<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I&nbsp; 3.33238821 0.8250499<br>
+    </tt> </dd>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="remlscor.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></em></font></p>
+<!--webbot bot="Include" i-checksum="36353" endspan --></body>&nbsp;</html>

@@ -1,0 +1,106 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for S-Plus functions to multiply the rows or columns of a matrix by the elements of a vector.">
+<title>S-Achive: multiply a matrix by a vector</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="matvec.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>matvec, vecmat</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Multiple a matrix
+    by vector</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Multiply the rows or columns of a matrix by the elements of a vector. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+  <dd><tt>matvec(M, v)<br>
+    vecmat(v, M)</tt> </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>REQUIRED ARGUMENTS</strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td><tt>M</tt></td>
+        <td><img src="../images/dotclear.gif" width="15" height="1"> </td>
+        <td>matrix, or object which can be coerced to a matrix. </td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>v</tt></td>
+        <td><img src="../images/dotclear.gif" width="15" height="1"> </td>
+        <td>vector, or object which can be coerced to a vector. Length should match the number of
+        columns of M (for matvec) or the number of rows of M (for vecmat)</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>VALUE </strong></font></dt>
+  <dd>A matrix of the same dimensions as M. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+  <dd><tt>matvec(M,v)</tt>&nbsp; is equivalent to&nbsp; <tt>M %*% diag(v)</tt>, while</dd>
+  <dd><tt>vecmat(v,M)</tt>&nbsp; is equivalent to&nbsp; <tt>diag(v) %*% M</tt>.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+  <dd><pre>&gt; A &lt;- matrix(1:12,3,4)
+&gt; A
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8   11
+[3,]    3    6    9   12
+&gt; matvec(A,c(1,2,3,4))
+     [,1] [,2] [,3] [,4]
+[1,]    1    8   21   40
+[2,]    2   10   24   44
+[3,]    3   12   27   48
+&gt; vecmat(c(1,2,3),A)
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    4   10   16   22
+[3,]    9   18   27   36</pre>
+  </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="matvec.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

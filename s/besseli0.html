@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Documentation and code for an S-Plus routine to compute the modified Bessel function I sub 0.">
+<title>Bessel Function I0</title>
+
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="besseli0.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>bessel.i0</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Modified Bessel function</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Returns the modified Bessel function of order zero, <i>I</i><sub>0</sub>(x),
+        for numeric-valued vectors and arrays x. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+    <dd><tt>bessel.io(x)</tt> </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+    <dd>Attributes of x are preserved in the returned values.
+        NA's in x produce NA's in the returned values. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>REFERENCE </strong></font></dt>
+    <dd>Abramowitz, M., and Stegun, I. A. (1965). <em>Handbook of
+        Mathematical Functions</em>, Dover, New York. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+    <dd><tt>x &lt;- c(0.1,3.2,4.5,6.7)<br>
+        bessel.i0(x) # modified Bessel function of components of
+        x</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="besseli0.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

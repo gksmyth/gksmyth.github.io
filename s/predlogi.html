@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION"
+content="Documentation and code for an S-Plus function to compute predicted values and confidence
+intervals for logistic regression.">
+<title>Predicted values for logistic regression</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%"
+bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="predlogi.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>pointwise.logit</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00"
+        size="5" face="Times New Roman"><em>Pointwise confidence
+        intervals for logit predictions</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Computes predicted values and pointwise confidence
+        intervals for logistic regression. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+    <dd><tt>pointwise.logit(glm.obj,newdata,coverage=0.99)</tt> </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td><tt>glm.obj</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>glm object with <tt>family=binomial</tt> and
+                default link</td>
+            </tr>
+            <tr>
+                <td><tt>newdata</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>list holding values of the covariates for
+                which predictions are required. See <tt>predict.lm</tt>
+                for details.</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td><tt>coverage</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>confidence level for confidence intervals</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+    <dd>List with components:</dd>
+    <dd><table border="0">
+            <tr>
+                <td><tt>upper</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>upper limits of confidence intervals</td>
+            </tr>
+            <tr>
+                <td><tt>fit</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>predicted values</td>
+            </tr>
+            <tr>
+                <td><tt>lower</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>lower limits of confidence intervals</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+    <dd>This routine is an improvement on the S-Plus function
+        pointwise for logistic regression objects. Confidence
+        intervals are computed using a normal approximation on
+        the linear predictor scale, and then mapped via the
+        logistic transform to the probability scale. The
+        generalized linear model dispersion parameter is assumed
+        to be 1. <p>Note that the S-Plus function <tt>pointwise</tt>
+        produces correct predicted values but its standard errors
+        and confidence intervals are not reliable for logistic
+        regression, or for any discrete generalized linear model.
+        </p>
+    </dd>
+    <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+    <dd><tt>glm.obj &lt;- glm(y~x,family=&quot;binomial&quot;)<br>
+        pw &lt;- pointwise.logit(glm.obj,newdata=&quot;x&quot;) </tt></dd>
+    <dt>&nbsp;</dt>
+    <dt>&nbsp;</dt>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%"
+bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%" bgcolor="#C0C0C0"><a
+        href="predlogi.s">Download Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

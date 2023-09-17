@@ -1,0 +1,241 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for modelling insurance claims data.">
+<title>S archive: Estimation of Insurance Tariffs</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="tariff.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>tariff</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Estimate insurance
+    tariffs</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Estimate a mean and dispersion model for the cost and frequency of insurance claims.
+    Allows the estimation of insurance tariffs. Produces a double generalized linear model
+    object of class &quot;dglm&quot; which inherits from &quot;glm&quot; and &quot;lm&quot;. <br>
+    <br>
+    <strong>Note:</strong> To use this function, you will also need to the functions
+    associated with <a href="dglm.html">dglm</a> and the <a href="tweedief.html">Tweedie
+    family</a>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>tariff &lt;- function(formula = formula(data), dformula = ~1, nclaims = NULL,
+    exposure = NULL, link.power = 0, dlink.power = 0, var.power = 1.5, data = sys.parent(),
+    subset = NULL, contrasts = NULL, method = &quot;ml&quot;, mustart = NULL, betastart =
+    NULL, phistart = NULL, control = dglm.control(...), ykeep = T, xkeep = F, zkeep = F, ...)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>formula</tt></td>
+        <td width="20"></td>
+        <td>a formula expression as for <tt>glm</tt>, of the form <tt>response ~ predictors</tt>.
+        See the documentation of <tt>lm</tt> and <tt>formula</tt> for details. As for <tt>glm</tt>,
+        this specifies the linear predictor for modelling the mean. A term of the form <tt>offset(expression)</tt>
+        is allowed. The response should be the total cost of claims divided by the number of
+        claims.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>dformula</tt></td>
+        <td width="20"></td>
+        <td>a formula expression of the form <tt>&nbsp;~ predictor</tt>, the response being
+        ignored. This specifies the linear predictor for modelling the dispersion. A term of the
+        form <tt>offset(expression)</tt> is allowed. For insurance modelling, this will often be
+        the same as the mean model.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>nclaims</tt></td>
+        <td width="20"></td>
+        <td>vector giving the number of claims. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>exposure</tt></td>
+        <td width="20"></td>
+        <td>vector giving a measure of exposure to risk, usually proportional to policy years. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>link.power</tt></td>
+        <td width="20"></td>
+        <td>link function for modelling the mean. A linear predictor is used for the mean raised
+        to link.power, with 0 indicating the log-link. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>dlink.power</tt></td>
+        <td width="20"></td>
+        <td>link function for modelling the dispersion. A linear predictor is used for the
+        dispersion raised to link.power, with 0 indicating the log-link. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>var.power</tt></td>
+        <td width="20"></td>
+        <td>Scalar. The variance is assumed proportion to the mean raised to this power. Must be
+        between 1 and 2. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>data</tt></td>
+        <td width="20"></td>
+        <td>as for the glm function; see S-Plus documentation.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>subset</tt></td>
+        <td width="20"></td>
+        <td>as for the glm function; see S-Plus documentation.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>contrasts</tt></td>
+        <td width="20"></td>
+        <td>as for the glm function; see S-Plus documentation.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>method</tt></td>
+        <td width="20"></td>
+        <td>the method used to estimate the dispersion parameters; the default is &quot;ml&quot;
+        for maximum likelihood and the alternative is &quot;reml&quot; for restricted maximum
+        likelihood. Upper case and partial matches are allowed. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>mustart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the fitted values or expected responses.
+        Must be of the same length as the response, or of length 1 if a constant starting vector
+        is desired. Ignored if <tt>betastart</tt> is supplied. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>betastart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the regression coefficients in the
+        link-linear model for the mean. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>phistart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the dispersion parameters. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>control</tt></td>
+        <td width="20"></td>
+        <td>a list of iteration and algorithmic constants. See <tt>dglm.control</tt> for their
+        names and default values. These can also be set as arguments to <tt>tariff</tt> itself. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>ykeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the vector of responses is returned. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>xkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the mean model is
+        returned. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>zkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the dispersion model is
+        returned. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>an object of class <tt>dglm</tt> is returned, which inherits from <tt>glm</tt> and <tt>lm</tt>.
+    See <a href="dglmobj.html"><tt>dglm.object</tt></a> for details. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+  <dd>Let&nbsp; <i>z<sub>i</sub></i> be the total cost of claims in the <em>i</em>th category,
+    and let <em>n</em><sub>i</sub> be the numbe of claims. We assume that the <em>n</em><sub>i</sub>
+    are Poisson and that the size of each claim follows a gamma distribution. This implies
+    that the average observed claim size <i>y<sub>i</sub></i> = <i>z<sub>i</sub></i>/<em>n</em><sub>i</sub>
+    follows Tweedie's compound Poisson distribution. The function tariff computes maximum
+    likelihood or restricted maximum likelihood estimators for the parameters based on the
+    joint likelihood of <i>y<sub>i</sub></i> and <em>n</em><sub>i</sub>.<br>
+    <br>
+    The function is similar in structure to the double generalized linear model function <a href="dglm.html">dglm</a>, and it returns an object of the same class.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K., and Verbyla, A. P. (1999). Adjusted likelihood methods for modelling
+    dispersion in generalized linear models. <em>Environmetrics</em> <b>10</b>, 696-709.  <a href="../smyth/pubs/ties98tr.html">
+  Read article</a><br>
+    <br>
+    Smyth, G. K., and Jørgensen, B. (To appear). Fitting Tweedie's Compound
+  Poisson Model to Insurance Claims Data: Dispersion Modelling. <i>ASTIN
+  Bulletin</i>. <a href="../smyth/pubs/insuranc.pdf">Read article</a><img border="0" src="../images/acrobat_a.gif" width="11" height="11"> </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="dglm.html">dglm</a>, <a href="dglmobj.html">dglm.object</a>, <a href="tweedief.html">Tweedie family</a>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>WARNING </strong></font></dt>
+  <dd>The anova method is questionable when applied to an dglm object with
+    method=&quot;reml&quot; (stick to &quot;ml&quot;). </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd>Estimate tariffs for the Swedish 3rd party motor insurance <a href="../data/general/motorins.html">data</a>.
+  This reproduces results from Smyth and Jørgensen (in press).</dd>
+<dd><pre>motorins &lt;- read.table(&quot;c:/gordon/www/data/general/motorins.txt&quot;,header=T)
+motorins &lt;- motorins[motorins$Zone == 1 &amp; motorins$Make != 9,]
+motorins$Bonus &lt;- factor(motorins$Bonus)
+motorins$Make &lt;- factor(motorins$Make)
+motorins$Kilometres &lt;- factor(motorins$Kilometres)
+contrasts(motorins$Bonus) &lt;- contr.treatment(levels(motorins$Bonus))
+contrasts(motorins$Make) &lt;- contr.treatment(levels(motorins$Make))
+contrasts(motorins$Kilometres) &lt;- contr.treatment(levels(motorins$Kilometres))
+attach(motorins)
+
+out &lt;- tariff(Payment/Insured~Bonus+Make+Kilometres,~Bonus+Make+Kilometres,nclaims=Claims,exposure=Insured,var.power=1.72)
+summary(out)
+
+# Base risk
+tapply(fitted(out),list(Bonus,Make,Kilometres),mean)[1,1,1]
+
+# Multiplative tariff factors for other factor levels
+exp(coef(out))
+</pre></dd>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="tariff.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body></html>

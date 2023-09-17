@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="A collection of useful S-Plus functions developed for teaching a regression and data analysis course plus functions which implement the research of Gordon Smyth.">
+<link rel="stylesheet" type="text/css" href="../res.css">
+<title>Statistical Modelling library for S-Plus</title>
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan --><h1>Statistical Modelling in S-Plus</h1>
+<p>A library of functions for S-Plus</p>
+
+<hr>
+
+<p>This page links to source code and documentation for a variety of S-Plus
+functions for statistical modelling. You can download source code for each function from its
+    help page (see the link 'download script' in the top-right of each page).
+    All functions have been tested in S-Plus 2000 for Windows.</p>
+<p>I (Gordon Smyth) am the author of all code below unless otherwise specified.
+All the code below is open source under <a href="http://en.wikipedia.org/wiki/GNU_General_Public_License">LGPL license</a>.</p>
+
+<p>Note that I now use <a href="http://www.r-project.org">R</a> rather than S-Plus for statistical programming. While I
+will respond to bug reports for the functions below, I have no plans to develop these functions further or to port them to
+later versions of S-Plus.
+See my <a href="../smyth/software.html">R libraries</a> for my current work.</p>
+
+<h2>Data Analysis and Programming</h2>
+
+<dl>
+  <dt><a href="addvar.html">add.var</a> </dt>
+  <dd>Produce an added variable plot for each covariate in a linear model. </dd>
+  <dt><a href="besseli0.html">bessel.i0</a> </dt>
+  <dd>Modified Bessel function of order 0. </dd>
+  <dt><a href="clipplot.html">clip.plot</a> </dt>
+  <dd>Copy the current plot to the Windows clipboard as a metafile in S-Plus 3.3 or earlier.</dd>
+  <dt><a href="choose.html">choose</a></dt>
+  <dd>Binomial coefficients.</dd>
+  <dt><a href="influenc.html">influence</a> </dt>
+  <dd>Leverage, residuals and influence for a linear model, generalized linear model or
+    generalized additive model.</dd>
+  <dt><a href="neldmead.html">neldmead</a></dt>
+  <dd>Function minimization by the Nelder-Mead simplex algorithm. Implementation by Bill Clark and David Clifford.</dd>
+  <dt><a href="nineplot.html">nineplot</a> </dt>
+  <dd>Normal probability plot surrounded by random plots for calibration. </dd>
+  <dt><a href="plotcirc.html">plotcircles</a> </dt>
+  <dd>Scatterplot with circle size indexing a third variable. A method of plotting three
+    numeric variables simultaneously. </dd>
+  <dt><a href="trunpois.html">Truncated Poisson Distribution</a></dt>
+  <dd>Random number generation from the truncated Poisson distribution.</dd>
+  <dt><a href="sharedr2.html">shared.r2</a> </dt>
+  <dd>Shared R2 values for the columns of two dimensional array. </dd>
+  <dt><a href="symplot.html">sym.plot</a> </dt>
+  <dd>Symmetry plot of a sample of numbers.</dd>
+  <dt><a href="dzeroc.html">dzeroc</a></dt>
+  <dd>Density of a distribution with specified cumulants.</dd>
+</dl>
+
+<h2>Generalized Linear Models</h2>
+
+<dl>
+  <dt><a href="invgauss.html">Inverse Gaussian Distribution</a> </dt>
+  <dd>Density, distribution function and random deviates for the inverse Gaussian
+    distribution. </dd>
+  <dt><a href="poisgam.html">Poisson Gamma Distribution</a></dt>
+  <dd>Density and distribution function for the Poisson gamma (or compound Poisson)
+    distribution. </dd>
+  <dt><a href="polygamm.html">Polygamma Functions</a> </dt>
+  <dd>The digamma and trigamma functions, first and second derivates of log(gamma(x)).
+    Slightly edited from original functions written by Bill Venables. </dd>
+  <dt><a href="predlogi.html">pointwise.logit</a> </dt>
+  <dd>Predicted values and confidence intervals for logistic regression. </dd>
+  <dt><a href="qres.html">qres</a> </dt>
+  <dd>Randomized quantile residuals for generalized linear models. </dd>
+  <dt><a href="reglm.html">reglm</a></dt>
+  <dd>Estimated a generalized linear model with random factors using the method of Schall
+    (1991).</dd>
+  <dt><a href="tweedie.html">Tweedie Distributions</a></dt>
+  <dd>Density, cumulative distribution function and quantiles for the Tweedie distributions.
+    Includes the normal, Poison, Poison-gamma and inverse-Gaussian distributions as special
+    cases.</dd>
+  <dt><a href="tweedief.html">Tweedie Family</a> </dt>
+  <dd>Specify a generalized linear model family with any power variance function and any power
+    link. Includes the Gaussian, Poisson, gamma and inverse-Gaussian families as special
+    cases. </dd>
+</dl>
+
+<h2>Double Generalized Linear Models</h2>
+
+<dl>
+  <dt><a href="remlscor.html">remlscore</a></dt>
+  <dd>REML estimation for a heteroscedastic linear regression model.</dd>
+  <dt><a href="dglm.html">dglm</a> </dt>
+  <dd>Double generalized linear models. Simultaneously model the mean and dispersion in
+    generalized linear models. </dd>
+  <dt><a href="digammaf.html">Digamma Family</a></dt>
+  <dd>Specify a Digamma generalized linear model family. The Digamma distribution is the unit
+    deviance distribution for the gamma family.</dd>
+  <dt><a href="dglmobj.html">dglm.object</a></dt>
+  <dd>Describes the object produced by the dglm function.</dd>
+  <dt><a href="tariff.html">tariff</a></dt>
+  <dd>Fit Tweedie's compound Poisson model to insurance claims data.</dd>
+</dl>
+
+<h2>Frequency Estimation</h2>
+
+<dl>
+  <dt><a href="matvec.html">Matrix by Vector</a></dt>
+  <dd>Multiply the rows or columns of a matrix by the elements of a vector.</dd>
+  <dt><a href="polycoef.html">polycoef</a></dt>
+  <dd>Compute the coefficients of a polynomial given its roots. </dd>
+  <dt><a href="polyval.html">polyval</a></dt>
+  <dd>Compute the value of a polynomial. </dd>
+  <dt><a href="pronyfre.html">pronyfreq</a></dt>
+  <dd>Frequency estimation using an eigenanalysis based method. Does not require starting
+    values.</dd>
+  <dt><a href="lsfreq.html">lsfreq</a></dt>
+  <dd>Frequency estimation by separable least squares.</dd>
+</dl>
+
+<h2>Robust Estimation</h2>
+
+<dl>
+  <dt><a href="mmnl.html">mmnl</a></dt>
+  <dd>MM estimation of a nonlinear regression function.</dd>
+  <dt><a href="mscale.html">mscale</a></dt>
+  <dd>M estimation of a scale parameter.</dd>
+  <dt><a href="psihamp.html">psi.hampel</a></dt>
+  <dd>Hampel's redescending psi function.</dd>
+  <dt><a href="rhohamp.html">rho.hampel</a></dt>
+  <dd>The integral of Hampel's redescending psi function.</dd>
+  <dt><a href="mmfreq.html">mmfreq</a></dt>
+  <dd>MM estimation of a sum of sinusoidal signals.</dd>
+  <dt><a href="robfreq.html">robfreq</a></dt>
+  <dd>Robust frequency estimation using a multistage algorithm.</dd>
+</dl>
+
+<h2>Extended Poisson Process Models for Count Data</h2>
+
+<dl>
+  <dt><a href="sadnb.html">eppmsadnb</a></dt>
+  <dd>Computes a saddlepoint approximation based on the negative binomial distribution for the
+    probabilities in an extended Poisson process model.</dd>
+  <dt><a href="sadga.html">eppmsadga</a></dt>
+  <dd>Computes a saddlepoint approximation based on the gamma distribution for the
+    probabilities in an extended Poisson process model.</dd>
+  <dt><a href="sadno.html">eppmsadno</a></dt>
+  <dd>Computes a saddlepoint approximation based on the normal distribution for the
+    probabilities in an extended Poisson process model.</dd>
+  <dt><a href="sadzc.html">eppmsadzc</a></dt>
+  <dd>Computes a saddlepoint approximation based on matching the first 6 cumulants for the
+    probabilities in an extended Poisson process model.</dd>
+  <dt><a href="invmgf.html">eppminvmgf</a></dt>
+  <dd>Computes the probabilities in an extended Poisson process model by numerically inverting
+    a moment generating function.</dd>
+</dl>
+
+<p>See also <a href="bugs.html">S-Plus Bugs</a>. </p>
+
+<hr>
+
+<!--webbot bot="Include" U-Include="../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../index.html">Home</a> - <a href="../about.html">About Us</a> -
+    <a href="../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../smyth/index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="45754" endspan --></body></html>

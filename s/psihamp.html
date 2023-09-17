@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for Hampel's redescending psi function.">
+<title>S archive: Hampel's Redescending psi Function</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>psi.hampel</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Hampel's
+    Redescending psi Function</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Hampel's redescending psi function.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>psi.hampel(u, a = 1.5, b = 3.5, c = 8)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>u</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of residuals.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>a</tt></td>
+        <td width="20"></td>
+        <td>numeric constant. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>b</tt></td>
+        <td width="20"></td>
+        <td>numeric constant. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>c</tt></td>
+        <td width="20"></td>
+        <td>numeric constant.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>psi</tt></td>
+        <td width="20"></td>
+        <td>numeric vector like u giving the values of psi.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS</strong></font></dt>
+  <dd>psi is equal to u up to a, then is flat to b, then decreases linearly to zero at c.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Hampel, Ronchetti, Rousseeuw and Stahel (1986). <em>Robust Statistics</em>. Wiley, New
+    York, page 150.<p>Yohai, V. J. (1987). High breakdown point and high efficiency robust
+    estimates for regression. <em>Ann. Statist</em>. <strong>15</strong>, 642-656.</p>
+    <p>Stromberg, A. J. (1993). Computation of high breakdown nonlinear regression parameters.
+    <em>J. Amer. Statist. Assoc</em>. <strong>88</strong>, 237-244.</p>
+  </dd>
+  <dd>Smyth, G. K., and Hawkins, D. M. (1999). Robust frequency estimation using elemental
+    sets. Submitted. (<a href="../smyth/pubs/element.html">Abstract</a> - <a href="../smyth/pubs/element.pdf">Zipped PostScript</a>)</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="mmnl.html">mmnl</a>, <a href="mscale.html">mscale</a>, <a href="rhohamp.html">rho.hampel</a>,
+    mmfreq, robfreq, rreg and wt.hampel in the S-Plus documentation.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES</strong></font></dt>
+  <dd>The function mmnl uses psi.hampel.</dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

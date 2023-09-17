@@ -1,0 +1,283 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function which implements the method of Schall (1991) for generalized linear models with random effects.">
+<title>S archive: Generalized linear models with random effects</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="reglm.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>reglm</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Generalized linear
+    models with random effects</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Fits a generalized linear model including random factors using the method of Schall
+    (1991). Produces an object of class &quot;glm&quot; with some additional components. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>reglm(formula = formula(data), random = NULL, family = gaussian(), data =
+    sys.parent(), weights = NULL, dispersion = NULL, subset = NULL, na.action = na.fail,
+    contrasts = NULL, start = NULL, mustart = NULL, betastart = NULL, sigmastart = NULL,
+    control = reglm.control(...), ykeep = T, xkeep = F, ukeep = F, ...)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>formula</tt></td>
+        <td width="20"></td>
+        <td>a formula expression as for <tt>glm</tt>, of the form <tt>response ~ predictors</tt>.
+        This specifies the fixed part of the model. See the documentation of <tt>lm</tt> and <tt>formula</tt>
+        for details. As for <tt>glm</tt>, this specifies the linear predictor for modelling the
+        mean. A term of the form <tt>offset(expression)</tt> is allowed.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd>Almost all arguments for <tt>reglm</tt> are as for <tt>glm</tt>. The following arguments
+    are new or altered. The first is the important one. The others are likely to be of only
+    occasional use.<table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>random</tt></td>
+        <td width="20"></td>
+        <td>a list object, the components of which are the factors to be treated as random. This specifies the random part of the
+        model.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>dispersion</tt></td>
+        <td width="20"></td>
+        <td>specifies a prior value for the dispersion of the glm. This argument defaults to 1 for
+        the binomial and Poisson families. Same as the $scale command in GLIM.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>mustart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the fitted values or expected responses
+        (including the predicted values of the random effects). This is the same as the usual glm
+        argument <tt>start</tt> except on the scale of the means rather than of the linear
+        predictors. Must be of the same length as the response, or of length 1 if a constant
+        starting vector is desired. Ignored if <tt>betastart</tt> is supplied. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>betastart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the regression coefficients in the
+        link-linear model for the mean (including predicted values of the random effects). </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>sigmastart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the variance components </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>control</tt></td>
+        <td width="20"></td>
+        <td>a list of iteration and algorithmic constants. See <tt>reglm.control</tt> for their
+        names and default values. These can also be set as arguments to <tt>dglm</tt> itself. This
+        argument is the same as control.glm except that the defaults have been changed.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>ykeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the vector of responses is returned. Same as <tt>y</tt>
+        for glm.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>xkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the mean model is
+        returned. Same as <tt>x</tt> for glm.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>zkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the variance components
+        is returned. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>an object of class <tt>glm</tt> is returned. The following components are additional to
+    the usual glm components: <table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>sigma</tt></td>
+        <td width="20"></td>
+        <td>vector of estimated variance components.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>dispersion</tt></td>
+        <td width="20"></td>
+        <td>estimated dispersion. If the family had a prior dispersion, then the dispersion is
+        estimated only at convergence of the iteration and returned to diagnose over- or
+        under-dispersion.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>prior.dispersion</tt></td>
+        <td width="20"></td>
+        <td>prior value of the dispersion for the glm. Same as the input argument dispersion if
+        that was specified.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>q</tt></td>
+        <td width="20"></td>
+        <td>vector of dimensions of the random factors..</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>edf</tt></td>
+        <td width="20"></td>
+        <td>vector of effective degrees of freedom used to estimate the variance components. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>u</tt></td>
+        <td width="20"></td>
+        <td>design matrix for the random factors, if ukeep=T on input.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+  <dd>We assume the linear predictor for the generalized linear model is of the form<p align="center"><i>g</i>(<strong><font face="Symbol">m</font></strong>) = <em>X</em><font face="Symbol"><strong>b</strong></font><em> + U<sub>1</sub><strong>b</strong><sub>1</sub>
+    +&nbsp; ... + U<sub>c</sub><strong>b</strong><sub>c</sub></em></p>
+    <p>where <font face="Symbol"><b>b</b></font> is a vector of fixed coefficients and <em><strong>b</strong><sub>1</sub>
+    ... <strong>b</strong><sub>c</sub></em> are vectors of random effects. The random effects
+    are assumed to have variances <font face="Symbol">s</font><em><sub>1</sub> ... </em><font face="Symbol">s</font><em><sub>c</sub></em>. The design matrix <em>X</em> &nbsp; is
+    specified using the model formula and the design matrices <em>U<sub>1</sub> ... U<sub>c</sub></em>
+    are specified using the input argument <tt>random</tt>.<br>
+    <br>
+    The parameters are estimated here using the REML method described in Schall (1991).</p>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Schall, R (1991). Estimation in generalized linear models with random effects. <em>Biometrika</em>,
+    <strong>78</strong>, 719-727.<br>
+  <br>
+  Candy, S. G. (2004). Modelling catch and effort data using generalized linear
+  models, the Tweedie distribution, random vessel effects and random
+  stratum-by-year effects. <i>CCAMLR Science</i> <b>11</b>, 59-80.</dd>
+  <dt>&nbsp;</dt>
+  <dt><strong><font color="#000080">ACKNOWLEDGEMENTS</font></strong><font color="#000080"><strong> </strong></font></dt>
+  <dd>Thanks for Dr Steve Candy, Australian Antarctic Division, for contributing
+  a bug fix, 6 Nov 2004.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="dglm.html">dglm</a></dd>
+  <dd>&nbsp;</dd>
+  <dd>The following program is included in the <tt>reglm</tt> software distribution, but is
+    not separately documented: <tt>reglm.control</tt>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>BUGS </strong></font></dt>
+  <dd>On output the regression parameters don't have labels. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES</strong></font></dt>
+  <dd>Here we demonstrate the reglm function on the <a href="../data/general/radiatio.html">radiation of cancer cells data</a>
+    example from Schall (1991).
+	 Basic analysis of the data shows that there is strong evidence for differences between the occasions, and also good evidence for overdispersion between the dishes (observations) within occasions.
+	 <pre>&gt; radiatio &lt;- read.table(&quot;radatio.txt&quot;,header=T)
+&gt; attach(radiatio)
+&gt; n &lt;- rep(400,27)</pre>
+    We specify a binomial model with two random effects. The factor Occasion represents the
+    radiation occasion. There is also a random effect at the observation level, represented by
+    (1:27) since there are 27 observations, which picks up any over-dispersion in the data.
+    Trace is turned on so that we can see the progress of the iteration. The variance
+    components and dispersion are output at each iteration.
+    <pre>&gt; out &lt;- reglm(Survived/n~1,list(Occasion=Occasion,Units=(1:27)),
+         family=binomial,weights=n,trace=T)
+Iter 1 0.0000505604239786021 0.0000166989428102248 1
+Iter 2 0.00283092775872843 0.000306570522656396 1
+Iter 3 0.0914639350937484 0.00247127680331739 1
+Iter 4 0.207417308402352 0.00381847728525275 1
+Iter 5 0.222886503891888 0.00539847167615311 1
+Iter 6 0.223151486991139 0.00690093186214274 1
+Iter 7 0.222683195620167 0.00805926586181473 1
+Iter 8 0.222303061660932 0.00882599204674674 1
+Iter 9 0.222049310739124 0.00928435931728272 1
+Iter 10 0.22189665203915 0.0095420092039735 1
+Iter 11 0.221810447442714 0.00968186587710608 1
+Iter 12 0.221763517700708 0.0097563502955682 1
+Iter 13 0.221738481620298 0.00979561756518506 1
+Iter 14 0.221725270519245 0.00981620792679515 1
+Iter 15 0.221718339587564 0.00982697440004381 1
+Iter 16 0.221714714509054 0.00983259577809794 1
+Iter 17 0.221712821520788 0.00983552854676926 1
+&gt; out$sigma
+[1] 0.221712822 0.009835529
+&gt; out$dispersion
+[1] 0.9369549</pre>
+    The final variance components, and residual variance estimate, are the same as in
+    Schall (1991). Note that the prior dispersion in this case is 1.
+    <pre>&gt; out$q
+[1]  9 27
+&gt; out$edf
+[1] 7.744181 8.232174</pre>
+    The random effects have dimensions 9 and 27 respectively. After smoothing the random
+    effects, the effective degrees of freedom are 7.7 and 8.2 respectively. Including Occasion
+    as a fixed effect would have used 8 df. In this case the effect of Occasion is so strong
+    that there is very little difference between the fixed and random models for it.
+    <pre>&gt; out$rank-sum(out$q)+sum(out$edf)
+[1] 16.97635</pre>
+    out$rank gives the total number of parameters in the linear predictor including both
+    the fixed and random parameters. Therefore out$rank-sum(out$q) gives the number of fixed
+    parameters, in this case 1. The total effective degrees of freedom used in modelling the
+    means is just under 17.0, including the 1 degree of freedom for the fixed model.
+    <pre>&gt; coef(out)[2:10]
+[1]  0.69126760 -0.18631757 -0.70870278 -0.01694652  0.19448300 -0.02442938
+[7]  0.60688086 -0.54311626 -0.01311896
+&gt; contrasts(Occasion) &lt;- contr.sum(levels(Occasion))
+&gt; out.fixed &lt;- glm(Survived/n~Occasion,family=binomial,weights=n)
+&gt; coef(out.fixed)[2:9]
+ Occasion1  Occasion2  Occasion3   Occasion4 Occasion5   Occasion6
+ 0.7128812 -0.1915751 -0.7354824 -0.01624658 0.2027526 -0.02395969
+ Occasion7  Occasion8
+ 0.6260501 -0.5620218</pre>
+    Note that the estimated coefficients for Occasion (there are 9 of them and they add to
+    zero) are similar to the equivalent parameters from the fixed model, but shrunk somewhat
+    towards zero. In the fixed model, the last coefficient is not included explicitly because
+    the coefficients are constrained to add to zero.
+  </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="reglm.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

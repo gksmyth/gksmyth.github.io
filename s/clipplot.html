@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Documentation and code for an S-Plus function to copy the current plot to the Windows clipboard
+as a metafile.">
+<title>Clip plot to clipboard</title>
+
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="clipplot.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>clip.plot</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Copy current plot as metafile</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Copies current plot to the Windows clipboard in metafile
+        format in S-Plus Version 3. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+    <dd><tt>clip.plot(width=10.5,height=8)</tt> </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td><tt>width</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>nominal width of plot in inches</td>
+            </tr>
+            <tr>
+                <td><tt>height</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>nominal height of plot in inches</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+    <dd>Don't copy the current plot to the clipboard using the
+        S-Plus Version 3 for Windows drop down menu! That will
+        copy the graph in bitmap form. Metafile format gives
+        higher resolution and takes up about a tenth of the space
+        in your document.<p>To maintain aspect ratio, width and
+        height should be proportional the values used to open the
+        graphics window. In most cases it is best to use the same
+        width and height used for the graphics window. </p>
+        <p>This function is designed for S-Plus Version 3 for
+        Windows. It is unnecessary in S-Plus Version 4 for
+        Windows.</p>
+    </dd>
+    <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+    <dd><tt>win.graph(7,7)<br>
+        plot(x,y)<br>
+        clip.plot(7,7)</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="clipplot.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for S-Plus functions for density, distribution function, quantiles
+and random number generation for the inverse Gaussian distribution.">
+<title>S Archive: Inverse Gaussian Distribution</title>
+
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="invgauss.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>invgauss</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Inverse Gaussian Distribution</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Density, cumulative probability, quantiles and random generation for
+        the inverse Gaussian distribution. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+    <dd><tt>dinvgauss(x, mu, lambda=1)<br>
+        pinvgauss(q, mu, lambda=1)<br>
+        qinvgauss(p, mu, lambda=1)<br>
+        rinvgauss(n, mu, lambda=1)<br>
+        </tt></dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td align="right" valign="top"><tt>x</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>vector of quantiles. Missing values (NAs) are
+                allowed.</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top"><tt>q</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>vector of quantiles. Missing values (NAs) are
+                allowed.</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top"><tt>p</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>vector of probabilities. Missing values (NAs)
+                are allowed.</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top"><tt>n</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>sample size. If length(n) is larger than 1,
+                then length(n) random values are returned.</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top"><tt>mu</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>vector of (positive) means. This is
+                replicated to be the same length as p or q or the
+                number of deviates generated. </td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td align="right" valign="top"><tt>lambda</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>vector of (positive) precision parameters.
+                This is replicated to be the same length as p or
+                q or the number of deviates generated. The
+                variance of the distribution is mu<sup>3</sup>/lambda. </td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+    <dd>Vector of same length as <tt>x</tt> or <tt>q</tt> giving
+        the density (<tt>dinvgauss</tt>), probability (<tt>pinvgauss</tt>),
+        quantile (<tt>qinvgauss</tt>)
+        or random sample (<tt>rinvgauss</tt>) for the inverse
+        Gaussian distribution with mean <tt>mu</tt> and inverse
+        dispersion <tt>lambda</tt>. Elements of <tt>q</tt> or <tt>p</tt>
+        that are missing will cause the corresponding elements of
+        the result to be missing. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>SIDE EFFECTS </strong></font></dt>
+    <dd>The function <tt>rinvgauss</tt> causes creation of the
+        dataset .Random.seed if it does not already exist,
+        otherwise its value is updated. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>BACKGROUND</strong></font></dt>
+    <dd>The inverse Gaussian distribution takes values on the
+        positive real line. Applications of the inverse Gaussian
+        include sequential analysis, diffusion processes and radiotechniques. The inverse Gaussian is one of the
+        response distributions used in generalized linear models.
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>REFERENCES</strong></font></dt>
+    <dd>Chhikara, R. S., and Folks, J. Leroy, (1989). <em>The
+        inverse Gaussian distribution: Theory, methodology, and
+        applications.</em> Marcel Dekker, New York. </dd>
+    <dd>&nbsp;</dd>
+	<dd>Giner, G, and Smyth, GK (2016).
+	statmod: Probability Calculations for the Inverse Gaussian Distribution.
+	[<a href="http://arxiv.org/abs/1603.06687">arXiv:1603.06687</a>]</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>ACKNOWLEDGEMENT</strong></font></dt>
+    <dd>The function <tt>qinvgauss</tt> was contributed by Dr Paul Bagshaw of the
+        Centre National d'Etudes des Telecommunications (DIH/DIPS), France.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+    <dd><a href="qres.html"><tt>qres</tt></a>.<br>
+    Note that more developed inverse Gaussian functions, with improved accuracy, are now available in the <a href="https://cran.r-project.org/web/packages/statmod/index.html">statmod package for R</a>.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+    <dd><tt>y &lt;- rinvgauss(20,1,2) # generate vector of 20
+        random numbers<br>
+        p &lt;- pinvgauss(y,1,2) # p should be uniform</tt></dd>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%" bgcolor="#C0C0C0"><a href="invgauss.s">Download Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified: 30 December February 2015</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

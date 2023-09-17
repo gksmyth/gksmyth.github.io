@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<meta name="DESCRIPTION" content="Script and documentation for S-Plus functions for density and distribution function for the Poisson gamma distribution.">
+<title>S Archive: Poisson Gamma Distribution</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="poisgam.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>poisgam</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Poisson Gamma
+    Distribution</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Density, cumulative probability function and random variates for the Poisson-gamma or compound Poisson
+    distribution. The Poison-gamma distribution is a Tweedie distribution with index p between
+    1 and 2.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>dpoisgam(x, mu, phi=1, p=1.5)<br>
+    ppoisgam(q, mu, phi=1, p=1.5)
+    </tt></dd>
+  <dd><tt>rpoisgam(n, mu, phi=1, p=1.5)<br>
+    </tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>x</tt></td>
+        <td width="20"></td>
+        <td>vector of quantiles. Missing values (NAs) are allowed.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>q</tt></td>
+        <td width="20"></td>
+        <td>vector of quantiles. Missing values (NAs) are allowed.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>n</tt></td>
+        <td width="20"></td>
+        <td>sample size. If length(n) is larger than 1, then length(n) random
+          values are returned. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>mu</tt></td>
+        <td width="20"></td>
+        <td>vector of (positive) means. This is replicated to be the same length as x or q. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>phi</tt></td>
+        <td width="20"></td>
+        <td>vector of (positive) dispersion parameters. This is replicated to be the same length
+        as x or q.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>p</tt></td>
+        <td width="20"></td>
+        <td>power index of variance function. Must satisfy 1 &lt;= p &lt;= 2. The variance of the
+        distribution is phi*mu<sup>p </sup></td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>Vector of length n or the same length as <tt>x</tt> or <tt>q</tt> giving the density (<tt>dpoisgam</tt>), probability (<tt>ppoisgam</tt>)
+    or random sample (<tt>rpoisgam</tt>) for the Poisson gamma distribution with mean <tt>mu</tt>,
+    dispersion <tt>phi</tt> and index <tt>p</tt>. Elements of <tt>x</tt> or <tt>q</tt> that
+    are missing will cause the corresponding elements of the result to be missing. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>BACKGROUND</strong></font></dt>
+  <dd>The Poisson-gamma distribution is also called compound Poisson. It can be represented as
+    the distribution of <p align="center"><em>Y = X<sub>1</sub> + ... + X<sub>N</sub></em></p>
+    <p>where <em>X<sub>1</sub></em> to <em>X<sub>N</sub></em> are independent gamma random
+    variables and <em>N</em> is Poisson. Note that the <em>Y</em> has mass at zero, but
+    otherwise has a continuous positive distribution. The distribution can be equivalently
+    represented as a Poisson mixture of gamma distributions. </p>
+    <p>The distribution approaches gamma as p -&gt; 2 and phi * Poisson(mu) as p -&gt; 1. The
+    Poison-gamma distribution is a <a href="tweedief.html">Tweedie</a> distribution with index
+    p between 1 and 2. Since p = 1 corresponds to Poison and p = 2 corresponds to gamma, the
+    Poison-gamma distribution is genuinely intermediate between the Poisson and gamma
+    distributions.</p>
+  </dd>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Jørgensen, B. (1997). <em>Theory of Dispersion Models</em>, Chapman and Hall, London. </dd>
+  <dd>&nbsp;</dd>
+  <dd>Smyth, G. K. (1996). Regression modelling of quantity data with exact zeroes. <em>Proceedings
+    of the Second Australia-Japan Workshop on Stochastic Models in Engineering, Technology and
+    Management.</em> Technology Management Centre, University of Queensland, 572-580. [<a href="../smyth/pubs/RegressionWithExactZerosPreprint.pdf">PDF</a>] </dd>
+  <dd>&nbsp;</dd>
+  <dd>Jørgensen, B. (1987). Exponential dispersion models. <i>J. R. Statist. Soc. B</i>, <b>49</b>,
+    127-162. </dd>
+  <dd>&nbsp;</dd>
+  <dt><font color="#000080"><strong>SEE ALSO </strong></font></dt>
+  <dd><a href="tweedie.html">Tweedie Distributions</a>, <a href="tweedief.html">Tweedie family</a></dd>
+  <dd>&nbsp;</dd>
+  <dd>The following function is included in the <tt>poisgam</tt> software distribution, but
+    is not intended to be called directly by users: <tt>ppoiscc</tt>. </dd>
+</dl>
+
+<dl>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd><tt>y &lt;- c(-1,0,4,5,10000)</tt></dd>
+  <dd><tt>d &lt;- dpoisgam(y,mu=4,phi=1,p=1.6)</tt></dd>
+  <dd><tt>p &lt;- ppoisgam(y,mu=4,phi=1,p=1.6)</tt></dd>
+  <dt>&nbsp;</dt>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="poisgam.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

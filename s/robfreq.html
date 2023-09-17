@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for robust estimation of a sum of sinusoid signals using elemental sets and MM estimation. Has simultaneously high breakdown and high efficiency under normal errors.">
+<title>S archive: Robust Frequency Estimation</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>robfreq</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Robust Frequency
+    Estimation</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Estimates a sum of sinusoidal signals robustly using elemental set estimators to
+    initialize an MM estimation scheme. Simultaneously has high breakdown and high efficiency
+    under normal errors.<br>
+    <br>
+    Note that to use this function you will also need to obtain <a href="pronyfre.html">pronyfreq</a>.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>robfreq(y,nfreq=1,s=NULL,breakdown=0.5,trace=F,maxregs=6000)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>y</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of observations.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>nfreq</tt></td>
+        <td width="20"></td>
+        <td>number of frequencies to estimate.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>scale</tt></td>
+        <td width="20"></td>
+        <td>numeric constant giving scale of the residuals. By default this is estimated using <a href="mscale.html">mscale</a> for the starting parameter values.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>breakdown</tt></td>
+        <td width="20"></td>
+        <td>numeric constant between 0 and 0.5 giving the desired breakdown point. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>trace</tt></td>
+        <td width="20"></td>
+        <td>logical constant. If true, the progress of the algorithm is printed out in compact
+        format. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>maxregs</tt></td>
+        <td width="20"></td>
+        <td>The total number of evaluations of the LTS criterion allowed. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE</strong></font></dt>
+  <dd>The output value is as for <a href="mmfreq.html">mmfreq</a>.</dd>
+  <dd></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS</strong></font></dt>
+  <dd>This function implements a multstage estimation scheme for robust estimation of the
+    frequencies. The first stage uses the method of elemental sets to approximate the LTS
+    estimator. The last stage uses MM estimation with Hampel's redescending psi function. The
+    estimators simultaneously have high breakdown and 95% efficiency under normal errors.<p>The
+    model is</p>
+    <p align="center">y = a[1]*cos(x*f[1]) + ... + a[p]*cos(x*f[p]) + a[p+1]*sin(x*f[1]) + ...
+    + a[2*p]*sin(x*f[p])</p>
+    <p align="left">The values for <em>f</em> define the freq vector while the values for <em>a</em>
+    define the coef vector on output.</p>
+  </dd>
+</dl>
+
+<dl>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K., and Hawkins, D. M. (2000). Robust frequency estimation using elemental
+    sets. <em>Journal of Computational and Graphical Statistics</em> <b>9</b>, 196-214.
+    (<a href="../smyth/pubs/element.html">Abstract</a> - <a href="../smyth/pubs/element.pdf">Zipped PostScript</a>)</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>BUGS </strong></font></dt>
+  <dd>The function uses <a href="pronyfre.html">pronyfreq</a> as a first step, and that function uses compiled code.  This means
+  that you will need to download and compile the Fortran code associated with
+  pronyfreq. </dd>
+  <dt><font color="#000080"><strong>&nbsp;</strong></font></dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="mmnl.html">mmnl</a>, <a href="mscale.html">mscale</a>, <a href="rhohamp.html">rho.hampel</a>,
+    <a href="psihamp.html">psi.hampel</a>, <a href="mmfreq.html">mmfreq</a></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES</strong></font></dt>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

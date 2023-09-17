@@ -1,0 +1,132 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Documentation and code for an S-Plus routine to compute residuals and influence measures in
+regression.">
+<title>Influence and Residuals</title>
+
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="influenc.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>influence</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Residuals and influence for regression</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Computes leverage, studentized and standardized
+        residuals, dfbetas and Cook's distance for a linear
+        model, generalized linear model or generalized additive
+        model.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+    <dd><tt>inf &lt;- influence(lm.obj)<br>
+        plot.t(inf)<br>
+        plot.d(inf)</tt> </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td valign="top"><tt>lm.obj</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>object of class <font face="Courier New">lm</font>
+                or which inherits from <font face="Courier New">lm</font>.</td>
+            </tr>
+        </table>
+        <p><tt>plot.t</tt> and <tt>plot.d</tt> take as argument
+        the output of <tt>influence</tt>, which is a dataframe
+        with named columns.</p>
+    </dd>
+    <dt><font color="#0000A0"><strong>VALUE </strong></font></dt>
+    <dd><tt>influence</tt> returns a data frame with the
+        following components: h - leverage values, z -
+        studentized residuals, t - externally studentized
+        residuals, d - Cook's distance. There is also one
+        component for each term in the linear model giving the
+        dfbetas. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>SIDE EFFECTS </strong></font></dt>
+    <dd><tt>plot.t</tt> plots the externally studentized
+        residuals, together with Bonferroni simultaneous 95%
+        confidence bands. <tt>plot.d</tt> plots the Cook's
+        distances. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+    <dd>The leverages <i>h</i> measure how unusual are the <i>x</i>-values
+        for each observation, i.e., the potential of that point
+        to be influential. <p>The studentized residuals <i>z</i>
+        are approximately standard normal residuals, while the
+        externally studentized residuals <i>t</i> are score test
+        statistics for testing each point an outlier. Any point
+        whose externally studentized residuals extends beyond the
+        confidence bands is formally judged to be an outlier at
+        the 5% level. </p>
+        <p>Cook's distance measures the overall influence of each
+        observation on the regression coefficients, including the
+        intercept. The dfbetas measure the influence of each
+        observation on each of the individuals regression
+        coefficients, excluding the intercept. Specifically the
+        dfbetas are the number of standard errors by which the
+        coefficient changes when that observation is added to the
+        regression. Cook's distance is roughly the average of the
+        squares of the dfbetas.</p>
+        <p>The results for generalized linear models and
+        generalized additive models are approximate. </p>
+    </dd>
+    <dt><font color="#0000A0"><strong>REFERENCES </strong></font></dt>
+    <dd>Hamilton, L. C. (1992). <em>Regression with graphics</em>.
+        Duxbury, Belmont, CA.<br>
+        Weisberg, S. (1985). <em>Applied linear regression, 2nd
+        Edition</em>. Wiley, New York. </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+    <dd><tt>lm.yx &lt;- lm(y~x)</tt></dd>
+    <dd><tt>inf &lt;- influence(lm.yx)</tt></dd>
+    <dd><tt>plot.t(inf)</tt></dd>
+    <dd><tt>plot.d(inf)</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="influenc.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

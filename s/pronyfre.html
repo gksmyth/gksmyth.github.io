@@ -1,0 +1,190 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Documentation and code for an S-Plus routine to estimate a sum of sinusoidal signals.">
+<title>pronyfreq: Frequency Estimation</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="banded.for">Download Fortran</a> - <a href="pronyfre.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>pronyfreq</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Frequency
+    Estimation</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Estimates a sum of sinusoidal signals using an eigenanalysis method.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+  <dd><tt>pronyfreq(y, nfreq=1, constant=T, tol=1e-5, maxit=40, trace=F, warnings=T)</tt> </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>REQUIRED ARGUMENT </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>y</tt></td>
+        <td width="20"></td>
+        <td>numeric vector.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>OPTIONAL ARGUMENTS</strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>nfreq</tt></td>
+        <td width="20"></td>
+        <td>number of frequencies to estimate.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>constant</tt></td>
+        <td width="20"></td>
+        <td>logical variable, indicating whether to include a constant in the model.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>tol</tt></td>
+        <td width="20"></td>
+        <td>tolerance indicating required accuracy.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>maxit</tt></td>
+        <td width="20"></td>
+        <td>maximum number of iterations.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>trace</tt></td>
+        <td width="20"></td>
+        <td>logical variable. If true then the top half of the Prony vector and the smallest and
+        largest eigenvalues of the Prony matrix are output at each iteration.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>warnings</tt></td>
+        <td width="20"></td>
+        <td>logical variable. If false, then run quietly without issuing warnings about
+        non-convergence. Useful when using pronyfreq for a few iterations to get starting values
+        for another estimation technique.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>VALUE </strong></font></dt>
+  <dd>A list with the following components:</dd>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>prony</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of coefficients of the Prony difference equation. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>freq</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of frequencies.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>coef</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of coefficients. The first component is the constant term, then the
+        coefficients of cos(f*t) for each frequency, then the coefficients of sin(f*t) for each
+        frequency.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>fitted</tt></td>
+        <td width="20"></td>
+        <td>numeric vector. The value of the sum of sinusoidal frequencies.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>residuals</tt></td>
+        <td width="20"></td>
+        <td>numeric vector, equal to y - fitted</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>DETAILS </strong></font></dt>
+  <dd>The signal is assumed to be of the form<br>
+    y<sub>t</sub> = <font face="Symbol">m</font> + <font face="Symbol">a</font><sub>1</sub>
+    cos(<font face="Symbol">w</font><sub>1</sub> t) + <font face="Symbol">b</font><sub>1</sub>
+    sin(<font face="Symbol">w</font><sub>1</sub> t) + ... +&nbsp; <font face="Symbol">a</font><sub>k</sub>
+    cos(<font face="Symbol">w</font><sub>k</sub> t) + <font face="Symbol">b</font><sub>k</sub>
+    sin(<font face="Symbol">w</font><sub>k</sub> t)<br>
+    for t = 0 ... length(y)-1 and k = nfreq. If&nbsp; <tt>constant=F</tt>&nbsp; then&nbsp; <font face="Symbol">m</font>&nbsp; is not included. The frequences&nbsp; <font face="Symbol">w</font><sub>j</sub>
+    &nbsp; and the coefficients are estimated by an algorithm described in Smyth (2000). The
+    estimators are not exactly least squares, but are equivalent or better than least squares
+    in mean square error. On output, the component <tt>prony</tt> holds the coefficients of
+    the polynomial with roots 1, and exp(± i <font face="Symbol">w</font><sub>j</sub>) for
+    each frequency. The component <tt>freq</tt> holds (<font face="Symbol">w</font><sub>1</sub>,...,<font face="Symbol">w</font><sub>k</sub>). The component <tt>coef</tt> holds (<font face="Symbol">m</font>,<font face="Symbol">a</font><sub>1</sub>,...,<font face="Symbol">a</font><sub>k</sub><font face="Symbol">,b</font><sub>1</sub><font face="Symbol">,...,b</font><sub>k</sub>).<br>
+    <br>
+    It is possible for the algorithm to return fewer frequencies than requested. In this case
+    the data sequence is not well fitted by a sum of sinusoids. The algorithm works extremely
+    well on data sets of moderate size. The algorithm used differences of y, and therefore
+    will be numerically unstable if the length of y is large and the observations are sampled
+    very densely relative to the frequencies.<br>
+    <br>
+The algorithm implemented by pronyfreq is the Osborne/Breslow/Macovski algorithm from Smyth (2000).
+Pisarenko's covariance method is used to start the iteration.<br>
+<br>
+    The function <tt>pronyfreq</tt> uses fortran subroutines for solving banded linear
+    systems. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K. (2000). <a href="../smyth/pubs/constrai.html">Employing symmetry constaints
+    for improved frequency estimation by eigenanalysis methods</a>. <em>Technometrics</em> <strong>42</strong>, 277-289. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+  <dd>Consider the <a href="../data/general/star.html">variable star data set</a>.<br>
+    <tt>&gt; out &lt;- pronyfreq(star,2)<br>
+    &gt; out$freq<br>
+    [1] 0.2166596 0.2617983</tt><br>
+    The estimated frequencies are 0.2167 and 0.2618.<br>
+    <tt>&gt; 2*pi/out$freq<br>
+    [1] 29.00027 24.00010</tt><br>
+    These correspond to periods of almost exactly 24 and 29 days.<br>
+    <tt>&gt; out$coef<br>
+    [1] 17.0857822411 7.6477245734 0.0009274355 6.4906186247 7.0845674915</tt><br>
+    The constant term is 17.086.<br>
+    <tt>&gt; plot(star)</tt></dd>
+  <dd><tt>&gt; lines(0:599,out$fitted,col=2)</tt> <br>
+    <img src="pronyfr1.gif" width="744" height="180" alt="pronyfr1.gif (6851 bytes)"></dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="banded.for">Download Fortran</a> - <a href="pronyfre.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

@@ -1,0 +1,232 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for simultaneous modelling of mean
+and dispersion in generalized linear models.">
+<title>S archive: Double generalized linear models</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="dglmall.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>dglm</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Double generalized
+    linear models</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Fits a generalized linear model with a link-linear model for the dispersion as well as
+    for the mean. Produces an object of class &quot;dglm&quot; which inherits from
+    &quot;glm&quot; and &quot;lm&quot;. <br>
+    <br>
+    <strong>Note:</strong> for this routine to work correctly with gamma responses you will
+    need also the functions associated with the <a href="digammaf.html">Digamma family</a> and
+    the <a href="polygamm.html">polygamma functions</a>.&nbsp; If you wish to use general
+    power variance functions you will also need to the functions associated <a href="tweedief.html">Tweedie family</a>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>function(formula, dformula = ~ 1, family = gaussian(), dlink = &quot;log&quot;, data
+    = sys.parent(), subset = NULL, weights = NULL, contrasts = NULL, method =
+    &quot;ml&quot;, mustart = NULL, betastart = NULL, phistart = NULL, control =
+    dglm.control(...), ykeep = T, xkeep = F, zkeep = F, ...)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>formula</tt></td>
+        <td width="20"></td>
+        <td>a formula expression as for <tt>glm</tt>, of the form <tt>response ~ predictors</tt>.
+        See the documentation of <tt>lm</tt> and <tt>formula</tt> for details. As for <tt>glm</tt>,
+        this specifies the linear predictor for modelling the mean. A term of the form <tt>offset(expression)</tt>
+        is allowed. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd>Most arguments for <tt>dglm</tt> are as for <tt>glm</tt>. The following arguments are
+    new or altered: <table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>dformula</tt></td>
+        <td width="20"></td>
+        <td>a formula expression of the form <tt>&nbsp;~ predictor</tt>, the response being
+        ignored. This specifies the linear predictor for modelling the dispersion. A term of the
+        form <tt>offset(expression)</tt> is allowed.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>dlink</tt></td>
+        <td width="20"></td>
+        <td>link function for modelling the dispersion. Any link function accepted by the <tt>quasi</tt>
+        family is allowed, including <tt>power(x)</tt>. See details below. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>method</tt></td>
+        <td width="20"></td>
+        <td>the method used to estimate the dispersion parameters; the default is &quot;reml&quot;
+        for restricted maximum likelihood and the alternative is &quot;ml&quot; for maximum
+        likelihood. Upper case and partial matches are allowed. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>mustart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the fitted values or expected responses.
+        Must be of the same length as the response, or of length 1 if a constant starting vector
+        is desired. Ignored if <tt>betastart</tt> is supplied. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>betastart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the regression coefficients in the
+        link-linear model for the mean. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>phistart</tt></td>
+        <td width="20"></td>
+        <td>numeric vector giving starting values for the dispersion parameters. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>control</tt></td>
+        <td width="20"></td>
+        <td>a list of iteration and algorithmic constants. See <tt>dglm.control</tt> for their
+        names and default values. These can also be set as arguments to <tt>dglm</tt> itself. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>ykeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the vector of responses is returned. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>xkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the mean model is
+        returned. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>zkeep</tt></td>
+        <td width="20"></td>
+        <td>logical flag: if <tt>TRUE</tt>, the <tt>model.matrix</tt> for the dispersion model is
+        returned. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>an object of class <tt>dglm</tt> is returned, which inherits from <tt>glm</tt> and <tt>lm</tt>.
+    See <a href="dglmobj.html"><tt>dglm.object</tt></a> for details. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS </strong></font></dt>
+  <dd>Write <i>m<sub>i</sub></i> = E( <i>y<sub>i</sub></i>) for the expectation of the <i>i</i>th
+    response. Then Var( <i>y<sub>i</sub></i>) = <i>s<sub>i</sub>V</i>(<i>m<sub>i</sub></i>)
+    where <i>V</i> is the variance function and <i>s<sub>i</sub></i> is the dispersion of the <i>i</i>th
+    response (often denoted as the Greek character phi). We assume the link linear models<p align="center"><i>g</i>(<i>m<sub>i</sub></i>) = <i><b>x</b><sub>i</sub></i><sup>T</sup><b><i>b</i></b>,&nbsp;&nbsp;&nbsp;
+    <i>h</i>(<i>s<sub>i</sub></i>) = <i><b>z</b><sub>i</sub></i><sup>T</sup><b><i>a</i></b>,</p>
+    <p>where <i><b>x</b><sub>i</sub></i> and <i><b>z</b><sub>i</sub></i> are vectors of
+    covariates, and <b><i>b</i></b> and <b><i>a</i></b> are vectors of regression cofficients
+    affecting the mean and dispersion respectively. The argument <tt>dlink</tt> specifies <i>h</i>.
+    See <tt>family</tt> in the S-Plus help for how to specify <i>g</i>. The optional arguments
+    <tt>mustart</tt>, <tt>betastart</tt> and <tt>phistart</tt> specify starting values for <i>m<sub>i</sub></i>,
+    <b><i>b</i></b> and <i>s<sub>i</sub></i> respectively. </p>
+    <p>The parameters <i><b>b</b></i> are estimated as for an ordinary glm. The parameters <i><b>a</b></i>
+    are estimated by way of a dual glm in which the deviance components of the ordinary glm
+    appear as responses. The estimation procedure alternates between one iteration for the
+    mean submodel and one iteration for the dispersion submodel until overall convergence.</p>
+    <p>The output from <tt>dglm</tt>, <tt>out</tt> say, consists of two <tt>glm</tt> objects
+    (that for the dispersion submodel is <tt>out$dispersion.fit</tt>) with a few more
+    components for the outer iteration and overall likelihood. The <tt>summary</tt> and <tt>anova</tt>
+    functions have special methods for <tt>dglm</tt> objects. Any generic function which has
+    methods for glms or lms will work on <tt>out</tt>, giving information about the mean
+    submodel. Information about the dispersion submodel can be obtained by using <tt>out$dispersion.fit</tt>
+    as argument rather than <tt>out</tt> itself. In particular <tt>drop1(out,scale=1)</tt>
+    gives correct score statistics for removing terms from the mean submodel, while <tt>drop1(out$dispersion.fit,scale=2)</tt>
+    gives correct score statistics for removing terms from the dispersion submodel. </p>
+  </dd>
+  <dd>The dispersion submodel is treated as a <tt>gamma</tt> family unless the original
+    reponses are gamma, in which case the dispersion submodel is <tt>digamma</tt>. (Note that
+    the <tt>digamma</tt> and <tt>trigamma</tt> functions are required to fit a <tt>digamma</tt>
+    family.) This is exact if the original glm family is <tt>gaussian</tt>, <tt>Gamma</tt> or <tt>inverse.gaussian</tt>.
+    In other cases it can be justified by the saddle-point approximation to the density of the
+    responses. The results will therefore be close to exact ML or REML when the dispersions
+    are small compared to the means. In all cases the dispersion submodel as prior weights 1,
+    and has its own dispersion parameter which is 2. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K. (1989). Generalized linear models with varying dispersion. <i>J. R.
+    Statist. Soc. B</i>, <b>51</b>, 47--60.<br>
+    <br>
+    Smyth, G. K., and Verbyla, A. P. (1999). Adjusted likelihood methods for modelling
+    dispersion in generalized linear models. <em>Environmetrics</em> <b>10</b>, 696-709.
+    (<a href="../smyth/pubs/ties98tr.html">Abstract</a> - <a href="../smyth/pubs/ties98tr.zip">Zipped PostScript</a>)<br>
+    <br>
+    Smyth, GK, and Verbyla, AP (2009). Leverage adjustments for dispersion modelling in generalized nonlinear models.
+    <em>Australian and New Zealand Journal of Statistics</em> <b>51</b>, 433-448.
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="dglmobj.html">dglm.object</a>, <a href="digammaf.html">Digamma Family</a>, <a href="polygamm.html">Polygamma Functions</a></dd>
+  <dd>&nbsp;</dd>
+  <dd>The following programs are included in the <tt>dglm</tt> software distribution, but are
+    not separately documented: <tt>dglm.control</tt>, <tt>summary.dglm</tt>, <tt>print.summary.dglm</tt>,
+    <tt>anova.dglm</tt>, <tt>glm.constant</tt>. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>WARNING </strong></font></dt>
+  <dd>The anova method is questionable when applied to an dglm object with
+    method=&quot;reml&quot; (stick to &quot;ml&quot;). </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd><tt># Fit a Gamma double generalized linear model.<br>
+    # A log-linear model with covariates z is used for the dispersion.<br>
+    out &lt;- dglm(y~x,~z,family=Gamma(link=log))<br>
+    summary(out)<br>
+    anova(out)<br>
+    <br>
+    # Summarize the mean model as for a glm<br>
+    summary.glm(out)<br>
+    <br>
+    # Summarize the dispersion model as for a glm<br>
+    summary(out$dispersion.fit)<br>
+    <br>
+    # Examine goodness of fit of dispersion model by plotting residuals<br>
+    plot(fitted(out$dispersion.fit),residuals(out$dispersion.fit))</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="dglmall.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

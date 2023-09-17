@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="S-Plus functions to compute quantile residuals for binomial, Poisson, negative binomial, gamma and inverse Gaussian generalized linear models.">
+<title>Randomized Quantile Residuals</title>
+
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="qres.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>qres</tt></b></font></td>
+        <td width="30" bgcolor="#000080">&nbsp;</td>
+        <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>Randomized quantile residuals</em></font></td>
+    </tr>
+</table>
+
+<dl>
+    <dt><font color="#0000A0"><strong>DESCRIPTION </strong></font></dt>
+    <dd>Computes randomized quantile residuals for binomial,
+        Poisson, negative binomial, gamma and inverse Gaussian
+        generalized linear models.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>USAGE </strong></font></dt>
+    <dd><tt>qres.binom(glm.obj)</tt> </dd>
+    <dd><tt>qres.pois(glm.obj)</tt> </dd>
+    <dd><tt>qres.nbinom(glm.obj)</tt> </dd>
+    <dd><tt>qres.gamma(glm.obj,dispersion=NULL)</tt></dd>
+    <dd><tt>qres.invgauss(glm.obj,dispersion=NULL)</tt></dd>
+    <dd><tt>qres.tweedie(glm.obj,dispersion=NULL)</tt></dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>REQUIRED ARGUMENT </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td valign="top"><tt>glm.obj</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>Object of class &quot;glm&quot;. The
+                generalized linear model family is assumed to be
+                &quot;binomial&quot; for <tt>qres.binom</tt>,
+                &quot;poisson&quot; for <tt>qres.pois</tt>,
+                &quot;negative binomial&quot; for <tt>qres.nbinom</tt>,
+                &quot;Gamma&quot; for <tt>qres.gamma</tt>,
+                &quot;inverse Gaussian&quot; for <tt>qres.invgauss</tt> or
+                &quot;tweedie&quot; for <tt>qres.tweedie</tt>.</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>OPTIONAL ARGUMENT </strong></font></dt>
+    <dd><table border="0">
+            <tr>
+                <td valign="top"><tt>dispersion</tt></td>
+                <td width="20">&nbsp;</td>
+                <td>a positive real number. Specifies the value
+                of the dispersion parameter for a Gamma or
+                inverse Gaussian generalized linear model if
+                known. If <tt>NULL</tt>, the dispersion will be
+                estimated by its Pearson estimator (gamma) or by
+                restricted maximum likelihood (inverse Gaussian).</td>
+            </tr>
+        </table>
+    </dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>VALUE </strong></font></dt>
+    <dd>Numeric vector of standard normal quantile residuals.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>BACKGROUND</strong></font></dt>
+    <dd>Quantile residuals are based on the idea of inverting the
+        estimated distribution function for each observation to
+        obtain exactly standard normal residuals. In the case of
+        discrete distributions, such as the binomial and Poisson,
+        some randomization is introduced to produce continuous
+        normal residuals. Quantile residuals are the residuals of
+        choice for generalized linear models in large dispersion
+        situations when the deviance and Pearson residuals can be
+        grossly non-normal. Quantile residuals are the only
+        useful residuals for binomial or Poisson data when the
+        response takes on only a small number of distinct values.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>REFERENCE </strong></font></dt>
+    <dd>Dunn, K. P., and Smyth, G. K. (1996). <a href="../smyth/pubs/residual.html">Randomized quantile
+        residuals</a>. <em>J. Comput. Graph. Statist.</em>, <b>5</b>,
+        1-10.</dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>SEE ALSO </strong></font></dt>
+    <dd><a href="invgauss.html">Inverse Gaussian Distribution</a>,
+    <a href="tweedie.html">Tweedie Distributions</a>,
+    <a href="tweedief.html">tweedie family</a></dd>
+    <dt>&nbsp;</dt>
+    <dt><font color="#0000A0"><strong>EXAMPLES </strong></font></dt>
+    <dd>This is a binary regression (binomial) example. Compare the data
+      analysis of the kyphosis data set in the S-Plus manual entry on logistic
+      regression.</dd>
+    <dd>
+      <pre>&gt; kyph.glm &lt;- glm(Kyphosis ~ Age+Number+Start, family=binomial, data=kyphosis)
+&gt; r &lt;- qres.binom(kyph.glm)
+&gt; plot(fitted(kyph.glm),r)</pre>
+      <pre><img border="0" src="qres1.gif" width="251" height="251"></pre>
+ </dd>
+    <dd>The plot of residuals against fitted values shows reasonable random
+      scatter.</dd>
+    <dd>
+      <pre>&gt; plot(kyphosis$Age,r)
+&gt; plot(kyphosis$Number,r)
+&gt; plot(kyphosis$Start,r)</pre>
+      <p><tt>
+        # Gamma example with chisquare responses on 1 df<br>
+        glm.obj &lt;- glm(y~x,family=Gamma(link=&quot;log&quot;))<br>
+        qr &lt;- qres.gamma(glm.obj,dispersion=2)<br>
+        qqnorm(qr)<br>
+        abline(0,1)</tt> </dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+    <tr>
+        <td width="33%"><a href="index.html">S-Archive</a></td>
+        <td align="right" width="34%"><a href="qres.s">Download
+        Script</a></td>
+    </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

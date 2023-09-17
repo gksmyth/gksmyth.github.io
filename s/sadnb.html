@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for extended Poisson process models.">
+<title>S Archive: EPPM Negative Binomial Saddlepoint Approximation</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="sadnb.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>eppmsadnb</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>EPPM Negative
+    Binomial Saddlepoint</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Computes a saddlepoint approximation to the probabilities for an Extended Poisson
+    Process Model.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>eppmsadnb(lambda)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>lambda</tt></td>
+        <td width="20"></td>
+        <td>vector of positive birth rates. Missing values (NAs) are allowed but will usually
+        produce an NA result.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>second</tt></td>
+        <td width="20"></td>
+        <td>Logical variable. If <tt>second=T</tt> the second term correction to the saddlepoint
+        approximation is included.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd>Numerical value giving the log-probability that N = n -1 where n = length(lambda). </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS</strong></font></dt>
+  <dd>The function computes the log-probability mass for the count distribution resulting from
+    a pure birth process at unit time. The waiting time until the next birth is exponential
+    with mean lambda[n], where n is the number of births so far. Let N be the number of births
+    at unit time. The probability that N = n depends on lambda[0:n]. The function takes the
+    input vector to be lambda[0:n] and computes log P(N=n).<br>
+    <br>
+    The&nbsp; computation uses a saddlepoint approximation based on the negative binomial
+    distribution. The probabilities are exact whenever the lambda can be sorted to form an
+    arithmetic increasing sequence. Amongst other things, this means that <tt>eppmsadnb</tt>
+    will compute binomial, negative binomial or Poisson probabilities exactly including the
+    case where the sizes are not integers. In the worst cases, the probabilities are accurate
+    to 2 significant figures.<br>
+    <br>
+    The computation of probabilities for the pure birth process is central to extended Poisson
+    process models for modelling count data. </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Smyth, G. K., and Podlich, H. M. (2002). An improved saddlepoint
+  approximation based on the negative binomial distribution for the general
+  birth process. <i>Computational Statistics</i> <b>17</b>, 17-28.
+  [<a href="../smyth/pubs/saddle.pdf">PDF</a>]</dd>
+  <dd>&nbsp;</dd>
+  <dd>Podlich, H. M., Faddy, M. J., and Smyth, G. K. (1999). <a href="http://www.maths.uq.edu.au/~hmp/papers.html">Semi-parametric extended Poisson
+    process models</a>.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO </strong></font></dt>
+  <dd><a href="sadno.html">eppmsadno</a>, <a href="sadzc.html">eppmsadzc</a>, <a href="http://www.maths.uq.edu.au/~hmp/">S-Plus programs for EPPM</a> by Heather Podlich.</dd>
+</dl>
+
+<dl>
+  <dt><font color="#000080"><strong>EXAMPLES </strong></font></dt>
+  <dd><tt># Probability that N=3 for Poisson with mean 5</tt></dd>
+  <dd><tt># Same as dpois(3,mean=5)<br>
+    &gt; exp(eppmsadnb(c(5,5,5,5)))<br>
+    [1] 0.1403739<br>
+    <br>
+    # Probability that N=3 for negative binomial</tt></dd>
+  <dd><tt># with size=2 successes and success probablity exp(-1)<br>
+    # Same as dnbinom(3,size=2,prob=exp(-1))<br>
+    &gt; exp(eppmsadnb(c(2,3,4,5)))<br>
+    [1] 0.1367322<br>
+    <br>
+    # Probability that N=3 for binomial distribution<br>
+    # with 5 trials and success probability 1-exp(-1)</tt></dd>
+  <dd><tt># Same as dbinom(3,size=5,prob=1-exp(-1))<br>
+    &gt; exp(eppmsadnb(c(5,4,3,2)))<br>
+    [1] 0.3418305<br>
+    <br>
+    # Worst case - the lambda form two clusters at very different values<br>
+    # Exact value is actually 0.368<br>
+    &gt; exp(eppmsadnb(c(100,1,100,1)))<br>
+    [1] 0.3736466</tt></dd>
+</dl>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="sadnb.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>

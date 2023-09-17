@@ -1,0 +1,328 @@
+From hrz.uni-dortmund.de!a.christmann Wed Mar 05 16:05:31 0800 1997 remote from utstat
+Received: by utstat; Wed Mar  5 09:58 EST 1997
+Received: from nvl1.hrz.uni-dortmund.de by nx1.hrz.uni-dortmund.de 
+          with SMTP (PP); Wed, 5 Mar 1997 15:57:40 +0100
+Received: from UNIDO_HRZ1/TEMPQ by nvl1.hrz.uni-dortmund.de (Mercury 1.21);
+          5 Mar 97 16:05:04 +0100
+Received: from TEMPQ by UNIDO_HRZ1 (Mercury 1.21); 5 Mar 97 16:04:37 +0100
+Received: from dynam142.HRZ.Uni-Dortmund.DE 
+          by nvl1.hrz.uni-dortmund.de (Mercury 1.21); 5 Mar 97 16:04:32 +0100
+Message-ID: <331E0A4B.629B@hrz.uni-dortmund.de>
+Date: Wed, 05 Mar 1997 16:05:31 -0800
+From: "Dr. A. Christmann" <a.christmann@hrz.uni-dortmund.de>
+Organization: HRZ
+X-Mailer: Mozilla 2.02 (Win16; I)
+MIME-Version: 1.0
+To: s-news <s-news@utstat.toronto.edu>
+Subject: Summary : NELDER-MEAD SIMPLEX ALGORITHM
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+I like to thank all persons who responded on my question.
+-----------------------------------------------------------------
+"Has anyone implemented the Nelder-Mead Simplex minimization
+ procedure in S-Plus ?
+ (This minimization procedure is published as FORTRAN code in
+ ALGORITHM AS 47 APPL. STATIST. (1971) VOL. 20, P. 338 and is
+ also alvailable in StatLib.)"
+-----------------------------------------------------------------
+
+There are many persons who send me an answer.
+ From my point of view there are two different types of answers.
+Method a: pure S-Plus code
+Method b: code in Fortran or C, then use dyn.load or dll.load
+
+Of course, using code in Fortran or C is faster in most cases.
+
+I work with S-Plus under Windows 3.1 and I have a FORTRAN 77 version
+published in Applied Statistics and a FORTRAN 90 version 
+from Jeff Breiwick (MINUM) of the Nelder-Mead simplex algorithm.
+
+As I do not yet know  how to construct a DLL from 
+a NAG FORTRAN 90 compiler, which seems to be necessary to
+use method b under Windows 3.1, I currently tend to use pure S-Plus code.
+
+Or is there another way to use method b under Windows 3.1 ?
+
+Therefore, I tried the S-Plus code developed by Bill Clark and it 
+seems to work well for my problem.
+
+Thank you,
+Andreas Christmann
+
+Here is a summary of all answers in the sequence I got them.
+------------------------------------------------------------
+
+Yingwei Peng:
+------------
+What do you mean here by "in Splus"? If you mean implementing the
+procedure purely in S language, it will be too slow for any
+practical use. If you mean implementing it in other advanced
+languages and then loading it into Splus, you can easily compile
+the FORTRAN code and load it in Splus. I have used a C code by
+
+@BOOK{70,
+        AUTHOR = "William H. Press and Saul A. Teukolsky and William
+                T. Vetterling and Brian P. Flannery",
+        TITLE = "Numerical recipes in C : the art of scientific
+                computing",
+        PUBLISHER = "Cambridge University Press",
+        YEAR = 1992,
+        ADDRESS = "New York"  }
+
+It works well. A Fortran code from the same authors is also
+available. However, I used the C code only as a part of my C
+programs loaded into S. So I don't have a special Splus
+interface for the code only. Let me know if you like to have
+a copy of the code.
+
+-------------------------------------------------------------------------------------
+Daniel Heitjan:
+---------------
+I have implemented the Nelder-Mead algorithm (fun.amoeba),
+the Powell algorithm (fun.powell), and the Davidon-Fletcher-
+Powell algorithm (fun.dfpmin), in Splus.  All implementations
+are based on the _Numerical Recipes_ versions.  They are
+available by anonymous ftp to 156.111.36.191; cd to
+pub/dheitjan.  There you will find three Splus files:  the
+optimization routines (optfcn.q), some test optimization
+problems (testfcns.q), and code for running the tests
+(testalg.q).  Some of this code is several years old, and
+I haven't tested it recently, so you will probably have to
+do a bit of detective work (including changing file names
+in source() statements) to make it go.  But I have used
+this Nelder-Mead algorithm many times, and it does work well.
+
+I can provide some limited help if you experience problems.
+
+----------------------------------------------------------------------------------
+Bill Clark:
+-----------
+I wrote and tested the version below. It follows Nelder and Mead's terms and
+strategy pretty closely. Calling the routine with print.level=2 will track
+the search. You may want to alter the tolerance parameter (tol) used in the
+convergence test.
+
+nldrmd  <- function(fobj, startvec, print.level=0)
+# Function minimization by the Nelder-Mead simplex method. This is an
+# inefficient minimizer but is useful for obtaining a decent starting
+# point and scale information for one of the efficient methods.
+# Ref.: Press (Numerical Mehtods in C) p. 305.
+{
+# Standard tuning parameters.
+alpha <- 1.0 # alpha >= 1
+beta <-  0.5 # 0 < beta < 1
+gamma <- 2.0 # gamma > alpha
+tol <- 1E-6
+# Build initial simplex by scaling single elements of starting vector by
+# a factor exp(+/-lambda).
+if (print.level==2) cat('Initializing simplex...\n')
+lambda <- 2
+npar <- length(startvec)
+nverts <- npar + 1
+verts <- matrix(startvec,nverts,npar,byrow=T)
+fvals <- rep(0,nverts)
+for (iv in 1:npar)
+   repeat
+   {
+   lamb <- lambda
+      {
+      verts[iv,iv] <- exp(lamb) * startvec[iv]
+      if (verts[iv,iv]==0) verts[iv,iv] <- 1
+      fvals[iv] <- fobj(verts[iv,])
+      if (is.finite(fvals[iv])) break
+      verts[iv,iv] <- exp(-lamb) * verts[iv,iv]
+      fvals[iv] <- fobj(verts[iv])
+      if (is.finite(fvals[iv])) break
+      lamb <- lamb/2
+      }
+   }
+verts[nverts,] <- startvec
+fvals[nverts] <- fobj(startvec)
+scatter.init <- apply(verts,2,sd)
+centroid <- startvec
+# Start iteration.
+iter <- 0
+repeat
+   {
+   # Check for convergence.
+   if (print.level==2) ask('Press Return to continue')
+   iter <- iter + 1
+   scatter <- apply(verts,2,sd)
+   conv.test <- max(scatter/scatter.init)
+   if (conv.test < tol) break
+   if (print.level > 0)
+      {
+      fcen <- fobj(centroid)
+      cat('\nIteration',iter,' ... convergence test =',ff(conv.test),
+          'fval =',ff(fcen,9),'\n')
+      }
+   # Make a move. First try projecting across centroid from high point.
+   fmax <- max(fvals)
+   iv.fmax <- min((1:nverts)[fvals==fmax])
+   fnext <- max(fvals[(1:nverts) != iv.fmax])
+   iv.fnext <- min((1:nverts)[fvals==fnext])
+   fmin <- min(fvals)
+   iv.fmin <- min((1:nverts)[fvals==fmin])
+   # The centroid referred to here is the centroid of the face
+   # across from the point where the function is largest.
+   centroid <- if (npar==1) verts[iv.fmin] else
+                            apply(verts[(1:nverts) != iv.fmax,],2,mean)
+   proj.vert <- centroid + alpha * (centroid - verts[iv.fmax,])
+   proj.fval <- fobj(proj.vert)
+   if (print.level == 2)
+      {
+      cat('Vertices:\n')
+      for (iv in 1:nverts) cat(iv,ff(verts[iv,]),'\n')
+      cat('Function values:\n',ff(fvals),'\n')
+      cat('Projected vertex:\n',ff(proj.vert),'\n')
+      cat('Projected function value:',ff(proj.fval),'\n')
+      }
+   # Make sure function values are different.
+   if (all(fvals==fmax))
+      {
+      cat(paste('nldrmd error: Function values same at all vertices.',
+                'Change startvec.\n'))
+      return(NA)
+      }
+   # Decide what to do based on projected function value.
+   if (proj.fval >= fmin & proj.fval <= fnext)
+      # Middling result. Take it.
+      {
+      if (print.level==2) cat('Taking projection.\n')
+      verts[iv.fmax,] <- proj.vert
+      fvals[iv.fmax] <- proj.fval
+      next
+      }
+   if (proj.fval < fmin)
+      # Better than the minimum. Perform an expansion.
+      {
+      if (print.level==2) cat('Performing expansion.\n')
+      exp.vert <- centroid + gamma * (centroid - verts[iv.fmax,])
+      exp.fval <- fobj(exp.vert)
+      verts[iv.fmax,] <- exp.vert
+      fvals[iv.fmax] <- exp.fval
+      next
+      }
+   if (proj.fval > fnext)
+      # Worse than second highest. Try a one-dimensional contraction.
+      {
+      cont.vert <- beta * centroid + (1 - beta) * verts[iv.fmax,]
+      cont.fval <- fobj(cont.vert)
+      if (cont.fval < fmax)
+         {
+         if (print.level==2) cat('Performing 1D contraction.\n')
+         verts[iv.fmax,] <- cont.vert
+         fvals[iv.fmax] <- cont.fval
+         next
+         }
+      # Didn't work. Shrink toward best point.
+      if (print.level==2) cat('Performing wholesale contraction.\n')
+      for (iv in 1:nverts)
+            verts[iv,] <- beta * verts[iv.fmin,] + (1 - beta) * verts[iv,]
+      }
+   # Done with update.
+   }
+# Convergence test succeeded.
+return(verts[iv.fmin,])
+}
+-----------------------------------------------------------------------------------
+Brian Dawkins:
+-------------
+I implemented this with an interface to C-code several years ago. It is
+in statlib under the name
+    recipes
+together with several other bits and pieces. I've had a number of communications
+over the years from various users and it does seem to work reasonably as
+far as I know.
+
+------------------------------------------------------------------------------------
+Peter Perkins:
+--------------
+i know i hate this kind of answer, but:
+
+i've used this algorithm (in C, not from S) for a number of different
+problems and as far as i can tell its only saving grace is that it seems
+to be more robust to steep slopes and discontinuities than poorly
+implemented quasi-newton methods (such as those in Numerical Recipes).
+the fact that it doesn't require derivatives is a red herring - neither
+do modern quasi-newton algorithms (but they work faster if you can
+supply it).  the optimizer in S, nlmin(), is really a pretty good one
+and works much much faster than the simplex search in all of the
+problems that i have used them.  there are better optimizers as well - i
+use NPSOL outside of S, but nlmin() (based on ATT's PORT routines) is
+pretty good.
+
+----------------------------------------------------------------------------------
+Daniel Heitjan:
+---------------
+Several years ago I implemented a version of the Nelder-Mead
+simplex algorithm, based on the _Numerical Recipes_ fortran
+routine amoeba, entirely in Splus.
+
+There is no doubt that a Fortran or C implementation would be
+faster.  But there are certain advantages to an all-Splus
+implementation:  It is easier to read and modify, it can be used
+to optimize any Splus function, it makes it easier to track down
+problems in the convergence, and it is more portable (e.g., between
+platforms).  If I can do the programming quickly, as I normally
+can in Splus, I don't mind if I don't get the answer right away.
+In short, I have found lots of uses for my Splus amoeba.
+
+Nevertheless, I always dreamed of an Splus wrapper for the
+fortran amoeba that would work the same as my Splus amoeba--i.e.,
+optimize any Splus function with any kind of data.  But I couldn't
+figure out how to get the fortran to recognize the function and
+the data.  Has anybody written such a wrapper?
+
+-------------------------------------------------------------------------------------
+Brian Dawkins:
+--------------
+
+Several years ago I wrote just such a wrapper. It is in statlib under the
+rubric of recipes. I've had a little correspondence over the years about this
+and I'm reasonably confident it works okay.
+
+
+--------------------------------------------------------------------------------------
+Martin Maechler:
+---------------
+I would suggest to use the  C (instead of fortran) amoeba code.
+(Numerical recipes in C).
+
+Then it is possible to pass S functions as you know from the 'zero' example
+in the blue book and the "S-plus Programming" manual.
+
+---------------------------------------------------------------------------------------
+Yingwei Peng :
+--------------
+
+> Martin Maechler wrote,
+>
+> I would suggest to use the  C (instead of fortran) amoeba code.
+> (Numerical recipes in C).
+
+Yes, this is exactly what I said in the message to Dr. A.
+Christmann.
+
+> Then it is possible to pass S functions as you know from the 'zero' example
+> in the blue book and the "S-plus Programming" manual.
+
+Yes, it is possible using call_S() function provided by Splus.
+But it takes even longer time for programs to switch between
+Splus and C. From a point view of portability, I would prefer
+either pure S code (if the problem is not large) or C code and
+try to minimize the times of calling between each other.
+
+----------------------------------------------
+A.Christmann@hrz.uni-dortmund.de
+
+Andreas Christmann                     ///////
+Universitaet Dortmund           U N I D O ///  
+Hochschulrechenzentrum         ______///////  
+Wissenschaftl. Anwendungen     \_\_\_\/////
+D-44221 Dortmund                \_\_\_\///
+Tel. 049-231-755-2763            \_\_\_\/
+Fax.            -2731

@@ -1,0 +1,179 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Script and documentation for an S-Plus function for robust estimation of a sum of sinusoids using M estimation for the scale and the signal.">
+<title>S archive: MM Frequency Estimation</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="40932" endspan -->
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#000080"><font color="#FFCE00" size="5"><b><tt>mmfreq</tt></b></font></td>
+    <td width="30" bgcolor="#000080"></td>
+    <td align="right" bgcolor="#5050A0"><font color="#FFCE00" size="5"><em>MM Frequency
+    Estimation</em></font></td>
+  </tr>
+</table>
+
+<dl>
+  <dt><font color="#000080"><strong>DESCRIPTION </strong></font></dt>
+  <dd>Estimates a sum of sinusoidal signals using M estimators for the scale and the signal.
+    The M estimators are chosen for 95% efficiency under normal errors.</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>USAGE </strong></font></dt>
+  <dd><tt>mmfreq(y,x=NULL,freq,coef=NULL,constant=F,scale=NULL,trace=F)</tt></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REQUIRED ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>y</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of observations.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>freq</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of starting values for the frequencies.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>OPTIONAL ARGUMENTS </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>x</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of time points. Defaults to <tt>0:(length(y)-1)</tt></td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>coef</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of starting values for the coefficients. By default these are estimated
+        using the built-in S-Plus function ltsreg.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>constant</tt></td>
+        <td width="20"></td>
+        <td>logical constant. If true, include a constant or intercept in the model. </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>scale</tt></td>
+        <td width="20"></td>
+        <td>numeric constant giving scale of the residuals. By default this is estimated using <a href="mscale.html">mscale</a> for the starting parameter values.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>trace</tt></td>
+        <td width="20"></td>
+        <td>logical constant. If true, frequencies and criterion are printed at each iteration. </td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>VALUE </strong></font></dt>
+  <dd><table border="0">
+      <tr>
+        <td align="right" valign="top"><tt>freq</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of estimated frequencies.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>coef</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of estimated coefficients.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>fitted</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of same length as y of fitted values.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>residuals</tt></td>
+        <td width="20"></td>
+        <td>numeric vector of same length as y of residuals.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>scale</tt></td>
+        <td width="20"></td>
+        <td>numeric constant giving the estimated or input scale.</td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><tt>criterion</tt></td>
+        <td width="20"></td>
+        <td>numeric constant giving the estimated criterion functoin.</td>
+      </tr>
+    </table>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>DETAILS</strong></font></dt>
+  <dd>Uses Hampel's redescending psi function. The estimators simultaneously have high
+    breakdown and 95% efficiency under normal errors if consistent high breakdown starting
+    values can be found.<p>If constant = T then the assumed model is</p>
+    <p align="center">y = a[1] + a[2]*cos(x*f[1]) + ... + a[p+1]*cos(x*f[p]) +
+    a[p+2]*sin(x*f[1]) + ... + a[2*p+1]*sin(x*f[p])</p>
+    <p>where coef = a, freq = f and p = length(f). If constant = F then the model is</p>
+    <p align="left">y = a[1]*cos(x*f[1]) + ... + a[p]*cos(x*f[p]) + a[p+1]*sin(x*f[1]) + ... +
+    a[2*p]*sin(x*f[p])<br>
+    <br>
+    The values for <em>f</em> define the freq vector while the values for <em>a</em> define
+    the coef vector.</p>
+  </dd>
+</dl>
+
+<dl>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>REFERENCES </strong></font></dt>
+  <dd>Yohai, V. J. (1987). High breakdown point and high efficiency robust estimates for
+    regression. <em>Ann. Statist</em>. <strong>15</strong>, 642-656.<p>Stromberg, A. J.
+    (1993). Computation of high breakdown nonlinear regression parameters. <em>J. Amer.
+    Statist. Assoc</em>. <strong>88</strong>, 237-244.</p>
+  </dd>
+  <dd>Smyth, G. K., and Hawkins, D. M. (2000). Robust frequency estimation using elemental
+    sets. <em>Journal of Computational and Graphical Statistics </em><b>9</b>,
+    196-214. (<a href="../smyth/pubs/element.html">Abstract</a> - <a href="../smyth/pubs/element.pdf">Zipped PostScript</a>)</dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>SEE ALSO</strong></font></dt>
+  <dd><a href="mmnl.html">mmnl</a>, <a href="mscale.html">mscale</a>, <a href="rhohamp.html">rho.hampel</a>,
+    <a href="psihamp.html">psi.hampel</a>, <a href="robfreq.html">robfreq</a></dd>
+  <dt>&nbsp;</dt>
+  <dt><font color="#000080"><strong>EXAMPLES</strong></font></dt>
+  <dd>The function <a href="robfreq.html">robfreq</a> uses mmfreq.</dd>
+</dl>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%" bgcolor="#D2D2D2" bordercolor="#D2D2D2">
+  <tr>
+    <td width="33%" bgcolor="#C0C0C0"><a href="index.html">S-Archive</a></td>
+    <td align="right" width="34%" bgcolor="#C0C0C0"><a href="robust.s">Download Script</a></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" U-Include="../_private/signsm.html" TAG="BODY" startspan -->
+<p><font size="2"><a href="../smyth/index.html">Gordon Smyth</a>.
+Copyright &copy; 1996-2016. <em>Last modified:
+10 February 2004</em></font></p>
+<!--webbot bot="Include" i-checksum="37659" endspan --></body>
+</html>
