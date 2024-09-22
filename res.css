@@ -1,4 +1,4 @@
-BODY { background: white; color: black; font-family: arial, sans-serif; line-height: 1.3 }
+BODY { background: white; color: black; font-family: arial, sans-serif; font-size: 90%; line-height: 1.3 }
 a:link       { color: #3333FF }
 a:visited    { color: #660066 }
 H1 { font-size: x-large; font-family: arial, sans-serif; color: #808080 }
