@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="A Matlab function for fitting a sum of exponential functions to data by least squares.">
+<title>Statbox Toolbox for MATLAB: example using mprony</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<p class="parent"><a href="statbox.html">StatBox 4.2</a></p>
+
+<h1>Example Session using mprony</h1>
+
+<pre>» help mprony
+
+ MPRONY Fits a sum of exponential functions to data by a modified Prony
+ 	method.
+
+ 	B = MPRONY(Y,T,P) approximates Y(i) by a weighted sum of P
+ 	exponentials  sum_j=1^p A(j)*exp(B(j)*T(i)).  The T(i) are
+ 	assumed equally spaced.  B and A may be complex, although the
+ 	sum will be real if the data are.
+
+ 	Starting values for the B(i) are optional supplied by
+ 	MPRONY(Y,T,P,BSTART).  The A(i) and the fitted values are
+ 	optionally returned by [B,A,MU] = MPRONY(Y,T,P,BSTART).
+
+ 	This function is very effective on smaller data sets with T(i+1)-T(i)
+ 	not too small and P not too large.
+
+» t = (1:20)';
+» atrue=[1; -0.1];
+» btrue=[0.1; 0.2];
+» y = exp(t*btrue')*atrue + 0.1*randn(20,1);
+» [b,a,mu]=mprony(y,t,2);
+» disp([a b])
+   -0.0488    0.2265
+    0.9158    0.0967
+» plot(t,mu,t,y,'x')</pre>
+
+<p align="center"><img src="mprony1.gif" alt="mprony1.gif (5389 bytes)" width="469" height="372"></p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+</body></html>

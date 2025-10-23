@@ -1,0 +1,197 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="A Matlab function for ordinal logistic regression.">
+<title>Statbox Toolbox for MATLAB: example using ordinal</title>
+<link rel="stylesheet" type="text/css" href="../res.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#000FFF">
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<p class="parent"><a href="statbox.html">StatBox 4.2</a></p>
+
+<h1>Example Session using ordinal</h1>
+
+<p><code>ordinal</code> performs logistic regression or ordinal logistic regression.
+
+<pre>» help ordinal
+
+ORDINAL	Ordinal logistic regression.  ORDINAL(Y,X,1); regresses the ordinal
+	response  Y  on the design matrix  X  and prints summary results.
+
+	Suppose  Y  takes values in  k  ordered categories, and let  p_ij
+	be the cumulative probability that  Y(i)  falls in the j'th category
+	or higher.  The ordinal logistic regression model is
+
+	 logit(p_ij) = theta(j) + x_i'beta , i = 1,..,length(Y), j = 1,..,k-1,
+
+	where  x_i  is the i'th row of  X .  The number of ordinal
+	categories  k  is taken to be the number of distinct values of
+	round(Y) .  If  k = 2  the model is ordinary logistic regression.
+	X  is assumed to have full column rank.
+
+	ORDINAL(Y)  fits the model with baseline logit odds only.  The full
+	form is  [BETA,THETA,DEV,DL,D2L,P] = ORDINAL(Y,X,PRINT,BETA,THETA)
+	in which all output arguments and all input arguments except  Y  are
+	optional.  PRINT = 1  requests summary information about the fitted
+	model to be displayed.  PRINT = 2  requests information about
+	convergence at each iteration.  Other values request no information
+	to be displayed.  Input arguments BETA  and  THETA  give initial
+	estimates for beta and theta.  DEV holds minus twice the
+	log-likelihood,  DL  the log-likelihood derivative vector with
+	respect to theta and beta,  D2L  the second derivative matrix, and
+	P  the estimates of the cell probabilities, p_{ij}-p_{i,j+1}.</pre>
+
+<p>Two simple logistic regressions with <b>binary responses</b> using ordinal. The first
+is just a fit of a constant model. The estimated parameter is this case is just
+minus the log-odds of a success. The proportion of successes is 4/10=0.4. The
+estimated intercept is -log(0.4/(1-0.4))=0.4055. The deviance 13.4602 is the
+total or null deviance.</p>
+
+<pre>» y = [0 1 0 0 1 0 0 0 1 1]'
+y =
+     0
+     1
+     0
+     0
+     1
+     0
+     0
+     0
+     1
+     1
+» ordinal(y,[],1);
+Number of iterations
+     0
+
+  Deviance
+   13.4602
+
+     Theta      SE
+    0.4055    0.6455</pre>
+
+<p>Now a simple logistic regression with a continuous covariate.</p>
+
+<pre>» x = (1:10)'
+x =
+     1
+     2
+     3
+     4
+     5
+     6
+     7
+     8
+     9
+    10
+» ordinal(y,x,1);
+Number of iterations
+     2
+
+  Deviance
+   12.6305
+
+     Theta      SE
+    1.6129    1.5734
+
+     Beta       SE
+    0.2129    0.2436</pre>
+
+<p>We can compare the above output to output from the same regression using
+another statistical program, in this case R:</p>
+
+<pre>> y <- c(0,1,0,0,1,0,0,0,1,1)
+> x <- 1:10
+> cbind(x,y)
+       x y
+ [1,]  1 0
+ [2,]  2 1
+ [3,]  3 0
+ [4,]  4 0
+ [5,]  5 1
+ [6,]  6 0
+ [7,]  7 0
+ [8,]  8 0
+ [9,]  9 1
+[10,] 10 1
+> out <- glm(y~x,family=binomial)
+> summary(out)
+
+Call:
+glm(formula = y ~ x, family = binomial)
+
+Deviance Residuals:
+    Min       1Q   Median       3Q      Max
+-1.2161  -0.9977  -0.7318   1.0304   1.7055
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)  -1.6146     1.5726  -1.027    0.305
+x             0.2131     0.2435   0.875    0.381
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 13.460  on 9  degrees of freedom
+Residual deviance: 12.631  on 8  degrees of freedom
+AIC: 16.631
+
+Number of Fisher Scoring iterations: 3</pre>
+
+<p>Comparing this with the output from ordinal above, we see that the coefficient
+beta from ordinal is the same as the regression coefficient from R. The
+coefficient theta from ordinal is minus the intercept coefficient from R. The
+standard errors are the same in each case. The deviance from ordinal is the
+residual deviance from R. The null deviance in R is the same as the residual
+deviance from the null model, output as the deviance from ordinal above when
+there was no predictor variable.</p>
+
+<p>Here is now a little <b>ordinal regression</b> example. There are now three levels of the response and there are two intercepts in the output to distinguish the three levels.
+The regression coefficient of 0.8 shows a positive association between the
+covariate and the responses.</p>
+
+<pre>» y=[1 1 2 1 3 2 3 2 3 3]'
+y =
+     1
+     1
+     2
+     1
+     3
+     2
+     3
+     2
+     3
+     3
+» ordinal(y,x,1);
+Number of iterations
+     4
+
+  Deviance
+   13.6793
+
+     Theta      SE
+    2.7793    1.7581
+    5.3661    2.4971
+
+     Beta       SE
+    0.8070    0.3720</pre>
+
+<h2>References</h2>
+
+<p>McCullagh, P. (1980). Regression models for ordinal data (with discussion).
+<i>Journal of the Royal Statistical Society Series</i> B <b>42</b>, 109-142.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+</body></html>
