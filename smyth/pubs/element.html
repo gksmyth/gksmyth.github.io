@@ -1,0 +1,216 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DESCRIPTION" content="Abstract of by Gordon K Smyth and Doug M Hawkins, October 1999.">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<title>Robust Frequency Estimation Using Elemental Sets: Abstract of Paper</title>
+<link rel="stylesheet" type="text/css" href="../../res.css">
+</head>
+
+<body>
+
+<!--webbot bot="Include" U-Include="../../_private/sitelogo.html" TAG="BODY" startspan -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img border="0" src="../../images/statsci24.png" width="148" height="27"></td>
+    <td>
+<font face="arial, helvetica, sans-serif"><b>&nbsp;/</b>
+<small><a href="../../index.html">Home</a></small></font></td>
+  </tr>
+</table>
+
+<!--webbot bot="Include" i-checksum="65040" endspan --><p class="parent">
+<a href="../index.html">Gordon Smyth Home</a>: <a href="../research.html">
+Research</a>: <a href="index.html">Publications</a></p>
+
+<hr>
+
+<p>Smyth, G. K., and Hawkins, D. M. (2000). Robust frequency estimation using
+elemental sets. <i>Journal of Computational and Graphical Statistics</i> <b>9</b>,
+196-214.</p>
+
+<h1>Robust Frequency Estimation Using Elemental Sets</h1>
+
+<p>Gordon K. Smyth, Department of Mathematics, University of Queensland<br>
+and Doug M. Hawkins, Department of Applied Statistics, University of Minnesota</p>
+
+<h2>Abstract</h2>
+
+<p>The extraction of sinusoidal signals from time-series data is a classic problem of
+ongoing interest in the statistics and signal processing literatures. Obtaining least
+squares estimates is difficult because the sum of squares has local minima O(1/n) apart in
+the frequencies. In practice the frequencies are often estimated using ad hoc and
+inefficient methods. Problems of data quality have received little attention. An elemental
+set is a subset of the data containing the minimum number of points such that the unknown
+parameters in the model can be identified. This paper shows that, using a variant of the
+classical method of Prony, parameter estimates for a sum of sinusoids can be obtained
+algebraically from an elemental set. Elemental set methods are used to construct finite
+algorithm estimators which approximately minimize the least squares, least trimmed sum of
+squares or least median of squares criteria. The elemental set estimators prove able in
+simulations to resolve the frequencies to the correct local minima of the objective
+functions. When used as the first stage of an MM estimator, the constructed estimators
+based on the trimmed sum of squares and least median of squares criteria produce final
+estimators which have high breakdown properties and which are simultaneously efficient
+when no outliers are present. The approach can also be applied to sums of exponentials,
+and sums of damped sinusoids. The paper includes simulations with one and two sinusoids
+and two data examples.</p>
+
+<p><b><i>Keywords:</i></b> frequency estimation, sums of exponential functions, elemental
+sets, least trimmed sum of squares, least median of squares, MM estimators, high
+breakdown, high efficiency. </p>
+
+<h2>Introduction</h2>
+
+<h3>A Special Nonlinear Regression Problem</h3>
+
+<p>The normal-error nonlinear regression model is</p>
+
+<p align="center">y<sub>t</sub> = <font face="Symbol">m</font>(t) + <font face="Symbol">e</font><sub>t</sub><font face="Symbol">,&nbsp; m</font>(t) = g(<strong>x</strong><sub>t</sub>,<font face="Symbol"><strong>b</strong></font>),
+&nbsp; <font face="Symbol">e</font><sub>t</sub> ~ N(0,<font face="Symbol">s</font><sup>2</sup>)</p>
+
+<p>t = 1,...,n, where the mean function <font face="Symbol">m</font>(t) depends
+nonlinearly on some unknown coefficient vector <font face="Symbol"><strong>b</strong></font>
+and some covariate vector <strong>x</strong><sub>t</sub>, and we assume normal
+homoscedastic errors <font face="Symbol">e</font><sub>t</sub>. One special but important
+subclass of nonlinear regression models is that in which g(<strong>x</strong><sub>t</sub>,<font face="Symbol"><strong>b</strong></font>) is a sum of sinusoids in t with the frequencies,
+phases and amplitudes constituting the <font face="Symbol"><strong>b</strong></font>.</p>
+
+<p>Fitting these sinusoidal models can involve daunting computational problems. The
+maximum likelihood estimators are ordinary least squares estimators, and the least squares
+function has local minima spaced O(n<sup>-1</sup>) apart, making the gradient-based search
+methods of general non-linear regression ineffective without excellent starting values.</p>
+
+<p>This problem is further complicated by the possibility of outliers in the data. These
+can be incorporated in the distributional model by assuming that the majority of the <font face="Symbol">e</font><sub>t</sub> follow the N(0,<font face="Symbol">s</font><sup>2</sup>)
+distribution but that a minority are &quot;contaminated''. This possibility multiplies the
+difficulties; not only do we have to find elusive estimators, but have to do so in the
+face of data that disrupt the usual fitting criteria.</p>
+
+<p>In this paper we develop methods which, with high probability, resolve the frequencies
+to the correct local minima of the objective function, and which have high breakdown
+points against outliers.</p>
+
+<h3>The Elemental Set Method</h3>
+
+<p>The method of elemental sets is widely used in linear regression as a way of getting
+reasonable parameter estimates in data sets that may have substantial contamination, even
+by extreme and badly-placed outliers (Marazzi, 1991). It involves performing many fits to
+a given data set, each fit made to a subsample just large enough to identify the
+parameters. For example, in a linear regression with p coefficients, the method involves
+sampling p of the cases and performing an exact fit to get values for the p coefficients.
+Repeating this with different subset of p cases leads to different coefficient vectors. A
+key characteristic of these coefficient vectors is that, by definition, each has some
+support in the data. See Hawkins (1993) for a discussion of the statistical properties of
+these coefficient vectors, and Rousseeuw (1984), Hawkins, Bradu and Kass (1984), and
+Rousseeuw and Leroy (1986) for illustrations of the approach for handling linear
+regression outliers.</p>
+
+<p>The extension of elemental set methods to get high breakdown estimators in nonlinear
+regression has been considered recently by Stromberg and Ruppert (1992) and by Stromberg
+(1993, 1995). One difficulty is that the computation of exact fits to elemental sets is
+far from trivial in general nonlinear regression. This paper shows that this difficulty
+does not apply to sinusoidal regressions when the observations are at equi-spaced times as
+the elemental set estimates can be computed algebraically. The approach actually applies
+to any function <font face="Symbol">m</font>(t) which solves a homogeneous differential
+equation with constant coefficients, notably sums of exponential functions and damped
+sinusoids as well as sums of sinusoids, although we concentrate on the sinusoidal problem
+here. Even when the times are not equi-spaced, it is sometimes possible to interpolate to
+equi-spaced times for the purposes of the elemental sets as we show in Section 5.2.</p>
+
+<p>The elemental set method is useful for optimizing criteria which are not smooth, have
+many local minima or are otherwise not amenable to global optimization by refinement in
+the parameter space. There are other classes of algorithms, notably simulated annealing
+and genetic algorithms, which can also deal with multiple minima, but these have so far
+been less used than elemental sets for detecting outliers in linear models. Atkinson and
+Weisberg (1991) present some performance figures showing the simulated annealing is not
+competitive with the other approaches. Genetic algorithms are more closely competitive on
+the linear problem, and are therefore candidates for the nonlinear problem also. However
+they would be more complex to program than the elemental set method and seem in general
+more suited to problems where the objective function has more structure around the local
+minima.</p>
+
+<h3>Criterion Functions</h3>
+
+<p>The method of elemental sets involves many repeated fits using different elemental
+sets, each fit providing an estimate of the parameters and a set of estimated residuals.
+We can use these different fits in two ways. One is to ``average'' the parameter estimates
+from the different fits in some sensible way. The other is to look across the different
+elemental sets for that one yielding the minimum of some criterion function. This is
+logically related to the random search for the least squares frequency estimate suggested
+by Rosenblatt and Rice (1988), with the difference that each estimate considered has some
+support in the data so that the candidates are relatively dense in the neighborhood of the
+true values. In either approach, we can then use the estimate produced by the elemental
+sets as the starting point for some further iterative refinement.<br>
+<br>
+Write <font face="Symbol">m</font>(t) for some estimate of the regression function of case
+t. This corresponds to the estimate of the residual</p>
+
+<p align="center">e<sub>t</sub> = y<sub>t</sub> - <font face="Symbol">m</font>(t)</p>
+
+<p>Conventional estimates are found by the LS criterion -- minimizing the sum of squares
+of all n of these residuals. This criterion is motivated by ideas of statistical
+efficiency but is inappropriate if some of the residuals may be contaminated. The wish to
+protect the estimate from such contamination leads to the minimization of
+outlier-insensitive criteria. Two well-known examples are the ``least trimmed squares'' or
+LTS criterion and ``least median of squares'' or LMS criterion. LTS aims to minimize the
+sum of squares of the h smallest absolute residuals while LMS aims to minimize the <em>h</em>th
+smallest squared residual. The coverage h is chosen to reflect the amount of protection
+against outliers that is felt appropriate, with choices slightly above one-half the data
+set size reflecting the default of seeking the maximum possible protection. </p>
+
+<p>For any criterion, an estimator can be defined with which minimizes the criterion over
+a large number of elemental sets. In this paper we report on simulations with the LS, LTS
+and LMS criteria.</p>
+
+<h3>Multistage Estimators</h3>
+
+<p>A feature of the elemental sets method is that it is finite. It can therefore be used
+to generate preliminary estimators with which to initialize iterative estimation schemes
+such as maximum likelihood or M estimation. In particular, an estimator which combines
+high breakdown with high efficiency under normal errors can be achieved by using a high
+breakdown elemental estimator to initialize the MM estimation scheme of Yohai (1987) and
+Stromberg (1993). We use our elemental set estimators as part of a multistage estimator
+similar to that of Stromberg (1993). We find that the elemental LTS and LMS estimators are
+successful in resolving the frequencies to the correct local minima of the objective
+function even in the presence of outliers. We find that both criterion are successful as
+stage one estimators for an MM estimation scheme, and that in simulations the final
+estimators have both high breakdown properties again outliers and high efficiency when
+there are no outliers.</p>
+
+<h2>Download</h2>
+
+<ul>
+  <li><a href="element.pdf">PDF of full article</a></li>
+  <li> <a href="../../s/robfreq.html">Software</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<hr>
+<!--webbot bot="Include" U-Include="../../_private/signres.html" TAG="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td align="center"><form align="center" action="http://www.statsci.org/cgibin/searchwg.pl" method="get" name="SearchForm">
+      <p><font face="arial, helvetica, sans-serif"><input type="text" size="32" name="Terms"> <input type="submit" value="Search"> <font size="2"><a href="../../search.html">Help</a></font></font></p>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom" height="50">
+    <font face="arial, helvetica, sans-serif"><small>
+    <a href="../../index.html">Home</a> - <a href="../../about.html">About Us</a> -
+    <a href="../../contact.html">Contact Us</a><br>
+    Copyright &copy; <a href="../index.html">Gordon Smyth</a></small></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="47675" endspan -->
+</body>
+</html>
