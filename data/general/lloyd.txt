@@ -1,0 +1,78 @@
+Resent-Date: Sun, 4 May 1997 04:33:35 +1000
+Resent-From: anzstat-error@melia.qut.edu.au
+Date: Sat, 03 May 1997 09:51:52 +0800
+From: lloyd@hkustasc.hku.hk
+Subject: Re: Correlation - storks and babies
+X-Sender: lloyd@hkustasc.hku.hk
+To: anzstat@qut.edu.au
+Errors-to: anzstat-error@melia.qut.edu.au
+Resent-message-id: <01IIGGI81HGK00JP0H@melia.qut.edu.au>
+X-VMS-To: IN%"anzstat@qut.edu.au"
+
+I have just had a consulting project that is very relevent.
+A Professor of Medicine came to me some with measurements
+(x1,x2,age) on 23 babies. He had found a significant
+correlation between x1 and x2, and had a paper accepted
+by the Journal of Gerontology on the amazing discovery
+of this correlation.
+
+Luckily a dissenting referee had pointed out that the
+correlation was likely spurious because both x1 and x2
+tend to increase with age. No doubt x1 and x2 are also
+highly correlated with penis length of the baby (at least
+for the males!).
+
+However, the editor had accepted the paper and only asked
+that the correlation coefficients should also be computed
+separately for young, medium and older babies and these
+packed into an appendix. Even if these were not at all
+significant there was no suggestion that the paper be
+rejected.
+
+Below are the data. Find a significant association if you
+can! The list might like to ponder the following questions.
+
+(1) What should we do about journals that accept papers 
+    with wrong statistics?
+(2) How widespread is the publication of papers with
+    wrong statistics?
+(3) How can we find out how widespread it is? Should say
+    the Biometrics Society fund people to scrutinise sundry
+    journals for statistical validity?
+(4) What should a consultant do when faced with a wrongly
+    accepted paper like this? In my case I agreed to perform
+    an adhoc analysis suggested by the dissenting referee,
+    so long as my name did not appear on the paper. This
+    analysis showed no association.
+
+ x1       x2  age in months
+0.729	280.1    3
+0.785	402.2    3
+0.625	351.4    3
+0.604	315.5    3
+0.701	306.0    3
+0.957	315.0    3
+0.664	220.2    3
+0.640	223.6   12
+0.464	214.3   12
+0.684	224.5   12
+0.517	256.0   12
+0.581	285.4   12 
+0.814	215.1   12
+0.636	231.0   12
+1.051	269.6   12
+0.410	222.5   24
+0.701	221.1   24
+0.650	208.9   24
+0.234	170.1   24
+0.674	254.5   24 
+0.545	263.9   24
+0.429	249.1   24
+0.358	210.8   24
+
+Spurious correlation of x1 and x2 is 0.45, spurious P=0.031. Notice
+that there are only 3 distinct ages. You guessed it! 3 months means
+0-6, 12 months means 6-18 and 24 means 18-30. Thus even the three
+separate correlations probably contain a large spurious element.
+
+C.J.Lloyd

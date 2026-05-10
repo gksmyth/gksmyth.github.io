@@ -1,0 +1,13 @@
+Activity	Period	Groups
+Travel	Morning	 6
+Feed	Morning	28
+Social	Morning	38
+Travel	Noon	 6
+Feed	Noon	 4
+Social	Noon	 5
+Travel	Afternoon	14
+Feed	Afternoon	 0
+Social	Afternoon	 9
+Travel	Evening	13
+Feed	Evening	56
+Social	Evening	10
