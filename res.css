@@ -6,3 +6,10 @@ H2 { font-size: large; font-family: arial, sans-serif; color: #009933 }
 H3 { font-family: arial, sans-serif; color: #009933 }
 .parent { font-family: arial, sans-serif}
 ul li {margin-bottom: 1px}
+ul.spaced {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+ul.spaced li {
+  margin-bottom: 0.5em
+}
